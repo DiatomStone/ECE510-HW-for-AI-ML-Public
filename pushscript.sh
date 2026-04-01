@@ -1,3 +1,4 @@
+echo "Current Branch:"
 git branch
 echo "Enter commit message..."
 git add .
