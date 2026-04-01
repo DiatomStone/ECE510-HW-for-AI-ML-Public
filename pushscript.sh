@@ -1,3 +1,4 @@
+git branch
 echo "Enter commit message..."
 git add .
 read message
