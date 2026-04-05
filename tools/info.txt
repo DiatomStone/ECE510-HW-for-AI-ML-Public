@@ -1,0 +1,2 @@
+pushscript.sh 		pushes to github
+pytorch.sh 		sets pytorch environment run with "source pytorch.sh" 

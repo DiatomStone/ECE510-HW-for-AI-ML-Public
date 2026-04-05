@@ -3,3 +3,11 @@
 		Ai helped distinguish ALgorithm from AI application domain.
 		learned general vocabulary of ai/ml and cf01. with Gemini.
 		arithmatic intensity was done by AI then each value was worked by hand to gain a better understanding. 
+[sun 4/5/26]	mobilenet_v2 was used as a platform to get a better understanding.
+		differentiate between ai kernel (code closest to hw), algorithm (training), and model (inference)
+		>>Depthwise Separable Convolution is a candidate
+		>>standard convolution
+		>>LIF (Leaky Integrate-and-Fire) Neuron Logic
+		difficulty finding algorithm and understandable output, 
+		start with sample ML_algorith to get good foundation (if possible move on to static quantization)
+		
