@@ -1,0 +1,30 @@
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+
+--- Generated text ---
+Aliceme sse s thelot bas alstte ited ad thert the ashenour s n ithy eron, bitin ast u ay isuntlleaminghe ng stevemen nd be ain ar thtonoroth. hen, aerout ad on arin aing ihas peg anthemess t orainend sofodicens tinthotimintotas, thest o she ouly an. s I hershend tllit, to athe ay atthabealb in st, relind
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/draft_algorithm/examples/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    21   78.016 MiB -5380.797 MiB        1600   @profile
+    22                                         def gelu(x):
+    23   78.016 MiB -5238.512 MiB        1600       return 0.5 * x * (1.0 + np.tanh(np.sqrt(2.0 / np.pi) * (x + 0.044715 * x ** 3)))
+
+
