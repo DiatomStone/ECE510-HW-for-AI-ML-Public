@@ -67,4 +67,12 @@ Batch × Seq_len × D_ff = 8 × 64 × 256 = 131,072 elements
 
 > Low arithmetic intensity confirms GELU is **memory-bandwidth bound**, reinforcing it as the primary optimization target.
 
+### Roofline plot by GEMINI
+![Alt text](logs/roofline_gemini.png)
 
+### Hardware interface
+Model suggests a memory bound issue with Software overhead lowering the throughput FLOPs. Though peak system memory was never hit.  
+The new throughput FLOPS would change after the putting GELU on hardware. At the minimum AXI_lite should be used.  
+Axi stream or PCIe is a good candidate, A deeper inspection is required since if this is scaled up to a large configuration GELU might not be the biggest bottleneck.  
+Tentatively PCIe is selected as the hardware interface to learn more about PCIe. currently ~10 seconds is required to transfer ~5.3 GB *AND* perform operations.  
+So a minium of ~500 MB/s is needed.
