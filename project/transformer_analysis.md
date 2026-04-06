@@ -68,7 +68,7 @@ Batch × Seq_len × D_ff = 8 × 64 × 256 = 131,072 elements
 > Low arithmetic intensity confirms GELU is **memory-bandwidth bound**, reinforcing it as the primary optimization target.
 
 ### Roofline plot by GEMINI
-![Alt text](logs/roofline_gemini.png)
+![Alt text](transformer_lm/logs/roofline_gemini.png)
 
 ### Hardware interface
 Model suggests a memory bound issue with Software overhead lowering the throughput FLOPs. Though peak system memory was never hit.
