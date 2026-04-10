@@ -1,0 +1,16 @@
+[ INPUT STAGE ]          [ ENCODER KERNELS ]            [ FUSION & DECODER KERNELS ]
+      |                         |                              |
+TEXT  |----[ Tokenizer ]------->|---[ Text Embedding ]---------|
+      |                         |                              |
+IMAGE |----[ Vision Tower ]---->|---[ Vit-L/14 Kernels ]-------|===> [ HYBRID ATTENTION ]
+      |   (Var. Resolution)     |   (Patch+Pos. Encoding)      |     /                \
+      |                         |                              | [SLIDING]         [GLOBAL]
+AUDIO |----[ Audio Tower ]----->|---[ Conformer Kernels ]------| [WINDOW ]         [ATTN  ]
+      |   (Native Sampling)     |   (Spec-Augment/Filtering)   |     \                /
+                                |                              |          |
+                                |       [ PLE KERNELS ]        |    [ CROSS-LAYER ]
+                                | (Per-Layer Embeddings) ----->|    [  REASONING  ]
+                                                                          |
+                                                                    [ MLP / GELU ]
+                                                                          |
+                                                                    [ OUTPUT HEAD ]

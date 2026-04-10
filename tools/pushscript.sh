@@ -4,6 +4,7 @@ git branch
 echo "Enter commit message... (type 'void' to skip)"
 git add .
 read message
+message="${message:-update no comment}"
 if [[ "${message,,}" != "void" ]]; then
 	git commit -m "${message}"
 	git push

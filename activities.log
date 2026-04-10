@@ -11,3 +11,17 @@
 		difficulty finding algorithm and understandable output, 
 		start with sample ML_algorith to get good foundation (if possible move on to static quantization)
 		
+[mon 4/6/26]	explore the ai scape and high level needs, implement piper tts, a local tts ai, made some bash script
+[tue 4/7/26]    learned abount gemma4, implement edge ai gemma4 e4b on local system and integrate with piper tts for real time audio output
+[wed 4/8/26]    ollama cli offers just llm chatting and image detection capabilities w/o file transfer
+		used bash to implement gemma4 coding output and commandline runs from a bash interface
+		true C++ implementation can be explored later but this is enough to learn the needs of ai scape, and familiarize with usage.
+		GEMMA 4 also apparently uses a GELU kernel, that has taughtme the huge importance of quantization in edge system.
+		edge systems are not just tiny fpga, regular desktop with RTX 5060 is also edge since the size of parameters is so huge.
+		Gemma 4 (e4b turboquant models) does a type of quantization where cartesian cordinates are transformed to polar
+		this negates the need for a normalization kernel.
+		key word polarQuant, TurboQuant(Google Research '26 development).
+[thu 4/9/26]    high level implementation of GELU perfromed to anticipate complications. 
+		Gelu normally implemented in c++/cuda so true advantage over real world scenario is questionable.
+		GELU HDL likely outperform NUMPY by clearing Python overhead. besure to edit transform_ML to use pytorch GELU and run test again.
+		~/GitHub/project/transformer_lm/GELU_calculations.md
