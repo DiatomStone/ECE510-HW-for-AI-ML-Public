@@ -21,14 +21,14 @@ Pceil_A = Ppeak = 10 TFLOPS/s
 **FLOPS**:  
 4,194,304 fp32 add operations  
 **Bytes transfered**:  
-4,194,304 * 3 * 4 = 33553332  
-33,553,332 bytes transfered  
+4,194,304 * 3 * 4 = 50,331,648  
+50,331,648 bytes transfered  
 **Arithmatic intensity**:  
 I = N/ (N *3*4) 
-I = 1/12 
+I = 1/12 = 0.0833 FLOPs/B
 **performance ceil(Pceil)**:
 Bpeak * I
-320 GB/s * 1/12 flops/B
+320 GB/s * 1/12 FLOPs/B
 Pceil = 320/12 = 26.67 GFLOPs/s
 
 ### Roofline plot (Desmos) 

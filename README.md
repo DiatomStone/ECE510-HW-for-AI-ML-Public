@@ -5,3 +5,5 @@ Project topic candidate:
 
 
 
+The point of the Local LLM survey is to better understand the
+landscape and use of AI, and become embeded in AI terminology.
