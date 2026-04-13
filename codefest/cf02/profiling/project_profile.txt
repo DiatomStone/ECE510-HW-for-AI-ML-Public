@@ -1,0 +1,1010 @@
+    ------------[ 12x config=small ]--------------
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 44.493 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   44.133   22.067 text.py:926(get_window_extent)
+    224/2    0.010    0.000   44.133   22.066 text.py:358(_get_layout)
+    461/5    0.002    0.000   43.967    8.793 text.py:65(_get_text_metrics_with_cache)
+        1    0.087    0.087   42.973   42.973 transformer.py:389(train)
+      500    0.461    0.001   21.087    0.042 transformer.py:279(backward)
+      500    0.314    0.001   19.601    0.039 transformer.py:214(forward)
+     1000    1.540    0.002   12.164    0.012 transformer.py:194(ff_backward)
+     1000    1.014    0.001   10.666    0.011 transformer.py:186(ff_forward)
+     1000   10.461    0.010   10.461    0.010 transformer.py:25(gelu_grad)
+     1000    9.652    0.010    9.652    0.010 transformer.py:21(gelu)
+     1000    2.595    0.003    7.302    0.007 transformer.py:108(mha_forward)
+     1500    4.534    0.003    4.976    0.003 transformer.py:16(softmax)
+     1000    4.216    0.004    4.819    0.005 transformer.py:140(mha_backward)
+     2500    2.189    0.001    2.815    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.773    0.000    1.773    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.510    0.044 __init__.py:1(<module>)
+     2500    0.612    0.000    1.318    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 44.879 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   44.516   22.258 text.py:926(get_window_extent)
+    224/2    0.010    0.000   44.515   22.258 text.py:358(_get_layout)
+    461/5    0.002    0.000   44.334    8.867 text.py:65(_get_text_metrics_with_cache)
+        1    0.087    0.087   43.344   43.344 transformer.py:389(train)
+      500    0.448    0.001   21.332    0.043 transformer.py:279(backward)
+      500    0.314    0.001   19.726    0.039 transformer.py:214(forward)
+     1000    1.680    0.002   12.333    0.012 transformer.py:194(ff_backward)
+     1000    1.088    0.001   10.756    0.011 transformer.py:186(ff_forward)
+     1000   10.490    0.010   10.490    0.010 transformer.py:25(gelu_grad)
+     1000    9.668    0.010    9.668    0.010 transformer.py:21(gelu)
+     1000    2.599    0.003    7.328    0.007 transformer.py:108(mha_forward)
+     1500    4.555    0.003    4.999    0.003 transformer.py:16(softmax)
+     1000    4.279    0.004    4.888    0.005 transformer.py:140(mha_backward)
+     2500    2.206    0.001    2.832    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.776    0.000    1.776    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.534    0.045 __init__.py:1(<module>)
+     2500    0.615    0.000    1.326    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 47.258 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   46.897   23.449 text.py:926(get_window_extent)
+    224/2    0.010    0.000   46.897   23.448 text.py:358(_get_layout)
+    461/5    0.002    0.000   46.728    9.346 text.py:65(_get_text_metrics_with_cache)
+        1    0.092    0.092   45.715   45.715 transformer.py:389(train)
+      500    0.507    0.001   22.605    0.045 transformer.py:279(backward)
+      500    0.328    0.001   20.721    0.041 transformer.py:214(forward)
+     1000    1.868    0.002   12.978    0.013 transformer.py:194(ff_backward)
+     1000    1.236    0.001   11.335    0.011 transformer.py:186(ff_forward)
+     1000   10.941    0.011   10.941    0.011 transformer.py:25(gelu_grad)
+     1000   10.099    0.010   10.099    0.010 transformer.py:21(gelu)
+     1000    2.724    0.003    7.670    0.008 transformer.py:108(mha_forward)
+     1000    4.682    0.005    5.314    0.005 transformer.py:140(mha_backward)
+     1500    4.764    0.003    5.229    0.003 transformer.py:16(softmax)
+     2500    2.286    0.001    2.940    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.859    0.000    1.859    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.538    0.045 __init__.py:1(<module>)
+     2500    0.644    0.000    1.387    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 47.376 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   46.999   23.500 text.py:926(get_window_extent)
+    224/2    0.010    0.000   46.998   23.499 text.py:358(_get_layout)
+    461/5    0.002    0.000   46.791    9.358 text.py:65(_get_text_metrics_with_cache)
+        1    0.094    0.094   45.731   45.731 transformer.py:389(train)
+      500    0.477    0.001   22.439    0.045 transformer.py:279(backward)
+      500    0.335    0.001   20.869    0.042 transformer.py:214(forward)
+     1000    1.653    0.002   12.928    0.013 transformer.py:194(ff_backward)
+     1000    1.089    0.001   11.332    0.011 transformer.py:186(ff_forward)
+     1000   11.103    0.011   11.103    0.011 transformer.py:25(gelu_grad)
+     1000   10.244    0.010   10.244    0.010 transformer.py:21(gelu)
+     1000    2.773    0.003    7.782    0.008 transformer.py:108(mha_forward)
+     1500    4.823    0.003    5.295    0.004 transformer.py:16(softmax)
+     1000    4.511    0.005    5.153    0.005 transformer.py:140(mha_backward)
+     2500    2.331    0.001    2.997    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.899    0.000    1.899    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.596    0.047 __init__.py:1(<module>)
+     2500    0.654    0.000    1.419    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 49.649 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   49.274   24.637 text.py:926(get_window_extent)
+    224/2    0.010    0.000   49.273   24.637 text.py:358(_get_layout)
+    461/5    0.003    0.000   49.104    9.821 text.py:65(_get_text_metrics_with_cache)
+        1    0.094    0.094   48.049   48.049 transformer.py:389(train)
+      500    0.525    0.001   23.808    0.048 transformer.py:279(backward)
+      500    0.347    0.001   21.766    0.044 transformer.py:214(forward)
+     1000    2.021    0.002   13.646    0.014 transformer.py:194(ff_backward)
+     1000    1.333    0.001   11.948    0.012 transformer.py:186(ff_forward)
+     1000   11.440    0.011   11.440    0.011 transformer.py:25(gelu_grad)
+     1000   10.615    0.011   10.615    0.011 transformer.py:21(gelu)
+     1000    2.839    0.003    8.009    0.008 transformer.py:108(mha_forward)
+     1000    4.992    0.005    5.655    0.006 transformer.py:140(mha_backward)
+     1500    4.971    0.003    5.461    0.004 transformer.py:16(softmax)
+     2500    2.391    0.001    3.074    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.954    0.000    1.954    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.569    0.046 __init__.py:1(<module>)
+     2500    0.674    0.000    1.460    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 49.917 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   49.478   24.739 text.py:926(get_window_extent)
+    224/2    0.012    0.000   49.477   24.739 text.py:358(_get_layout)
+    461/5    0.003    0.000   49.300    9.860 text.py:65(_get_text_metrics_with_cache)
+        1    0.095    0.095   48.232   48.232 transformer.py:389(train)
+      500    0.547    0.001   23.878    0.048 transformer.py:279(backward)
+      500    0.350    0.001   21.839    0.044 transformer.py:214(forward)
+     1000    2.109    0.002   13.791    0.014 transformer.py:194(ff_backward)
+     1000    1.337    0.001   11.941    0.012 transformer.py:186(ff_forward)
+     1000   11.496    0.011   11.496    0.011 transformer.py:25(gelu_grad)
+     1000   10.603    0.011   10.603    0.011 transformer.py:21(gelu)
+     1000    2.870    0.003    8.085    0.008 transformer.py:108(mha_forward)
+     1000    4.852    0.005    5.525    0.006 transformer.py:140(mha_backward)
+     1500    5.017    0.003    5.513    0.004 transformer.py:16(softmax)
+     2500    2.406    0.001    3.096    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.973    0.000    1.973    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.589    0.047 __init__.py:1(<module>)
+     2500    0.671    0.000    1.462    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 49.058 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   48.691   24.346 text.py:926(get_window_extent)
+    224/2    0.010    0.000   48.690   24.345 text.py:358(_get_layout)
+    461/5    0.002    0.000   48.523    9.705 text.py:65(_get_text_metrics_with_cache)
+        1    0.094    0.094   47.522   47.522 transformer.py:389(train)
+      500    0.521    0.001   23.605    0.047 transformer.py:279(backward)
+      500    0.351    0.001   21.435    0.043 transformer.py:214(forward)
+     1000    2.101    0.002   13.620    0.014 transformer.py:194(ff_backward)
+     1000    1.288    0.001   11.717    0.012 transformer.py:186(ff_forward)
+     1000   11.340    0.011   11.340    0.011 transformer.py:25(gelu_grad)
+     1000   10.428    0.010   10.428    0.010 transformer.py:21(gelu)
+     1000    2.811    0.003    7.918    0.008 transformer.py:108(mha_forward)
+     1000    4.846    0.005    5.503    0.006 transformer.py:140(mha_backward)
+     1500    4.915    0.003    5.398    0.004 transformer.py:16(softmax)
+     2500    2.384    0.001    3.070    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.937    0.000    1.937    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.523    0.045 __init__.py:1(<module>)
+     2500    0.664    0.000    1.447    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 48.039 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   47.673   23.836 text.py:926(get_window_extent)
+    224/2    0.010    0.000   47.672   23.836 text.py:358(_get_layout)
+    461/5    0.002    0.000   47.495    9.499 text.py:65(_get_text_metrics_with_cache)
+        1    0.093    0.093   46.504   46.504 transformer.py:389(train)
+      500    0.533    0.001   23.116    0.046 transformer.py:279(backward)
+      500    0.329    0.001   20.980    0.042 transformer.py:214(forward)
+     1000    2.050    0.002   13.308    0.013 transformer.py:194(ff_backward)
+     1000    1.218    0.001   11.452    0.011 transformer.py:186(ff_forward)
+     1000   11.086    0.011   11.086    0.011 transformer.py:25(gelu_grad)
+     1000   10.234    0.010   10.234    0.010 transformer.py:21(gelu)
+     1000    2.755    0.003    7.810    0.008 transformer.py:108(mha_forward)
+     1000    4.769    0.005    5.418    0.005 transformer.py:140(mha_backward)
+     1500    4.872    0.003    5.344    0.004 transformer.py:16(softmax)
+     2500    2.316    0.001    2.977    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.886    0.000    1.886    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.525    0.045 __init__.py:1(<module>)
+     2500    0.646    0.000    1.387    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 59.430 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   59.072   29.536 text.py:926(get_window_extent)
+    224/2    0.010    0.000   59.071   29.536 text.py:358(_get_layout)
+    461/5    0.002    0.000   58.895   11.779 text.py:65(_get_text_metrics_with_cache)
+        1    0.099    0.099   57.902   57.902 transformer.py:389(train)
+      500    0.755    0.002   31.377    0.063 transformer.py:279(backward)
+      500    0.363    0.001   23.855    0.048 transformer.py:214(forward)
+     1000    5.012    0.005   17.226    0.017 transformer.py:194(ff_backward)
+     1000    2.331    0.002   13.483    0.013 transformer.py:186(ff_forward)
+     1000   12.027    0.012   12.027    0.012 transformer.py:25(gelu_grad)
+     1000   11.152    0.011   11.152    0.011 transformer.py:21(gelu)
+     1000    8.521    0.009    9.235    0.009 transformer.py:140(mha_backward)
+     1000    3.039    0.003    8.476    0.008 transformer.py:108(mha_forward)
+     1500    5.208    0.003    5.732    0.004 transformer.py:16(softmax)
+     2500    2.508    0.001    3.216    0.001 transformer.py:92(layer_norm_backward)
+    34778    2.061    0.000    2.061    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     2500    0.701    0.000    1.530    0.001 transformer.py:83(layer_norm_forward)
+       34    0.003    0.000    1.523    0.045 __init__.py:1(<module>)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 54.816 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   54.400   27.200 text.py:926(get_window_extent)
+    224/2    0.011    0.000   54.399   27.199 text.py:358(_get_layout)
+    461/5    0.002    0.000   54.230   10.846 text.py:65(_get_text_metrics_with_cache)
+        1    0.098    0.098   53.112   53.112 transformer.py:389(train)
+      500    0.615    0.001   27.381    0.055 transformer.py:279(backward)
+      500    0.362    0.001   23.156    0.046 transformer.py:214(forward)
+     1000    3.742    0.004   15.751    0.016 transformer.py:194(ff_backward)
+     1000    2.115    0.002   13.006    0.013 transformer.py:186(ff_forward)
+     1000   11.810    0.012   11.810    0.012 transformer.py:25(gelu_grad)
+     1000   10.891    0.011   10.891    0.011 transformer.py:21(gelu)
+     1000    2.969    0.003    8.286    0.008 transformer.py:108(mha_forward)
+     1000    6.186    0.006    6.876    0.007 transformer.py:140(mha_backward)
+     1500    5.101    0.003    5.615    0.004 transformer.py:16(softmax)
+     2500    2.507    0.001    3.214    0.001 transformer.py:92(layer_norm_backward)
+    34778    2.012    0.000    2.012    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.645    0.048 __init__.py:1(<module>)
+     2500    0.688    0.000    1.500    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 51.814 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.003    0.000   51.459   25.729 text.py:926(get_window_extent)
+    224/2    0.009    0.000   51.458   25.729 text.py:358(_get_layout)
+    461/5    0.002    0.000   51.289   10.258 text.py:65(_get_text_metrics_with_cache)
+        1    0.100    0.100   50.299   50.299 transformer.py:389(train)
+      500    0.597    0.001   25.249    0.050 transformer.py:279(backward)
+      500    0.355    0.001   22.482    0.045 transformer.py:214(forward)
+     1000    2.561    0.003   14.441    0.014 transformer.py:194(ff_backward)
+     1000    1.494    0.001   12.338    0.012 transformer.py:186(ff_forward)
+     1000   11.691    0.012   11.691    0.012 transformer.py:25(gelu_grad)
+     1000   10.845    0.011   10.845    0.011 transformer.py:21(gelu)
+     1000    2.947    0.003    8.287    0.008 transformer.py:108(mha_forward)
+     1000    5.408    0.005    6.083    0.006 transformer.py:140(mha_backward)
+     1500    5.124    0.003    5.629    0.004 transformer.py:16(softmax)
+     2500    2.497    0.001    3.205    0.001 transformer.py:92(layer_norm_backward)
+    34778    2.010    0.000    2.010    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.003    0.000    1.519    0.045 __init__.py:1(<module>)
+     2500    0.695    0.000    1.500    0.001 transformer.py:83(layer_norm_forward)
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         1781822 function calls (1757845 primitive calls) in 44.339 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    189/2    0.002    0.000   44.059   22.030 text.py:926(get_window_extent)
+    224/2    0.008    0.000   44.059   22.029 text.py:358(_get_layout)
+    461/5    0.002    0.000   43.916    8.783 text.py:65(_get_text_metrics_with_cache)
+        1    0.088    0.088   43.007   43.007 transformer.py:389(train)
+      500    0.517    0.001   21.662    0.043 transformer.py:279(backward)
+      500    0.310    0.001   19.153    0.038 transformer.py:214(forward)
+     1000    2.086    0.002   12.358    0.012 transformer.py:194(ff_backward)
+     1000    1.323    0.001   10.534    0.011 transformer.py:186(ff_forward)
+     1000   10.108    0.010   10.108    0.010 transformer.py:25(gelu_grad)
+     1000    9.211    0.009    9.211    0.009 transformer.py:21(gelu)
+     1000    2.536    0.003    7.024    0.007 transformer.py:108(mha_forward)
+     1000    4.589    0.005    5.185    0.005 transformer.py:140(mha_backward)
+     1500    4.313    0.003    4.746    0.003 transformer.py:16(softmax)
+     2500    2.180    0.001    2.800    0.001 transformer.py:92(layer_norm_backward)
+    34778    1.733    0.000    1.733    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+       34    0.002    0.000    1.327    0.039 __init__.py:1(<module>)
+     2500    0.596    0.000    1.282    0.001 transformer.py:83(layer_norm_forward)
+     
+         ------------[ 3x config=medium ]--------------
+         
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         2092141 function calls (2067744 primitive calls) in 673.812 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    204/2    0.002    0.000  673.519  336.759 text.py:926(get_window_extent)
+    242/2    0.008    0.000  673.518  336.759 text.py:358(_get_layout)
+    498/5    0.006    0.000  673.341  134.668 text.py:65(_get_text_metrics_with_cache)
+        1    0.247    0.247  672.440  672.440 transformer.py:389(train)
+      500    3.112    0.006  341.490    0.683 transformer.py:279(backward)
+      500    2.499    0.005  319.535    0.639 transformer.py:214(forward)
+     2000   35.240    0.018  227.638    0.114 transformer.py:194(ff_backward)
+     2000   23.008    0.012  191.756    0.096 transformer.py:186(ff_forward)
+     2000  190.089    0.095  190.089    0.095 transformer.py:25(gelu_grad)
+     2000  168.748    0.084  168.748    0.084 transformer.py:21(gelu)
+     2000   33.569    0.017  111.061    0.056 transformer.py:108(mha_forward)
+     2500   73.328    0.029   78.301    0.031 transformer.py:16(softmax)
+     2000   62.972    0.031   69.742    0.035 transformer.py:140(mha_backward)
+     4500   28.151    0.006   34.064    0.008 transformer.py:92(layer_norm_backward)
+    59906   20.485    0.000   20.485    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     4500    7.606    0.002   14.215    0.003 transformer.py:83(layer_norm_forward)
+    35580    0.132    0.000   13.757    0.000 {method 'sum' of 'numpy.ndarray' objects}
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         2092141 function calls (2067744 primitive calls) in 656.740 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    204/2    0.003    0.000  656.446  328.223 text.py:926(get_window_extent)
+    242/2    0.008    0.000  656.445  328.223 text.py:358(_get_layout)
+    498/5    0.004    0.000  656.323  131.265 text.py:65(_get_text_metrics_with_cache)
+        1    0.242    0.242  655.406  655.406 transformer.py:389(train)
+      500    2.929    0.006  333.056    0.666 transformer.py:279(backward)
+      500    2.494    0.005  311.090    0.622 transformer.py:214(forward)
+     2000   33.473    0.017  223.923    0.112 transformer.py:194(ff_backward)
+     2000  188.163    0.094  188.163    0.094 transformer.py:25(gelu_grad)
+     2000   20.781    0.010  187.426    0.094 transformer.py:186(ff_forward)
+     2000  166.645    0.083  166.645    0.083 transformer.py:21(gelu)
+     2000   30.716    0.015  106.963    0.053 transformer.py:108(mha_forward)
+     2500   72.085    0.029   77.002    0.031 transformer.py:16(softmax)
+     2000   58.866    0.029   65.627    0.033 transformer.py:140(mha_backward)
+     4500   27.831    0.006   33.711    0.007 transformer.py:92(layer_norm_backward)
+    59906   20.356    0.000   20.356    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     4500    7.576    0.002   14.202    0.003 transformer.py:83(layer_norm_forward)
+    35580    0.138    0.000   13.702    0.000 {method 'sum' of 'numpy.ndarray' objects}
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         2092141 function calls (2067744 primitive calls) in 662.926 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    204/2    0.003    0.000  662.633  331.316 text.py:926(get_window_extent)
+    242/2    0.008    0.000  662.632  331.316 text.py:358(_get_layout)
+    498/5    0.004    0.000  662.506  132.501 text.py:65(_get_text_metrics_with_cache)
+        1    0.247    0.247  661.607  661.607 transformer.py:389(train)
+      500    2.988    0.006  336.912    0.674 transformer.py:279(backward)
+      500    2.504    0.005  313.150    0.626 transformer.py:214(forward)
+     2000   33.989    0.017  226.626    0.113 transformer.py:194(ff_backward)
+     2000  190.290    0.095  190.290    0.095 transformer.py:25(gelu_grad)
+     2000   20.207    0.010  188.966    0.094 transformer.py:186(ff_forward)
+     2000  168.759    0.084  168.759    0.084 transformer.py:21(gelu)
+     2000   30.403    0.015  107.356    0.054 transformer.py:108(mha_forward)
+     2500   72.729    0.029   77.717    0.031 transformer.py:16(softmax)
+     2000   59.419    0.030   66.221    0.033 transformer.py:140(mha_backward)
+     4500   28.229    0.006   34.146    0.008 transformer.py:92(layer_norm_backward)
+    59906   20.513    0.000   20.513    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     4500    7.651    0.002   14.319    0.003 transformer.py:83(layer_norm_forward)
+    35580    0.142    0.000   13.816    0.000 {method 'sum' of 'numpy.ndarray' objects}
+        ------------[ 1x config=large ]--------------
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 256, 'n_heads': 8, 'd_ff': 1024, 'n_layers': 6, 'seq_len': 256, 'batch_size': 8, 'lr': 0.0005, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.6623
+Step   50 | loss 2.6578
+Step  100 | loss 2.4070
+Step  150 | loss 2.3188
+Step  200 | loss 2.2443
+Step  250 | loss 2.2675
+Step  300 | loss 2.1919
+Step  350 | loss 2.0346
+Step  400 | loss 1.9090
+Step  450 | loss 1.8835
+Step  500 | loss 1.6256
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         2324778 function calls (2302481 primitive calls) in 2388.414 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    129/2    0.002    0.000 2388.187 1194.094 text.py:926(get_window_extent)
+    152/2    0.005    0.000 2388.187 1194.093 text.py:358(_get_layout)
+    313/5    0.008    0.000 2388.061  477.612 text.py:65(_get_text_metrics_with_cache)
+        1    0.584    0.584 2387.205 2387.205 transformer.py:389(train)
+      500    6.246    0.012 1196.971    2.394 transformer.py:214(forward)
+      500    8.946    0.018 1143.372    2.287 transformer.py:279(backward)
+     3000  180.553    0.060  739.586    0.247 transformer.py:194(ff_backward)
+     3000  111.426    0.037  583.505    0.195 transformer.py:186(ff_forward)
+     3000  130.472    0.043  567.230    0.189 transformer.py:108(mha_forward)
+     3000  552.880    0.184  552.880    0.184 transformer.py:25(gelu_grad)
+     3000  472.079    0.157  472.079    0.157 transformer.py:21(gelu)
+     3500  413.658    0.118  435.514    0.124 transformer.py:16(softmax)
+     3000  257.945    0.086  282.348    0.094 transformer.py:140(mha_backward)
+     6500   82.601    0.013   97.286    0.015 transformer.py:92(layer_norm_backward)
+    84266   67.760    0.001   67.760    0.001 {method 'reduce' of 'numpy.ufunc' objects}
+    51580    0.224    0.000   44.789    0.001 {method 'sum' of 'numpy.ndarray' objects}
+    51580    0.096    0.000   44.565    0.001 _methods.py:47(_sum)
+    
+    ------------[ MEMORY profile ]----------------
+    note: later parts focus on gelu in ff_forward at small profile
+    
+    Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   213  517.363 MiB -9023.855 MiB         500   @profile
+   214                                         def forward(token_ids, params, config):
+   215  517.363 MiB -9060.648 MiB         500       n_layers = config["n_layers"]
+   216  517.363 MiB -9060.648 MiB         500       n_heads = config["n_heads"]
+   217  517.363 MiB -9060.648 MiB         500       B, T = token_ids.shape
+   218                                         
+   219                                             # pos_emb must cover T positions; init with seq_len+1 to be safe
+   220  517.363 MiB -9058.512 MiB         500       x = params["tok_emb"][token_ids] + params["pos_emb"][:T, :]
+   221                                         
+   222  517.363 MiB -9060.645 MiB         500       caches = []
+   223  517.363 MiB -41097.523 MiB        2500       for l in range(n_layers):
+   224  517.363 MiB -35765.297 MiB        2000           p = f"l{l}"
+   225                                         
+   226                                                 # Pre-norm attention
+   227  517.363 MiB -35643.461 MiB        2000           xn, ln1_cache = layer_norm_forward(x, params[f"{p}_ln1_g"], params[f"{p}_ln1_b"])
+   228  517.363 MiB -69360.020 MiB        4000           attn_out, attn_cache = mha_forward(
+   229  517.363 MiB -35649.641 MiB        2000               xn,
+   230  517.363 MiB -35649.641 MiB        2000               params[f"{p}_Wq"], params[f"{p}_Wk"], params[f"{p}_Wv"], params[f"{p}_Wo"],
+   231  517.363 MiB -35649.641 MiB        2000               params[f"{p}_bq"], params[f"{p}_bk"], params[f"{p}_bv"], params[f"{p}_bo"],
+   232  517.363 MiB -35649.637 MiB        2000               n_heads
+   233                                                 )
+   234  517.363 MiB -33921.305 MiB        2000           x = x + attn_out
+   235                                         
+   236                                                 # Pre-norm feed-forward
+   237  517.363 MiB -33915.258 MiB        2000           xn2, ln2_cache = layer_norm_forward(x, params[f"{p}_ln2_g"], params[f"{p}_ln2_b"])
+   238  517.363 MiB -65616.246 MiB        4000           ff_out, ff_cache = ff_forward(xn2, params[f"{p}_W1"], params[f"{p}_b1"],
+   239  517.363 MiB -34036.961 MiB        2000                                         params[f"{p}_W2"], params[f"{p}_b2"])
+   240  517.363 MiB -32036.875 MiB        2000           x = x + ff_out
+   241                                         
+   242  517.363 MiB -32036.875 MiB        2000           caches.append((ln1_cache, attn_cache, ln2_cache, ff_cache, xn, xn2, attn_out, ff_out))
+   243                                         
+   244  517.363 MiB -5361.141 MiB         500       x_final, ln_f_cache = layer_norm_forward(x, params["ln_f_g"], params["ln_f_b"])
+   245  517.363 MiB -5361.074 MiB         500       logits = x_final @ params["W_out"] + params["b_out"]   # (B, T, vocab)
+   246                                         
+   247  517.363 MiB -5361.141 MiB         500       return logits, (caches, ln_f_cache, x_final, x, token_ids)
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   213   77.707 MiB -1237.641 MiB         500   @profile
+   214                                         def forward(token_ids, params, config):
+   215   77.707 MiB -1254.125 MiB         500       n_layers = config["n_layers"]
+   216   77.707 MiB -1254.125 MiB         500       n_heads = config["n_heads"]
+   217   77.707 MiB -1254.125 MiB         500       B, T = token_ids.shape
+   218                                         
+   219                                             # pos_emb must cover T positions; init with seq_len+1 to be safe
+   220   77.707 MiB -1253.746 MiB         500       x = params["tok_emb"][token_ids] + params["pos_emb"][:T, :]
+   221                                         
+   222   77.707 MiB -1254.121 MiB         500       caches = []
+   223   77.711 MiB -3550.191 MiB        1500       for l in range(n_layers):
+   224   77.707 MiB -2544.809 MiB        1000           p = f"l{l}"
+   225                                         
+   226                                                 # Pre-norm attention
+   227   77.707 MiB -2480.496 MiB        1000           xn, ln1_cache = layer_norm_forward(x, params[f"{p}_ln1_g"], params[f"{p}_ln1_b"])
+   228   77.707 MiB -4789.918 MiB        2000           attn_out, attn_cache = mha_forward(
+   229   77.707 MiB -2482.824 MiB        1000               xn,
+   230   77.707 MiB -2482.785 MiB        1000               params[f"{p}_Wq"], params[f"{p}_Wk"], params[f"{p}_Wv"], params[f"{p}_Wo"],
+   231   77.707 MiB -2482.785 MiB        1000               params[f"{p}_bq"], params[f"{p}_bk"], params[f"{p}_bv"], params[f"{p}_bo"],
+   232   77.707 MiB -2482.785 MiB        1000               n_heads
+   233                                                 )
+   234   77.711 MiB -2323.168 MiB        1000           x = x + attn_out
+   235                                         
+   236                                                 # Pre-norm feed-forward
+   237   77.711 MiB -2323.855 MiB        1000           xn2, ln2_cache = layer_norm_forward(x, params[f"{p}_ln2_g"], params[f"{p}_ln2_b"])
+   238   77.711 MiB -4551.191 MiB        2000           ff_out, ff_cache = ff_forward(xn2, params[f"{p}_W1"], params[f"{p}_b1"],
+   239   77.711 MiB -2385.008 MiB        1000                                         params[f"{p}_W2"], params[f"{p}_b2"])
+   240   77.711 MiB -2296.066 MiB        1000           x = x + ff_out
+   241                                         
+   242   77.711 MiB -2296.066 MiB        1000           caches.append((ln1_cache, attn_cache, ln2_cache, ff_cache, xn, xn2, attn_out, ff_out))
+   243                                         
+   244   77.711 MiB -999.973 MiB         500       x_final, ln_f_cache = layer_norm_forward(x, params["ln_f_g"], params["ln_f_b"])
+   245   77.711 MiB -1000.215 MiB         500       logits = x_final @ params["W_out"] + params["b_out"]   # (B, T, vocab)
+   246                                         
+   247   77.711 MiB -1000.625 MiB         500       return logits, (caches, ln_f_cache, x_final, x, token_ids)
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.504 MiB -2529.062 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.504 MiB -2585.309 MiB        1000       h = x @ W1 + b1
+   188   77.504 MiB -2494.848 MiB        1000       h_act = gelu(h)
+   189   77.504 MiB -2498.527 MiB        1000       out = h_act @ W2 + b2
+   190   77.504 MiB -2498.875 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.504 MiB -2498.875 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185  527.742 MiB -45966.070 MiB        2000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187  527.742 MiB -46132.230 MiB        2000       h = x @ W1 + b1
+   188  527.742 MiB -44272.055 MiB        2000       h_act = gelu(h)
+   189  527.742 MiB -44463.586 MiB        2000       out = h_act @ W2 + b2
+   190  527.742 MiB -44463.684 MiB        2000       cache = (x, h, h_act, W1, W2)
+   191  527.742 MiB -44463.688 MiB        2000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    20  523.945 MiB -44332.316 MiB        2000   @profile
+    21                                         def gelu(x):
+    22  523.945 MiB -41580.914 MiB        2000       return 0.5 * x * (1.0 + np.tanh(np.sqrt(2.0 / np.pi) * (x + 0.044715 * x ** 3)))
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.691 MiB -2528.875 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.691 MiB -2585.309 MiB        1000       h = x @ W1 + b1
+   188   77.691 MiB -2494.848 MiB        1000       h_act = gelu(h)
+   189   77.691 MiB -2498.527 MiB        1000       out = h_act @ W2 + b2
+   190   77.691 MiB -2498.875 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.691 MiB -2498.875 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.207 MiB -2312.355 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.207 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.711 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.711 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.711 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.711 MiB -2261.293 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.223 MiB -2312.340 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.223 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.727 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.727 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.727 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.727 MiB -2261.293 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.129 MiB -2312.434 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.129 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.633 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.633 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.633 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.633 MiB -2261.293 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.246 MiB -2312.316 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.246 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.750 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.750 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.750 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.750 MiB -2261.293 MiB        1000       return out, cache

@@ -1,0 +1,362 @@
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   213  517.363 MiB -9023.855 MiB         500   @profile
+   214                                         def forward(token_ids, params, config):
+   215  517.363 MiB -9060.648 MiB         500       n_layers = config["n_layers"]
+   216  517.363 MiB -9060.648 MiB         500       n_heads = config["n_heads"]
+   217  517.363 MiB -9060.648 MiB         500       B, T = token_ids.shape
+   218                                         
+   219                                             # pos_emb must cover T positions; init with seq_len+1 to be safe
+   220  517.363 MiB -9058.512 MiB         500       x = params["tok_emb"][token_ids] + params["pos_emb"][:T, :]
+   221                                         
+   222  517.363 MiB -9060.645 MiB         500       caches = []
+   223  517.363 MiB -41097.523 MiB        2500       for l in range(n_layers):
+   224  517.363 MiB -35765.297 MiB        2000           p = f"l{l}"
+   225                                         
+   226                                                 # Pre-norm attention
+   227  517.363 MiB -35643.461 MiB        2000           xn, ln1_cache = layer_norm_forward(x, params[f"{p}_ln1_g"], params[f"{p}_ln1_b"])
+   228  517.363 MiB -69360.020 MiB        4000           attn_out, attn_cache = mha_forward(
+   229  517.363 MiB -35649.641 MiB        2000               xn,
+   230  517.363 MiB -35649.641 MiB        2000               params[f"{p}_Wq"], params[f"{p}_Wk"], params[f"{p}_Wv"], params[f"{p}_Wo"],
+   231  517.363 MiB -35649.641 MiB        2000               params[f"{p}_bq"], params[f"{p}_bk"], params[f"{p}_bv"], params[f"{p}_bo"],
+   232  517.363 MiB -35649.637 MiB        2000               n_heads
+   233                                                 )
+   234  517.363 MiB -33921.305 MiB        2000           x = x + attn_out
+   235                                         
+   236                                                 # Pre-norm feed-forward
+   237  517.363 MiB -33915.258 MiB        2000           xn2, ln2_cache = layer_norm_forward(x, params[f"{p}_ln2_g"], params[f"{p}_ln2_b"])
+   238  517.363 MiB -65616.246 MiB        4000           ff_out, ff_cache = ff_forward(xn2, params[f"{p}_W1"], params[f"{p}_b1"],
+   239  517.363 MiB -34036.961 MiB        2000                                         params[f"{p}_W2"], params[f"{p}_b2"])
+   240  517.363 MiB -32036.875 MiB        2000           x = x + ff_out
+   241                                         
+   242  517.363 MiB -32036.875 MiB        2000           caches.append((ln1_cache, attn_cache, ln2_cache, ff_cache, xn, xn2, attn_out, ff_out))
+   243                                         
+   244  517.363 MiB -5361.141 MiB         500       x_final, ln_f_cache = layer_norm_forward(x, params["ln_f_g"], params["ln_f_b"])
+   245  517.363 MiB -5361.074 MiB         500       logits = x_final @ params["W_out"] + params["b_out"]   # (B, T, vocab)
+   246                                         
+   247  517.363 MiB -5361.141 MiB         500       return logits, (caches, ln_f_cache, x_final, x, token_ids)
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   213   77.707 MiB -1237.641 MiB         500   @profile
+   214                                         def forward(token_ids, params, config):
+   215   77.707 MiB -1254.125 MiB         500       n_layers = config["n_layers"]
+   216   77.707 MiB -1254.125 MiB         500       n_heads = config["n_heads"]
+   217   77.707 MiB -1254.125 MiB         500       B, T = token_ids.shape
+   218                                         
+   219                                             # pos_emb must cover T positions; init with seq_len+1 to be safe
+   220   77.707 MiB -1253.746 MiB         500       x = params["tok_emb"][token_ids] + params["pos_emb"][:T, :]
+   221                                         
+   222   77.707 MiB -1254.121 MiB         500       caches = []
+   223   77.711 MiB -3550.191 MiB        1500       for l in range(n_layers):
+   224   77.707 MiB -2544.809 MiB        1000           p = f"l{l}"
+   225                                         
+   226                                                 # Pre-norm attention
+   227   77.707 MiB -2480.496 MiB        1000           xn, ln1_cache = layer_norm_forward(x, params[f"{p}_ln1_g"], params[f"{p}_ln1_b"])
+   228   77.707 MiB -4789.918 MiB        2000           attn_out, attn_cache = mha_forward(
+   229   77.707 MiB -2482.824 MiB        1000               xn,
+   230   77.707 MiB -2482.785 MiB        1000               params[f"{p}_Wq"], params[f"{p}_Wk"], params[f"{p}_Wv"], params[f"{p}_Wo"],
+   231   77.707 MiB -2482.785 MiB        1000               params[f"{p}_bq"], params[f"{p}_bk"], params[f"{p}_bv"], params[f"{p}_bo"],
+   232   77.707 MiB -2482.785 MiB        1000               n_heads
+   233                                                 )
+   234   77.711 MiB -2323.168 MiB        1000           x = x + attn_out
+   235                                         
+   236                                                 # Pre-norm feed-forward
+   237   77.711 MiB -2323.855 MiB        1000           xn2, ln2_cache = layer_norm_forward(x, params[f"{p}_ln2_g"], params[f"{p}_ln2_b"])
+   238   77.711 MiB -4551.191 MiB        2000           ff_out, ff_cache = ff_forward(xn2, params[f"{p}_W1"], params[f"{p}_b1"],
+   239   77.711 MiB -2385.008 MiB        1000                                         params[f"{p}_W2"], params[f"{p}_b2"])
+   240   77.711 MiB -2296.066 MiB        1000           x = x + ff_out
+   241                                         
+   242   77.711 MiB -2296.066 MiB        1000           caches.append((ln1_cache, attn_cache, ln2_cache, ff_cache, xn, xn2, attn_out, ff_out))
+   243                                         
+   244   77.711 MiB -999.973 MiB         500       x_final, ln_f_cache = layer_norm_forward(x, params["ln_f_g"], params["ln_f_b"])
+   245   77.711 MiB -1000.215 MiB         500       logits = x_final @ params["W_out"] + params["b_out"]   # (B, T, vocab)
+   246                                         
+   247   77.711 MiB -1000.625 MiB         500       return logits, (caches, ln_f_cache, x_final, x, token_ids)
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.504 MiB -2529.062 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.504 MiB -2585.309 MiB        1000       h = x @ W1 + b1
+   188   77.504 MiB -2494.848 MiB        1000       h_act = gelu(h)
+   189   77.504 MiB -2498.527 MiB        1000       out = h_act @ W2 + b2
+   190   77.504 MiB -2498.875 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.504 MiB -2498.875 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185  527.742 MiB -45966.070 MiB        2000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187  527.742 MiB -46132.230 MiB        2000       h = x @ W1 + b1
+   188  527.742 MiB -44272.055 MiB        2000       h_act = gelu(h)
+   189  527.742 MiB -44463.586 MiB        2000       out = h_act @ W2 + b2
+   190  527.742 MiB -44463.684 MiB        2000       cache = (x, h, h_act, W1, W2)
+   191  527.742 MiB -44463.688 MiB        2000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    20  523.945 MiB -44332.316 MiB        2000   @profile
+    21                                         def gelu(x):
+    22  523.945 MiB -41580.914 MiB        2000       return 0.5 * x * (1.0 + np.tanh(np.sqrt(2.0 / np.pi) * (x + 0.044715 * x ** 3)))
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.691 MiB -2528.875 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.691 MiB -2585.309 MiB        1000       h = x @ W1 + b1
+   188   77.691 MiB -2494.848 MiB        1000       h_act = gelu(h)
+   189   77.691 MiB -2498.527 MiB        1000       out = h_act @ W2 + b2
+   190   77.691 MiB -2498.875 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.691 MiB -2498.875 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.207 MiB -2312.355 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.207 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.711 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.711 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.711 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.711 MiB -2261.293 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.223 MiB -2312.340 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.223 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.727 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.727 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.727 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.727 MiB -2261.293 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.129 MiB -2312.434 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.129 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.633 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.633 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.633 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.633 MiB -2261.293 MiB        1000       return out, cache
+
+
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 64, 'n_heads': 4, 'd_ff': 256, 'n_layers': 2, 'seq_len': 64, 'batch_size': 8, 'lr': 0.003, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 5.3385
+Step   50 | loss 2.4876
+Step  100 | loss 2.3813
+Step  150 | loss 2.3230
+Step  200 | loss 2.3528
+Step  250 | loss 2.4576
+Step  300 | loss 2.2718
+Step  350 | loss 2.2815
+Step  400 | loss 2.2341
+Step  450 | loss 2.2922
+Step  500 | loss 2.1587
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+Filename: /home/diatomstone/Downloads/ECE/510/github/ECE510-HW-for-AI-ML-Public/project/transformer_lm/transformer.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   185   77.246 MiB -2312.316 MiB        1000   @profile
+   186                                         def ff_forward(x, W1, b1, W2, b2):
+   187   77.246 MiB -2285.887 MiB        1000       h = x @ W1 + b1
+   188   77.750 MiB -2172.969 MiB        1000       h_act = gelu(h)
+   189   77.750 MiB -2260.949 MiB        1000       out = h_act @ W2 + b2
+   190   77.750 MiB -2261.289 MiB        1000       cache = (x, h, h_act, W1, W2)
+   191   77.750 MiB -2261.293 MiB        1000       return out, cache
+
+

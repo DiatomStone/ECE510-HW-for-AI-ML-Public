@@ -18,7 +18,6 @@ def softmax(x, axis=-1):
     e = np.exp(x)
     return e / e.sum(axis=axis, keepdims=True)
 
-@profile
 def gelu(x):
     return 0.5 * x * (1.0 + np.tanh(np.sqrt(2.0 / np.pi) * (x + 0.044715 * x ** 3)))
 
@@ -183,7 +182,7 @@ def mha_backward(dout, cache):
 # ---------------------------------------------------------------------------
 # Feed-forward block
 # ---------------------------------------------------------------------------
-
+@profile
 def ff_forward(x, W1, b1, W2, b2):
     h = x @ W1 + b1
     h_act = gelu(h)

@@ -1,0 +1,81 @@
+------------[ 2x config=medium ]--------------
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         2092141 function calls (2067744 primitive calls) in 656.740 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    204/2    0.003    0.000  656.446  328.223 text.py:926(get_window_extent)
+    242/2    0.008    0.000  656.445  328.223 text.py:358(_get_layout)
+    498/5    0.004    0.000  656.323  131.265 text.py:65(_get_text_metrics_with_cache)
+        1    0.242    0.242  655.406  655.406 transformer.py:389(train)
+      500    2.929    0.006  333.056    0.666 transformer.py:279(backward)
+      500    2.494    0.005  311.090    0.622 transformer.py:214(forward)
+     2000   33.473    0.017  223.923    0.112 transformer.py:194(ff_backward)
+     2000  188.163    0.094  188.163    0.094 transformer.py:25(gelu_grad)
+     2000   20.781    0.010  187.426    0.094 transformer.py:186(ff_forward)
+     2000  166.645    0.083  166.645    0.083 transformer.py:21(gelu)
+     2000   30.716    0.015  106.963    0.053 transformer.py:108(mha_forward)
+     2500   72.085    0.029   77.002    0.031 transformer.py:16(softmax)
+     2000   58.866    0.029   65.627    0.033 transformer.py:140(mha_backward)
+     4500   27.831    0.006   33.711    0.007 transformer.py:92(layer_norm_backward)
+    59906   20.356    0.000   20.356    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     4500    7.576    0.002   14.202    0.003 transformer.py:83(layer_norm_forward)
+    35580    0.138    0.000   13.702    0.000 {method 'sum' of 'numpy.ndarray' objects}
+Loaded 4654 characters from data/sample.txt
+Vocab size: 54  |  Data tokens: 4654
+Model config: {'d_model': 128, 'n_heads': 4, 'd_ff': 512, 'n_layers': 4, 'seq_len': 128, 'batch_size': 16, 'lr': 0.001, 'seed': 42, 'vocab_size': 54}
+
+Step    1 | loss 4.8518
+Step   50 | loss 2.6722
+Step  100 | loss 2.3428
+Step  150 | loss 2.2760
+Step  200 | loss 2.1670
+Step  250 | loss 2.0226
+Step  300 | loss 1.8563
+Step  350 | loss 1.6551
+Step  400 | loss 1.4652
+Step  450 | loss 1.2191
+Step  500 | loss 1.0057
+
+Checkpoint saved to checkpoint.pkl
+Loss curve saved to loss_curve.png
+         2092141 function calls (2067744 primitive calls) in 662.926 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    204/2    0.003    0.000  662.633  331.316 text.py:926(get_window_extent)
+    242/2    0.008    0.000  662.632  331.316 text.py:358(_get_layout)
+    498/5    0.004    0.000  662.506  132.501 text.py:65(_get_text_metrics_with_cache)
+        1    0.247    0.247  661.607  661.607 transformer.py:389(train)
+      500    2.988    0.006  336.912    0.674 transformer.py:279(backward)
+      500    2.504    0.005  313.150    0.626 transformer.py:214(forward)
+     2000   33.989    0.017  226.626    0.113 transformer.py:194(ff_backward)
+     2000  190.290    0.095  190.290    0.095 transformer.py:25(gelu_grad)
+     2000   20.207    0.010  188.966    0.094 transformer.py:186(ff_forward)
+     2000  168.759    0.084  168.759    0.084 transformer.py:21(gelu)
+     2000   30.403    0.015  107.356    0.054 transformer.py:108(mha_forward)
+     2500   72.729    0.029   77.717    0.031 transformer.py:16(softmax)
+     2000   59.419    0.030   66.221    0.033 transformer.py:140(mha_backward)
+     4500   28.229    0.006   34.146    0.008 transformer.py:92(layer_norm_backward)
+    59906   20.513    0.000   20.513    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+     4500    7.651    0.002   14.319    0.003 transformer.py:83(layer_norm_forward)
+    35580    0.142    0.000   13.816    0.000 {method 'sum' of 'numpy.ndarray' objects}
