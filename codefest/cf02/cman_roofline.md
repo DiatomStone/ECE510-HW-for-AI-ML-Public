@@ -5,12 +5,15 @@
 |peak DRAM bandwidth | 320 GB/s | 
 |ridge point | 10,000/320 ≈ 31.25 FLOP/byte|
 
-### 2. Kernel A:  
->**Arithmatic intensity**:  
- I = N /6  
+### 2. Kernel A: 
+>**FLOPS**:  
+ FLOPS = 2×N³ = 2 × (1024)^3 = 2 GFLOPS  
+ **Bytes transfered**:  
+ 3N^2 * Bytes = 3 × (1024)^2 * 4 = 12 MBytes  
+**Arithmatic intensity**:  
+ I = 2×N^3 / (3×N^2) = N /6  
  N = 1024  
- I = 1024/6  
- I = 170.66
+ I = 1024/6 = 170.66
  **performance ceil(Pceil)**:  
 (I > ridge_point)? Ppeak : Bpeak* Arithmatic_intensity  
 Pceil_A = Ppeak = 10 TFLOPS/s
@@ -32,7 +35,7 @@ Bpeak * I
 Pceil = 320/12 = 26.67 GFLOPs/s
 
 ### Roofline plot (Desmos) 
-![Plat](roofline_desmos.png)
+![Plat](cman_desmos.png)
 >note: Axis y is Performance in (Gflops/s), Axis x is Arithmatic intensity (FLOP/B)
 ### 4. Comparison
 | Kernel | A | B | 
