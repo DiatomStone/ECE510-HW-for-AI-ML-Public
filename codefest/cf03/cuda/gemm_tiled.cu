@@ -1,6 +1,6 @@
 // Created with Cursor — Manager (GPT-5.2)
-// @ Created: 2026-04-07
-// @ Modified: 2026-04-07   
+// @ Created: 2026-04-15
+// @ Modified: 2026-04-18 Nhat Nguyen
 //
 // FP32 1024x1024 matrix multiplication — two kernels:
 //   1. matmul_naive        : one thread per output element, global memory only
@@ -9,10 +9,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cuda_runtime.h>
+#include <cuda_profiler_api.h>
 
 #define N 1024
 #define T 8  // tile width for the shared-memory kernel
-
+#define RUNS 100
 // ---------------------------------------------------------------------------
 // Kernel 2 — Shared memory tiled (T = 8)
 // ---------------------------------------------------------------------------
@@ -55,7 +56,24 @@ int main() {
     float *hA = (float *)malloc(bytes);
     float *hB = (float *)malloc(bytes);
     float *hC_tiled  = (float *)malloc(bytes);
-
+    float ms;
+    float ms_kernel;
+    float cumulative =0;
+    float cumulative_kern =0;
+    cudaEvent_t start, stop,start_kernel,stop_kernel;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+    cudaEventCreate(&start_kernel);
+    cudaEventCreate(&stop_kernel);
+    
+    //initialize cuda so GEMM does not end up misleading
+    cudaEventRecord(start);
+    cudaFree(0);
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+    cudaEventElapsedTime(&ms, start, stop);
+    printf("CUDA initialization  : %.6f ms\n", ms);
+    
     srand(42);
     fill_random(hA, N * N);
     fill_random(hB, N * N);
@@ -64,28 +82,58 @@ int main() {
     cudaMalloc(&dA, bytes);
     cudaMalloc(&dB, bytes);
     cudaMalloc(&dC, bytes);
-    cudaMemcpy(dA, hA, bytes, cudaMemcpyHostToDevice);
-    cudaMemcpy(dB, hB, bytes, cudaMemcpyHostToDevice);
 
-    cudaEvent_t start, stop;
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
-    float ms;
+
+
 
     // --- Kernel 2: shared-memory tiled (T=8) --------------------------------
     dim3 block2(T, T);
     dim3 grid2(N / T, N / T);
+    //warmup
+        cudaEventRecord(start);
+        cudaMemcpy(dA, hA, bytes, cudaMemcpyHostToDevice);
+        cudaMemcpy(dB, hB, bytes, cudaMemcpyHostToDevice);
+        matmul_shared_t8<<<grid2, block2>>>(dA, dB, dC, N);
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
+        cudaEventElapsedTime(&ms, start, stop);
+        cudaMemcpy(hC_tiled, dC, bytes, cudaMemcpyDeviceToHost);
+        printf("warmup_shared_t8  : %.6f ms\n", ms);
+        printf("| matmul_shared_t8 (run) | with MemCpy | Kernel only|\n|:----|:---:|:---:|\n");
+    cudaProfilerStart();
+    for(int i = 0; i<RUNS; i++){
+        cudaEventRecord(start);
+        cudaMemcpy(dA, hA, bytes, cudaMemcpyHostToDevice);
+        cudaMemcpy(dB, hB, bytes, cudaMemcpyHostToDevice);
+        cudaEventRecord(start_kernel);
+        matmul_shared_t8<<<grid2, block2>>>(dA, dB, dC, N);
+        cudaDeviceSynchronize();
+        cudaError_t err = cudaGetLastError();
+        if (err != cudaSuccess)
+            printf("Kernel error: %s\n", cudaGetErrorString(err));
+        cudaEventRecord(stop_kernel);
+        cudaEventSynchronize(stop_kernel);
+        cudaMemcpy(hC_tiled, dC, bytes, cudaMemcpyDeviceToHost);
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
+        cudaEventElapsedTime(&ms_kernel, start_kernel, stop_kernel);
+        cudaEventElapsedTime(&ms, start, stop);
+        printf("| %d  | %.6f ms|%.6f ms|\n", i+1,ms,ms_kernel);
+        cumulative += ms;
+        cumulative_kern += ms_kernel;
+        srand(42+i);
+        fill_random(hA, N * N);
+        fill_random(hB, N * N);
+    }
+    cudaProfilerStop();
+    printf("|average_shared_t8     | %.6f ms|%.6f ms|\n",cumulative/RUNS,cumulative_kern/RUNS);
+    
+    double checksum = 0.0;
+    for (int i = 0; i < N * N; i++)
+        checksum += hC_tiled[i];
+    printf("checksum: %f\n", checksum);
+    
 
-    cudaEventRecord(start);
-    matmul_shared_t8<<<grid2, block2>>>(dA, dB, dC, N);
-    cudaEventRecord(stop);
-    cudaEventSynchronize(stop);
-    cudaEventElapsedTime(&ms, start, stop);
-
-    cudaMemcpy(hC_tiled, dC, bytes, cudaMemcpyDeviceToHost);
-    printf("matmul_shared_t8  : %.3f ms", ms);
-
-    // cleanup
     cudaFree(dA); cudaFree(dB); cudaFree(dC);
     free(hA); free(hB);free(hC_tiled);
     cudaEventDestroy(start); cudaEventDestroy(stop);
