@@ -20,16 +20,16 @@ TTS/voices/en_US-hfc_female-medium.onnx.json
 TTS/voices/en_US-hfc_female-medium.onnx
 ### piper-tts
 ```
-python3 -m venv ~/.venv/tts
-source ~/.venv/tts/bin/activate
-pip install piper-tts
-echo 'Hello world' | piper --model en_US-hfc_female-medium.onx --output_file test.wav
+python3 -m venv ~/.venv/tts;
+source ~/.venv/tts/bin/activate;
+pip install piper-tts;
+echo 'Hello world' | piper --model en_US-hfc_female-medium.onnx --output_file test.wav;
 ```
 ### local llm
 ```
-curl -fsSL https://ollama.com/install.sh | sh
-ollama pull gemma4:e4b
-ollama list
+curl -fsSL https://ollama.com/install.sh | sh;
+ollama pull gemma4:e4b;
+ollama list;
 ```
 ### aplay
 ```

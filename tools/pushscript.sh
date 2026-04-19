@@ -1,9 +1,10 @@
+#!/bin/bash
 cd ../
 echo "Current Branch:"
 git branch
 echo "Enter commit message... (type 'void' to skip)"
 git add .
-read message
+read -r message
 message="${message:-update no comment}"
 if [[ "${message,,}" != "void" ]]; then
 	git commit -m "${message}"
@@ -14,4 +15,4 @@ else
 fi
 
 echo "Press Enter to close..."
-read
+read -r
