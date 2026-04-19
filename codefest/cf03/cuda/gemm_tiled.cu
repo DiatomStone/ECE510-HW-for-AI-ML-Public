@@ -1,6 +1,6 @@
 // Created with Cursor — Manager (GPT-5.2)
 // @ Created: 2026-04-07
-// @ Modified: 2026-04-07
+// @ Modified: 2026-04-07   
 //
 // FP32 1024x1024 matrix multiplication — two kernels:
 //   1. matmul_naive        : one thread per output element, global memory only
