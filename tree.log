@@ -31,6 +31,8 @@
 │   │       └── gemm_roofline.png
 │   └── cf04
 │       ├── cman_quantization.md
+│       ├── cocotb_mac
+│       │   └── test_mac.py
 │       ├── hdl
 │       │   ├── mac_correct.sv
 │       │   ├── mac_llm_A.sv
@@ -41,32 +43,6 @@
 │       │   ├── mac.sv
 │       │   ├── mac_tb.sv
 │       │   └── script
-│       │       ├── obj_dir
-│       │       │   ├── mac_sim
-│       │       │   ├── verilated.d
-│       │       │   ├── verilated.o
-│       │       │   ├── verilated_threads.d
-│       │       │   ├── verilated_threads.o
-│       │       │   ├── verilated_timing.d
-│       │       │   ├── verilated_timing.o
-│       │       │   ├── Vmac_tb___024root__0.cpp
-│       │       │   ├── Vmac_tb___024root__0__Slow.cpp
-│       │       │   ├── Vmac_tb___024root.h
-│       │       │   ├── Vmac_tb___024root__Slow.cpp
-│       │       │   ├── Vmac_tb__ALL.a
-│       │       │   ├── Vmac_tb__ALL.cpp
-│       │       │   ├── Vmac_tb__ALL.d
-│       │       │   ├── Vmac_tb__ALL.o
-│       │       │   ├── Vmac_tb_classes.mk
-│       │       │   ├── Vmac_tb.cpp
-│       │       │   ├── Vmac_tb.h
-│       │       │   ├── Vmac_tb__main.cpp
-│       │       │   ├── Vmac_tb.mk
-│       │       │   ├── Vmac_tb__pch.h
-│       │       │   ├── Vmac_tb__Syms.h
-│       │       │   ├── Vmac_tb__Syms__Slow.cpp
-│       │       │   ├── Vmac_tb__ver.d
-│       │       │   └── Vmac_tb__verFiles.dat
 │       │       ├── run_compile_sim.sh
 │       │       ├── run_lint.sh
 │       │       ├── run_synth.sh
@@ -180,4 +156,4 @@
 │   └── verilator_eg.sh
 └── tree.log
 
-43 directories, 138 files
+43 directories, 114 files
