@@ -1,5 +1,6 @@
 #!/bin/bash
 cd ../
+tree > tree.log
 echo "Current Branch:"
 git branch
 echo "Enter commit message... (type 'void' to skip)"
