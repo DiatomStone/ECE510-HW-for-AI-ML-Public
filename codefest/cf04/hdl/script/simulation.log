@@ -1,0 +1,19 @@
+
+=== PHASE 1: a=3, b=4 for 3 cycles ===
+[PASS] Cycle 1 | a= 3, b= 4 | a=3, b=4, out=12
+[PASS] Cycle 2 | a= 3, b= 4 | a=3, b=4, out=24
+[PASS] Cycle 3 | a= 3, b= 4 | a=3, b=4, out=36
+
+=== PHASE 2: rst asserted (1 cycle) ===
+[PASS] Reset cycle            | a=3, b=4, out=0
+
+=== PHASE 3: a=-5, b=2 for 2 cycles ===
+[PASS] Cycle 1 | a=-5, b= 2 | a=-5, b=2, out=-10
+[PASS] Cycle 2 | a=-5, b= 2 | a=-5, b=2, out=-20
+
+=== Done. Final accumulator = -20 ===
+
+- ../mac_tb.sv:97: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.046 2026-02-28
+- Verilator: $finish at 66ns; walltime 0.000 s; speed 1.550 ms/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 6 MB

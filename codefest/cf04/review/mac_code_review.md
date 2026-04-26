@@ -7,7 +7,7 @@
 | D | gemma4:26b-a4b-it-q4_K_M (Local) | `mac_llm_D.sv` | 
 | E | gemma4:e4b (Local) | `mac_llm_E.sv` | 
 
-## prompt for both/all llm
+## Prompt for both/all llm
 Module name: mac
 Inputs: clk (1-bit), rst (1-bit, active-high synchronous reset), a (8-bit signed), b (8-bit
 signed)
@@ -32,9 +32,9 @@ Both Claude sonnet and Gemini pased without error from verilator. Additionally C
    18 |             out <= out + (a * b);
       |             ^~~
 ```
-- **(a) offending line**: ```output signed [31:0] out```
-- **(b) issue explaination**:missing ```logic``` keyword in ports, this resulted in interpretation of ```out``` as wires.
-- **(c) corrected version**: ```output logic signed [31:0] out```, also logic should be added to inputs as well  
+- **(a) offending line**: 6 | `output signed [31:0] out`
+- **(b) issue explaination**:missing `logic` keyword in ports, this resulted in interpretation of `out` as wires.
+- **(c) corrected version**: `output logic signed [31:0] out`, also logic should be added to inputs as well  
 
 `mac_correct.v` uses `mac_llm_A.sv` which is the same for A-D versions
 ## potential prompt for llm to improve accuracy
@@ -49,8 +49,11 @@ output: out (32-bit signed accumulator)
 5. set module name: mac
 6. Think very hard to get correct result.
 
-## simulation results.
+## Verilator Simulation results.
+simulation log is located in [simulation.log](../hdl/script/simulation.log)
+
 Result of simulation on correct llm: 
+```
 === PHASE 1: a=3, b=4 for 3 cycles ===
 [PASS] Cycle 1 | a= 3, b= 4 | a=3, b=4, out=12
 [PASS] Cycle 2 | a= 3, b= 4 | a=3, b=4, out=24
@@ -64,9 +67,10 @@ Result of simulation on correct llm:
 [PASS] Cycle 2 | a=-5, b= 2 | a=-5, b=2, out=-20
 
 === Done. Final accumulator = -20 ===
+```
 
-## yosys synthesis result
-Full output can be found in cf04/hdl/script/synth_yosys.log
+## Yosys synthesis result
+Full output can be found in [synth_yosys.log](../hdl/script/synth_yosys.log)
 
 ```Yosys output
 === mac ===
