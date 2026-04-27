@@ -1,0 +1,71 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/GitHub/project/hdl'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/GitHub/project/hdl/gelu.sv /home/systemuser/Documents/ECE/510/GitHub/project/hdl/dump_waves.sv
+/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f results.xml
+COCOTB_TEST_MODULES=test_gelu COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.local/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /usr/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1777267727
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/systemuser/.local/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_gelu.test_gelu_known_values (1/5)
+                                                            Check GELU output against reference for known inputs.
+x=  0.00 | expected=0.0000 | got=0.0000 | valid_out=1
+x=  1.00 | expected=0.8412 | got=-0.5000 | valid_out=1
+   130.00ns WARNING  ..wn_values.test_gelu_known_values x=1.0: expected 0.8412, got -0.5000, rel_err=1.5944
+                                                        Traceback (most recent call last):
+                                                          File "/home/systemuser/Documents/ECE/510/GitHub/project/hdl/test_gelu.py", line 81, in test_gelu_known_values
+                                                            assert err < tolerance, \
+                                                                   ^^^^^^^^^^^^^^^
+                                                        AssertionError: x=1.0: expected 0.8412, got -0.5000, rel_err=1.5944
+   130.00ns WARNING  cocotb.regression                  test_gelu.test_gelu_known_values failed
+   130.00ns INFO     cocotb.regression                  running test_gelu.test_gelu_saturation (2/5)
+                                                            Large inputs should saturate tanh to ±1.
+x=  5.00 | expected=5.0000 | got=-0.5000
+   210.00ns WARNING  .._saturation.test_gelu_saturation x=5.0: expected 5.0000, got -0.5000, abs_err=5.5000
+                                                        Traceback (most recent call last):
+                                                          File "/home/systemuser/Documents/ECE/510/GitHub/project/hdl/test_gelu.py", line 119, in test_gelu_saturation
+                                                            assert err < tolerance, \
+                                                                   ^^^^^^^^^^^^^^^
+                                                        AssertionError: x=5.0: expected 5.0000, got -0.5000, abs_err=5.5000
+   210.00ns WARNING  cocotb.regression                  test_gelu.test_gelu_saturation failed
+   210.00ns INFO     cocotb.regression                  running test_gelu.test_gelu_valid_pipeline (3/5)
+                                                            valid_out should appear exactly PIPE_DEPTH cycles after valid_in.
+valid_out timing: PASS
+   290.00ns INFO     cocotb.regression                  test_gelu.test_gelu_valid_pipeline passed
+   290.00ns INFO     cocotb.regression                  running test_gelu.test_gelu_zero (4/5)
+                                                            GELU(0) should be 0.
+GELU(0) = 0.0 (expected 0.0)
+   370.00ns INFO     cocotb.regression                  test_gelu.test_gelu_zero passed
+   370.00ns INFO     cocotb.regression                  running test_gelu.test_gelu_streaming (5/5)
+                                                            Send multiple values back to back and collect outputs.
+Collected 5 outputs from 8 inputs
+  [0] x=  0.50 expected=0.3457 got=0.1886
+   600.00ns WARNING  ..lu_streaming.test_gelu_streaming x=0.5: expected 0.3457, got 0.1886, rel_err=0.4546
+                                                        Traceback (most recent call last):
+                                                          File "/home/systemuser/Documents/ECE/510/GitHub/project/hdl/test_gelu.py", line 213, in test_gelu_streaming
+                                                            assert err < tolerance, \
+                                                                   ^^^^^^^^^^^^^^^
+                                                        AssertionError: x=0.5: expected 0.3457, got 0.1886, rel_err=0.4546
+   600.00ns WARNING  cocotb.regression                  test_gelu.test_gelu_streaming failed
+   600.00ns INFO     cocotb.regression                  ********************************************************************************************
+                                                        ** TEST                                STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************
+                                                        ** test_gelu.test_gelu_known_values     FAIL         130.00           0.00      47135.16  **
+                                                        ** test_gelu.test_gelu_saturation       FAIL          80.00           0.00      71620.99  **
+                                                        ** test_gelu.test_gelu_valid_pipeline   PASS          80.00           0.00     109978.47  **
+                                                        ** test_gelu.test_gelu_zero             PASS          80.00           0.00     106895.29  **
+                                                        ** test_gelu.test_gelu_streaming        FAIL         230.00           0.00     112460.94  **
+                                                        ********************************************************************************************
+                                                        ** TESTS=5 PASS=2 FAIL=3 SKIP=0                      600.00           0.02      34229.20  **
+                                                        ********************************************************************************************
+VCD info: dumpfile dump.vcd opened for output.
+make[1]: *** [/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:67: results.xml] Error 3
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/GitHub/project/hdl'
+make: *** [/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2
