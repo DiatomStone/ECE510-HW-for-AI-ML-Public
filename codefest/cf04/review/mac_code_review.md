@@ -96,3 +96,37 @@ Full output can be found in [synth_yosys.log](../hdl/script/synth_yosys.log)
        86   $_XNOR_
       251   $_XOR_
 ```
+## further diagnosis with claudian TA AI
+Claudian assisted in identification of how the output of the ai code was funcitonal however this was relying on implicit behavior that happens to work without, sign extension was imlicit, not done with explicit casting. The produced code "works but fragile/unclear." 
+
+Claudian noted the safe casting would look like this: 
+```
+logic signed [15:0] product;
+assign product = a * b;
+out <= out + 32'(product);
+```
+
+
+Claude was prompted again with the potential prompt that includes "think hard to get correct result." This time claude sonnet 4.6 achived appropriate casting:
+```
+module mac (
+    input  logic        clk,
+    input  logic        rst,
+    input  logic signed [7:0]  a,
+    input  logic signed [7:0]  b,
+    output logic signed [31:0] out
+);
+
+    logic signed [15:0] product;
+
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            out <= 32'sd0;
+        end else begin
+            product = a * b;
+            out <= out + 32'(product);
+        end
+    end
+
+endmodule
+``` 
