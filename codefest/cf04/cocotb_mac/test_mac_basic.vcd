@@ -1,0 +1,54 @@
+$date
+	Sun Apr 26 21:32:28 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module mac $end
+$var wire 8 ! a [7:0] $end
+$var wire 8 " b [7:0] $end
+$var wire 1 # clk $end
+$var wire 1 $ rst $end
+$var reg 32 % out [31:0] $end
+$var reg 16 & product [15:0] $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx &
+b0 %
+0$
+1#
+b100 "
+b11 !
+$end
+#5000
+0#
+#10000
+b1100 %
+b1100 &
+1#
+#15000
+0#
+#20000
+b11000 %
+1#
+#25000
+0#
+#30000
+b100100 %
+1#
+#30001
+1$
+#35000
+0#
+#40000
+b0 %
+1#
+#40001

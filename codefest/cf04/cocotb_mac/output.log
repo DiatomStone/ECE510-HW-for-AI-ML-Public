@@ -1,0 +1,33 @@
+rm -f results.xml
+"make" -f makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/GitHub/codefest/cf04/cocotb_mac'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s mac -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/GitHub/codefest/cf04/cocotb_mac/mac_correct.sv
+/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f results.xml
+COCOTB_TEST_MODULES=test_mac COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=mac TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.local/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /usr/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1777265214
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/systemuser/.local/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_mac.test_mac_basic (1/2)
+    40.00ns INFO     cocotb.regression                  test_mac.test_mac_basic passed
+    40.00ns INFO     cocotb.regression                  running test_mac.test_mac_overflow (2/2)
+                                                            Check behavior when the accumulator approaches 2^31 - 1.
+    70.00ns INFO     test                               Value after overflow: -2147483644
+    70.00ns INFO     test                               Design behavior: WRAP
+    70.00ns INFO     cocotb.regression                  test_mac.test_mac_overflow passed
+    70.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_mac.test_mac_basic        PASS          40.00           0.00      55044.74  **
+                                                        ** test_mac.test_mac_overflow     PASS          30.00           0.00      91246.64  **
+                                                        **************************************************************************************
+                                                        ** TESTS=2 PASS=2 FAIL=0 SKIP=0                 70.00           0.00      37288.50  **
+                                                        **************************************************************************************
+VCD info: dumpfile dump.vcd opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/GitHub/codefest/cf04/cocotb_mac'

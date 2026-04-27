@@ -16,5 +16,10 @@ module mac (
             out <= out + 32'(product);
         end
     end
+    // Add this for VCD generation
+initial begin
+    $dumpfile("dump.vcd"); // Name of the file to be created
+    $dumpvars(0, mac);     // 0 means dump all signals in 'mac' and below
+end
 
 endmodule

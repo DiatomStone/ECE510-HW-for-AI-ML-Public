@@ -28,12 +28,12 @@ Generating RTLIL representation for module `\mac'.
 Cleaned up 0 empty switches.
 
 2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$../mac_correct.sv:9$1 in module mac.
+Marked 1 switch rules as full_case in process $proc$../mac_correct.sv:11$1 in module mac.
 Removed a total of 0 dead cases.
 
 2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
 Removed 1 redundant assignment.
-Promoted 0 assignments to connections.
+Promoted 1 assignment to connection.
 
 2.2.4. Executing PROC_INIT pass (extract init attributes).
 
@@ -44,20 +44,23 @@ Converted 0 switches.
 <suppressed ~1 debug messages>
 
 2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\mac.$proc$../mac_correct.sv:9$1'.
-     1/1: $0\out[31:0]
+Creating decoders for process `\mac.$proc$../mac_correct.sv:11$1'.
+     1/2: $0\out[31:0]
+     2/2: $1\product[15:0]
 
 2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\mac.\out' using process `\mac.$proc$../mac_correct.sv:9$1'.
-  created $dff cell `$procdff$7' with positive edge clock.
+Creating register for signal `\mac.\out' using process `\mac.$proc$../mac_correct.sv:11$1'.
+  created $dff cell `$procdff$10' with positive edge clock.
+Creating register for signal `\mac.\product' using process `\mac.$proc$../mac_correct.sv:11$1'.
+  created $dff cell `$procdff$11' with positive edge clock.
 
 2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\mac.$proc$../mac_correct.sv:9$1'.
-Removing empty process `mac.$proc$../mac_correct.sv:9$1'.
+Found and cleaned up 1 empty switch in `\mac.$proc$../mac_correct.sv:11$1'.
+Removing empty process `mac.$proc$../mac_correct.sv:11$1'.
 Cleaned up 1 empty switch.
 
 2.2.12. Executing OPT_EXPR pass (perform const folding).
@@ -68,8 +71,8 @@ Optimizing module mac.
 
 2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \mac..
-Removed 0 unused cells and 2 unused wires.
-<suppressed ~1 debug messages>
+Removed 2 unused cells and 7 unused wires.
+<suppressed ~4 debug messages>
 
 2.5. Executing CHECK pass (checking for obvious problems).
 Checking module mac...
@@ -163,7 +166,7 @@ Finding duplicate cells in `\mac'.
 Removed a total of 0 cells.
 
 2.8.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$7 ($dff) from module mac (D = $add$../mac_correct.sv:13$3_Y, Q = \out, rval = 0).
+Adding SRST signal on $procdff$10 ($dff) from module mac (D = $add$../mac_correct.sv:16$3_Y, Q = \out, rval = 0).
 
 2.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \mac..
@@ -202,8 +205,7 @@ Optimizing module mac.
 2.8.16. Finished fast OPT passes. (There is nothing left to do.)
 
 2.9. Executing WREDUCE pass (reducing word size of cells).
-Removed top 16 bits (of 32) from port Y of cell mac.$mul$../mac_correct.sv:13$2 ($mul).
-Removed top 16 bits (of 32) from port B of cell mac.$add$../mac_correct.sv:13$3 ($add).
+Removed top 16 bits (of 32) from port B of cell mac.$add$../mac_correct.sv:16$3 ($add).
 
 2.10. Executing PEEPOPT pass (run peephole optimizers).
 
@@ -212,10 +214,10 @@ Finding unused cells or wires in module \mac..
 
 2.12. Executing ALUMACC pass (create $alu and $macc cells).
 Extracting $alu and $macc cells in module mac:
-  creating $macc model for $add$../mac_correct.sv:13$3 ($add).
-  creating $macc model for $mul$../mac_correct.sv:13$2 ($mul).
-  merging $macc model for $mul$../mac_correct.sv:13$2 into $add$../mac_correct.sv:13$3.
-  creating $macc cell for $add$../mac_correct.sv:13$3: $auto$alumacc.cc:382:replace_macc$9
+  creating $macc model for $add$../mac_correct.sv:16$3 ($add).
+  creating $macc model for $mul$../mac_correct.sv:15$2 ($mul).
+  merging $macc model for $mul$../mac_correct.sv:15$2 into $add$../mac_correct.sv:16$3.
+  creating $macc cell for $add$../mac_correct.sv:16$3: $auto$alumacc.cc:382:replace_macc$13
   created 0 $alu and 1 $macc cells.
 
 2.13. Executing SHARE pass (SAT-based resource sharing).
@@ -571,6 +573,6 @@ Found and reported 0 problems.
        86   $_XNOR_
       251   $_XOR_
 
-End of script. Logfile hash: e5cdb8f866, CPU: user 0.10s system 0.00s, MEM: 20.81 MB peak
+End of script. Logfile hash: 7fa5d00250, CPU: user 0.09s system 0.01s, MEM: 20.18 MB peak
 Yosys 0.63 (git sha1 3bc26ff4d055adfbba8b424508ab4a36405ffc0b, g++ 15.2.1 -O2 -flto=auto -ffat-lto-objects -fexceptions -fstack-protector-strong -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -fPIC -O3)
-Time spent: 48% 1x abc (0 sec), 11% 17x opt_expr (0 sec), ...
+Time spent: 52% 1x abc (0 sec), 11% 17x opt_expr (0 sec), ...

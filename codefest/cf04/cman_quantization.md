@@ -33,8 +33,8 @@ Original matrix
 |0.00394|0.00638|0.00346|0.00000|
 |0.00189|0.00677|0.00606|0.00433|
 
-+ largest error element = 2.1 → 115 → 2.09 (dequantized matrix) @ 0.83% error  
-+ Mean absolute error = sum Error/16 = 0.43%
++ largest error element = 2.1 → 115 → 2.09 (dequantized matrix) @ 0.00827 error  
++ Mean absolute error = sum Error/16 = 0.00433
 ## 5. Bad scale experiment
 ### S_bad = 0.01, clamp 127,-128
 
@@ -61,7 +61,7 @@ Original matrix
 |0.28|0.00|0.00|1.03|
 |0.00|0.00|0.00|0.00|
 
-+ Largest error = -2.31 → -128 → -1.28 →  @ 103 %  
-+ Mean absolute error = sum Error/16 = 17.25%
++ Largest error = -2.31 → -128 → -1.28 →  @ 1.03  
++ Mean absolute error = sum Error/16 = 0.1725
 
 When S is too small the full value of the larger magnitudes are clamped to the max which is -127 and 127; nothing is lost in rounding in the S_bad case but the majority of the precision is lost in clamping. 

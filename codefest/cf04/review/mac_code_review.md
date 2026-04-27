@@ -95,6 +95,7 @@ Full output can be found in [synth_yosys.log](../hdl/script/synth_yosys.log)
        32   $_SDFF_PP0_
        86   $_XNOR_
       251   $_XOR_
+
 ```
 ## further diagnosis with claudian TA AI
 Claudian assisted in identification of how the output of the ai code was funcitonal however this was relying on implicit behavior that happens to work without, sign extension was imlicit, not done with explicit casting. The produced code "works but fragile/unclear." 
