@@ -7,7 +7,7 @@ trap cleanup EXIT SIGINT
 > piper.txt
 source ~/.venv/tts/bin/activate
 echo "Piper is listening... type or paste text to play."
-tail -f -n 0 piper.txt | piper --model voices/en_US-hfc_female-medium.onnx --output-raw | aplay  -B 50000 -r 22050 -f S16_LE -c 1 &
+tail -f -n 0 piper.txt | piper --model voices/en_US-libritts_r-medium.onnx --sentence-silence 0.4 --output-raw | aplay  -B 50000 -r 22050 -f S16_LE -c 1 &
 TTS_PID=$!
 
 while true; do

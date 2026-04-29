@@ -1,8 +1,12 @@
+voice="en_US-libritts_r-medium.onnx"
+mode=(gemma4:e4b gemma4:26b-a4b-it-q4_K_M ministral-3:8b)
+speaker=(en_US-libritts-high.onnx en_US-ljspeech-high.onnx en_GB-cori-high.onnx)
+model=${mode[0]}
 gemma() {
     # Combine your global rules file + the specific prompt
     echo -e "\nUser: $*" >> context.md
     (cat AGENT.md; tail -n 100 context.md)| \
-    ollama run gemma4:e4b --think=false| \
+    ollama run "$model" --think=false| \
     sed -E 's/[a-zA-Z0-9]*(\x1b\[[0-9;]*[a-zA-Z])+//g' | \
     tee -a ../TTS/piper.txt
 }
@@ -83,24 +87,43 @@ start_piper_tts() {
     > ../TTS/piper.txt
     
     # Start the listener in the background
-    echo "test..."
     tail -f -n 0 ../TTS/piper.txt | \
-    piper --model ../TTS/voices/en_US-hfc_female-medium.onnx --output-raw | \
-    aplay -B 50000 -r 22050 -f S16_LE -c 1 > /dev/null 2>&1 &
+    piper --model ../TTS/voices/$voice --sentence-silence 0.4 --output-raw | \
+    aplay -B 50000 -r 22050 -f S16_LE -c 1 2> /dev/null  &
     PIPER_PID=$!
     echo "Piper engine started (PID: $PIPER_PID). Append text to piper.txt to speak."
 }
 
 cleanup() {
+	>context.md
 	echo "Closing PIPER TTS..."
 	[[ -n "$PIPER_PID" ]] && kill $PIPER_PID 2>/dev/null
 }
 
 
 trap cleanup EXIT SIGINT
-echo "starting system..."
+
+echo -e "[enter]\tgemma4_e4b\n[1]\tgemma_26b_Q4\n[2]\tministral_3_8b"
+read -p "Select model:  " choice
+
+case "$choice" in
+	"1")
+	 model=${mode[1]}
+	 voice=${speaker[1]}
+	 ;;
+	"2")
+	 model=${mode[2]}
+	 voice=${speaker[2]}
+	 ;;
+	*)
+	 model=${mode[0]}
+	 voice=${speaker[0]}
+	 ;;
+esac
 start_piper_tts
-echo "Greetings gemma!" | ollama run gemma4:e4b --think=false 
+echo -e "Model : $model\nVoice : $voice"
+#warm up
+echo "warm up greetings, do not reply wait for next prompt" | ollama run "$model" --think=false 
 
 echo "type 'bye' to stop" 
 while true; do 
