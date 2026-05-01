@@ -65,6 +65,7 @@
 │   │       └── mac_code_review.md
 │   └── cf05
 │       ├── cman_systolic_trace.md
+│       ├── cman_systolic_trace.png
 │       ├── mac.sv
 │       └── sarray.sv
 ├── draft_algorithms
@@ -129,9 +130,12 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
+│           ├── input
+│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           └── piper.txt
+│           ├── piper.txt
+│           └── voices
 ├── project
 │   ├── algorithm_diagram.png
 │   ├── GELU_calculations.md
@@ -185,4 +189,4 @@
 │   └── verilator_eg.sh
 └── tree.log
 
-46 directories, 140 files
+49 directories, 141 files

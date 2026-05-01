@@ -3,8 +3,9 @@ cd ../
 tree > tree.log
 echo "Current Branch:"
 git branch
-echo "Enter commit message... (type 'void' to skip)"
+echo "branch sync..."
 git pull
+echo "Enter commit message... (type 'void' to skip)"
 git add .
 read -r message
 message="${message:-update no comment}"
