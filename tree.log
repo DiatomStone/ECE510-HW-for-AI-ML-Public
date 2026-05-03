@@ -130,12 +130,9 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
-│           ├── input
-│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           ├── piper.txt
-│           └── voices
+│           └── piper.txt
 ├── project
 │   ├── algorithm_diagram.png
 │   ├── GELU_calculations.md
@@ -206,4 +203,4 @@
 │   └── verilator_eg.sh
 └── tree.log
 
-54 directories, 153 files
+51 directories, 153 files
