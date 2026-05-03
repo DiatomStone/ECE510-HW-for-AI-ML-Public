@@ -155,6 +155,7 @@
 │   │   ├── sw_baseline.md
 │   │   └── system_diagram.png
 │   ├── m2
+│   │   ├── explainations.md
 │   │   ├── Makefile
 │   │   ├── precision.md
 │   │   ├── README.md
@@ -164,13 +165,23 @@
 │   │   │   └── interface.sv
 │   │   ├── sim
 │   │   │   ├── compute_core_run.log
-│   │   │   └── compute_core_run.vcd
+│   │   │   ├── compute_core_run.vcd
+│   │   │   ├── interface_run.log
+│   │   │   ├── interface_run.vcd
+│   │   │   └── waveform.png
+│   │   ├── sim_compute_core.sh
+│   │   ├── sim_interface.sh
 │   │   ├── simulation.sh
 │   │   └── tb
 │   │       ├── __pycache__
-│   │       │   └── tb_compute_core.cpython-313.pyc
+│   │       │   ├── tb_compute_core.cpython-312.pyc
+│   │       │   ├── tb_compute_core.cpython-313.pyc
+│   │       │   └── tb_interface.cpython-312.pyc
 │   │       ├── tb_compute_core_p7.py
-│   │       └── tb_compute_core.py
+│   │       ├── tb_compute_core.py
+│   │       ├── tb_compute_core.sv
+│   │       ├── tb_interface.py
+│   │       └── tb_interface.sv
 │   └── transformer_lm
 │       ├── checkpoint.pkl
 │       ├── data
@@ -203,4 +214,4 @@
 │   └── verilator_eg.sh
 └── tree.log
 
-51 directories, 153 files
+51 directories, 164 files
