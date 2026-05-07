@@ -1,42 +1,14 @@
 // =========================================================================
-// Module:  compute_core
-// Project: GELU Activation Kernel — ECE 410/510, M2
-// Author:  Created with Cursor — Manager (Claude Opus 4.6)
-// Created: 2026-05-03
-// Modified: 2026-05-03
-//
+// Module:  compute_core (High-Accuracy 24-Segment Parallel PWL)
 // Description:
-//   Pipelined GELU activation function in synthesizable SystemVerilog.
-//   Implements GELU(x) = 0.5 * x * (1 + tanh(c1*x + c2*x^3))
-//   using a 10-segment piecewise-linear (PWL) tanh approximation.
-//
-// Data Format:
-//   32-bit signed fixed point, Q16.16 (1 sign, 15 integer, 16 fractional)
-//
-// Clock Domain:
-//   Single clock domain (clk). All sequential logic on posedge clk.
-//
-// Reset:
-//   Synchronous, active-high (rst). Clears valid pipeline and output.
-//   Datapath registers are not reset (values gated by valid).
-//
-// Pipeline:
-//   5 stages, 5-cycle latency. Accepts one input per clock when valid_in
-//   is asserted. Fully pipelined — no stalls or backpressure.
-//
-// Port Descriptions:
-//   clk       — input,  1-bit        : System clock
-//   rst       — input,  1-bit        : Synchronous active-high reset
-//   valid_in  — input,  1-bit        : Input data valid strobe
-//   x         — input,  [31:0] signed: Input operand in Q16.16
-//   valid_out — output, 1-bit        : Output data valid strobe
-//   out       — output, [31:0] signed: GELU(x) result in Q16.16
+//   Designed for 16-core instantiation. Uses non-uniform segmentation
+//   to maximize accuracy in high-curvature regions of the GELU function.
 // =========================================================================
 
 module compute_core #(
-    parameter int DATA_WIDTH = 32,              // total bit width
-    parameter int FRAC_BITS  = 16,              // fractional bits (Q16.16)
-    parameter int PIPE_DEPTH = 5                // pipeline stages
+    parameter int DATA_WIDTH = 32,
+    parameter int FRAC_BITS  = 16,
+    parameter int PIPE_DEPTH = 3
 )(
     input  logic                        clk,
     input  logic                        rst,
@@ -47,170 +19,103 @@ module compute_core #(
 );
 
     // -------------------------------------------------------------------------
-    // Constants in Q16.16 fixed point
+    // STAGE 1: Parallel Identification (The Flash Decode) [cite: 132]
     // -------------------------------------------------------------------------
-    localparam signed [DATA_WIDTH-1:0] CONST_1 = 32'sd52261;  // sqrt(2/pi)
-    localparam signed [DATA_WIDTH-1:0] CONST_2 = 32'sd2337;   // CONST_1 * 0.044715
-    localparam signed [DATA_WIDTH-1:0] ONE     = 32'sd65536;  // 1.0 in Q16.16
-
-    // -------------------------------------------------------------------------
-    // Pipeline valid shift register
-    // -------------------------------------------------------------------------
-    // valid_pipe tracks stages 1 to (PIPE_DEPTH-1). The final stage is valid_out.
-    logic [PIPE_DEPTH-2:0] valid_pipe;
+    logic signed [DATA_WIDTH-1:0] s1_x;
+    logic [23:0] s1_hits;
 
     always_ff @(posedge clk) begin
-        if (rst) begin
-            valid_pipe <= '0;
-        end else begin
-            valid_pipe <= {valid_pipe[PIPE_DEPTH-3:0], valid_in};
-        end
+        s1_x <= x; // [cite: 133]
+        // Non-uniform boundaries: High density (0.25 steps) near the center [cite: 136, 137]
+        s1_hits[0]  <= (x < -32'sd196608);                          // x < -3.0
+        s1_hits[1]  <= (x >= -32'sd196608 && x < -32'sd163840);    // [-3.0, -2.5)
+        s1_hits[2]  <= (x >= -32'sd163840 && x < -32'sd131072);    // [-2.5, -2.0)
+        s1_hits[3]  <= (x >= -32'sd131072 && x < -32'sd98304);     // [-2.0, -1.5)
+        s1_hits[4]  <= (x >= -32'sd98304  && x < -32'sd81920);     // [-1.5, -1.25)
+        s1_hits[5]  <= (x >= -32'sd81920  && x < -32'sd65536);     // [-1.25, -1.0)
+        s1_hits[6]  <= (x >= -32'sd65536  && x < -32'sd49152);     // [-1.0, -0.75)
+        s1_hits[7]  <= (x >= -32'sd49152  && x < -32'sd32768);     // [-0.75, -0.5)
+        s1_hits[8]  <= (x >= -32'sd32768  && x < -32'sd16384);     // [-0.5, -0.25)
+        s1_hits[9]  <= (x >= -32'sd16384  && x <  32'sd0);         // [-0.25, 0.0)
+        s1_hits[10] <= (x >=  32'sd0      && x <  32'sd16384);     // [0.0, 0.25)
+        s1_hits[11] <= (x >=  32'sd16384  && x <  32'sd32768);     // [0.25, 0.5)
+        s1_hits[12] <= (x >=  32'sd32768  && x <  32'sd49152);     // [0.5, 0.75)
+        s1_hits[13] <= (x >=  32'sd49152  && x <  32'sd65536);     // [0.75, 1.0)
+        s1_hits[14] <= (x >=  32'sd65536  && x <  32'sd81920);     // [1.0, 1.25)
+        s1_hits[15] <= (x >=  32'sd81920  && x <  32'sd98304);     // [1.25, 1.5)
+        s1_hits[16] <= (x >=  32'sd98304  && x <  32'sd131072);    // [1.5, 2.0)
+        s1_hits[17] <= (x >=  32'sd131072 && x <  32'sd163840);    // [2.0, 2.5)
+        s1_hits[18] <= (x >=  32'sd163840 && x <  32'sd196608);    // [2.5, 3.0)
+        s1_hits[19] <= (x >=  32'sd196608);                         // x >= 3.0 [cite: 140]
     end
 
     // -------------------------------------------------------------------------
-    // Pipeline Slot 1:
+    // STAGE 2: One-Hot Select & Offset [cite: 142]
     // -------------------------------------------------------------------------
-    logic signed [DATA_WIDTH-1:0] s1_var1, s1_var2, s1_var3, s1_var4;
-
-    // No reset on datapath to save area. Values only matter when valid_pipe[0] is high.
-    always_ff @(posedge clk) begin
-        s1_var1 <= ($signed(64'(x)) * $signed(64'(x))) >>> FRAC_BITS;
-        s1_var2 <= ($signed(64'(CONST_2)) * $signed(64'(x))) >>> FRAC_BITS;
-        s1_var3 <= ($signed(64'(CONST_1)) * $signed(64'(x))) >>> FRAC_BITS;
-        s1_var4 <= x >>> 1;
-    end
-
-    // -------------------------------------------------------------------------
-    // Pipeline Slot 2:
-    // -------------------------------------------------------------------------
-    logic signed [DATA_WIDTH-1:0] s2_var5;
-    logic signed [DATA_WIDTH-1:0] s2_var3, s2_var4;
-
-    always_ff @(posedge clk) begin
-        s2_var5 <= ($signed(64'(s1_var1)) * $signed(64'(s1_var2))) >>> FRAC_BITS;
-        s2_var3 <= s1_var3;
-        s2_var4 <= s1_var4;
-    end
-
-    // -------------------------------------------------------------------------
-    // Pipeline Slot 3:
-    // -------------------------------------------------------------------------
-    logic signed [DATA_WIDTH-1:0] s3_var6;
-    logic signed [DATA_WIDTH-1:0] s3_var4;
-
-    always_ff @(posedge clk) begin
-        s3_var6 <= s2_var5 + s2_var3;
-        s3_var4 <= s2_var4;
-    end
-
-    // PWL Tanh — 10-segment approximation with endpoint-to-endpoint slopes
-    // Thresholds (Q16.16)
-    localparam signed [DATA_WIDTH-1:0] TANH_SAT    = 32'sd65536;   // 1.0
-    localparam signed [DATA_WIDTH-1:0] THRESH_4    = 32'sd262144;  // 4.0
-    localparam signed [DATA_WIDTH-1:0] THRESH_3    = 32'sd196608;  // 3.0
-    localparam signed [DATA_WIDTH-1:0] THRESH_2    = 32'sd131072;  // 2.0
-    localparam signed [DATA_WIDTH-1:0] THRESH_175  = 32'sd114688;  // 1.75
-    localparam signed [DATA_WIDTH-1:0] THRESH_15   = 32'sd98304;   // 1.5
-    localparam signed [DATA_WIDTH-1:0] THRESH_125  = 32'sd81920;   // 1.25
-    localparam signed [DATA_WIDTH-1:0] THRESH_1    = 32'sd65536;   // 1.0
-    localparam signed [DATA_WIDTH-1:0] THRESH_075  = 32'sd49152;   // 0.75
-    localparam signed [DATA_WIDTH-1:0] THRESH_05   = 32'sd32768;   // 0.5
-    // Bases — tanh(threshold) in Q16.16
-    localparam signed [DATA_WIDTH-1:0] BASE_3      = 32'sd65212;   // tanh(3.0)
-    localparam signed [DATA_WIDTH-1:0] BASE_2      = 32'sd63179;   // tanh(2.0)
-    localparam signed [DATA_WIDTH-1:0] BASE_175    = 32'sd61694;   // tanh(1.75)
-    localparam signed [DATA_WIDTH-1:0] BASE_15     = 32'sd59320;   // tanh(1.5)
-    localparam signed [DATA_WIDTH-1:0] BASE_125    = 32'sd55593;   // tanh(1.25)
-    localparam signed [DATA_WIDTH-1:0] BASE_1      = 32'sd49912;   // tanh(1.0)
-    localparam signed [DATA_WIDTH-1:0] BASE_075    = 32'sd41625;   // tanh(0.75)
-    localparam signed [DATA_WIDTH-1:0] BASE_05     = 32'sd30285;   // tanh(0.5)
-    // Slopes — (tanh(upper) - tanh(lower)) / (upper - lower) in Q16.16
-    localparam signed [DATA_WIDTH-1:0] SLOPE_3_4   = 32'sd280;     // [3.0, 4.0)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_2_3   = 32'sd2033;    // [2.0, 3.0)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_175_2 = 32'sd5938;    // [1.75, 2.0)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_15_175= 32'sd9497;    // [1.5, 1.75)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_125_15= 32'sd14907;   // [1.25, 1.5)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_1_125 = 32'sd22725;   // [1.0, 1.25)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_075_1 = 32'sd33147;   // [0.75, 1.0)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_05_075= 32'sd45359;   // [0.5, 0.75)
-    localparam signed [DATA_WIDTH-1:0] SLOPE_LIN   = 32'sd65536;   // [0, 0.5) tanh≈x   
-
-    // -------------------------------------------------------------------------
-    // Pipeline Slot 4: Combinational PWL + Registered Stage
-    // -------------------------------------------------------------------------
-    logic signed [DATA_WIDTH-1:0] next_pwl; 
-    logic signed [DATA_WIDTH-1:0] s4_var7, s4_var4;
-    logic signed [DATA_WIDTH-1:0] abs_var6;
-    logic                         sign_var6;
-
-    assign abs_var6  = (s3_var6 < 0) ? -s3_var6 : s3_var6;
-    assign sign_var6 = s3_var6[DATA_WIDTH-1];
+    logic signed [DATA_WIDTH-1:0] s2_m, s2_b, s2_dx;
+    logic signed [DATA_WIDTH-1:0] comb_m, comb_b, comb_t;
 
     always_comb begin
-        if (abs_var6 >= THRESH_4)
-            next_pwl = sign_var6 ? -TANH_SAT : TANH_SAT;
-        else if (abs_var6 >= THRESH_3) begin
-            next_pwl = (64'(SLOPE_3_4) * (abs_var6 - THRESH_3)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_3 + next_pwl) : (BASE_3 + next_pwl);
-        end else if (abs_var6 >= THRESH_2) begin
-            next_pwl = (64'(SLOPE_2_3) * (abs_var6 - THRESH_2)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_2 + next_pwl) : (BASE_2 + next_pwl);
-        end else if (abs_var6 >= THRESH_175) begin
-            next_pwl = (64'(SLOPE_175_2) * (abs_var6 - THRESH_175)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_175 + next_pwl) : (BASE_175 + next_pwl);
-        end else if (abs_var6 >= THRESH_15) begin
-            next_pwl = (64'(SLOPE_15_175) * (abs_var6 - THRESH_15)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_15 + next_pwl) : (BASE_15 + next_pwl);
-        end else if (abs_var6 >= THRESH_125) begin
-            next_pwl = (64'(SLOPE_125_15) * (abs_var6 - THRESH_125)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_125 + next_pwl) : (BASE_125 + next_pwl);
-        end else if (abs_var6 >= THRESH_1) begin
-            next_pwl = (64'(SLOPE_1_125) * (abs_var6 - THRESH_1)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_1 + next_pwl) : (BASE_1 + next_pwl);
-        end else if (abs_var6 >= THRESH_075) begin
-            next_pwl = (64'(SLOPE_075_1) * (abs_var6 - THRESH_075)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_075 + next_pwl) : (BASE_075 + next_pwl);
-        end else if (abs_var6 >= THRESH_05) begin
-            next_pwl = (64'(SLOPE_05_075) * (abs_var6 - THRESH_05)) >>> FRAC_BITS;
-            next_pwl = sign_var6 ? -(BASE_05 + next_pwl) : (BASE_05 + next_pwl);
-        end else begin
-            next_pwl = (64'(SLOPE_LIN) * s3_var6) >>> FRAC_BITS;
-        end
+        // default: linear pass-through x >= 3.0
+        comb_m = 32'sd65536; comb_b = 32'sd0; comb_t = 32'sd0; // [cite: 143, 144]
+        
+        unique case (1'b1) // [cite: 145, 159]
+            s1_hits[0]:  begin comb_m = 32'sd0;      comb_b =  32'sd0;      comb_t =  32'sd0;      end // x < -3.0   : clamp 0
+            s1_hits[1]:  begin comb_m = -32'sd2369;  comb_b = -32'sd1314;   comb_t = -32'sd196608; end // [-3.0,-2.5)
+            s1_hits[2]:  begin comb_m = -32'sd4025;  comb_b = -32'sd2499;   comb_t = -32'sd163840; end // [-2.5,-2.0)
+            s1_hits[3]:  begin comb_m = -32'sd5883;  comb_b = -32'sd4511;   comb_t = -32'sd131072; end // [-2.0,-1.5)
+            s1_hits[4]:  begin comb_m = -32'sd6455;  comb_b = -32'sd7452;   comb_t = -32'sd98304;  end // [-1.5,-1.25)
+            s1_hits[5]:  begin comb_m = -32'sd5366;  comb_b = -32'sd9066;   comb_t = -32'sd81920;  end // [-1.25,-1.0)
+            s1_hits[6]:  begin comb_m = -32'sd2142;  comb_b = -32'sd10408;  comb_t = -32'sd65536;  end // [-1.0,-0.75)
+            s1_hits[7]:  begin comb_m =  32'sd4072;  comb_b = -32'sd10943;  comb_t = -32'sd49152;  end // [-0.75,-0.5)
+            s1_hits[8]:  begin comb_m =  32'sd13664; comb_b = -32'sd9925;   comb_t = -32'sd32768;  end // [-0.5,-0.25)
+            s1_hits[9]:  begin comb_m =  32'sd26037; comb_b = -32'sd6509;   comb_t = -32'sd16384;  end // [-0.25,0.0)
+            s1_hits[10]: begin comb_m =  32'sd39499; comb_b =  32'sd0;      comb_t =  32'sd0;      end // [0.0,0.25)
+            s1_hits[11]: begin comb_m =  32'sd51872; comb_b =  32'sd9875;   comb_t =  32'sd16384;  end // [0.25,0.5)
+            s1_hits[12]: begin comb_m =  32'sd61464; comb_b =  32'sd22843;  comb_t =  32'sd32768;  end // [0.5,0.75)
+            s1_hits[13]: begin comb_m =  32'sd67678; comb_b =  32'sd38209;  comb_t =  32'sd49152;  end // [0.75,1.0)
+            s1_hits[14]: begin comb_m =  32'sd70902; comb_b =  32'sd55128;  comb_t =  32'sd65536;  end // [1.0,1.25)
+            s1_hits[15]: begin comb_m =  32'sd71991; comb_b =  32'sd72854;  comb_t =  32'sd81920;  end // [1.25,1.5)
+            s1_hits[16]: begin comb_m =  32'sd71419; comb_b =  32'sd90852;  comb_t =  32'sd98304;  end // [1.5,2.0)
+            s1_hits[17]: begin comb_m =  32'sd69561; comb_b =  32'sd126561; comb_t =  32'sd131072; end // [2.0,2.5)
+            s1_hits[18]: begin comb_m =  32'sd67905; comb_b =  32'sd161341; comb_t =  32'sd163840; end // [2.5,3.0)
+            s1_hits[19]: begin comb_m =  32'sd65536; comb_b =  32'sd0;      comb_t =  32'sd0;      end // x >= 3.0  : linear
+            default:     begin comb_m =  32'sd65536; comb_b =  32'sd0;      comb_t =  32'sd0;      end
+        endcase
     end
 
     always_ff @(posedge clk) begin
-        s4_var7 <= ONE + next_pwl;  
-        s4_var4 <= s3_var4;
+        s2_m  <= comb_m;
+        s2_b  <= comb_b; // [cite: 161]
+        s2_dx <= s1_x - comb_t; // [cite: 162]
     end
+
     // -------------------------------------------------------------------------
-    // Pipeline Slot 5: Output with Saturation
+    // STAGE 3: Mult & Saturate 
     // -------------------------------------------------------------------------
-    logic signed [63:0] out_full;
-    assign out_full = ($signed(64'(s4_var7)) * $signed(64'(s4_var4))) >>> FRAC_BITS;
+    logic [PIPE_DEPTH-2:0] v_pipe;
+    always_ff @(posedge clk) begin
+        if (rst) v_pipe <= '0; // [cite: 130]
+        else     v_pipe <= {v_pipe[0], valid_in}; // [cite: 131]
+    end
+
+    logic signed [63:0] s3_full;
+    assign s3_full = ($signed(64'(s2_m)) * $signed(64'(s2_dx))) >>> FRAC_BITS; // 
 
     always_ff @(posedge clk) begin
         if (rst) begin
-            valid_out <= 1'b0;
-            out       <= '0;
+            valid_out <= 1'b0; // [cite: 165]
+            out       <= 0; // [cite: 166]
         end else begin
-            valid_out <= valid_pipe[PIPE_DEPTH-2]; // Synced strictly with final data
-            
-            // Saturation limit clamping
-            if (out_full > 64'sd2147483647)
+            valid_out <= v_pipe[1]; // [cite: 166]
+            // Saturation logic for 32-bit Q16.16 [cite: 167]
+            if ((s3_full + s2_b) > 64'sd2147483647) 
                 out <= 32'sd2147483647;
-            else if (out_full < -64'sd2147483648)
+            else if ((s3_full + s2_b) < -64'sd2147483648) // [cite: 168]
                 out <= -32'sd2147483648;
             else
-                out <= out_full[31:0];
+                out <= s3_full[31:0] + s2_b; // [cite: 169]
         end
-    end
-    
-    // -------------------------------------------------------------------------
-    // Simulation hooks
-    // -------------------------------------------------------------------------
-    initial begin
-        $dumpfile("dump.vcd"); 
-        $dumpvars(0, compute_core);     
     end
 
 endmodule

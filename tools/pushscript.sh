@@ -1,10 +1,10 @@
 #!/bin/bash
 cd ../
-tree > tree.log
 echo "Current Branch:"
 git branch
 echo "branch sync..."
 git pull
+tree > tree.log
 echo "Enter commit message... (type 'void' to skip)"
 git add .
 read -r message

@@ -1,37 +1,52 @@
 rm -f results.xml
 "make" -f Makefile results.xml
-make[1]: Entering directory '/home/diatomstone/Documents/Workspace/Cursor/project/m2'
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/GitHub/project/m2'
 mkdir -p sim_build
-/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_axi_stream_interface -g2012 -g2012 -f sim_build/cmds.f  /home/diatomstone/Documents/Workspace/Cursor/project/m2/rtl/interface.sv /home/diatomstone/Documents/Workspace/Cursor/project/m2/rtl/compute_core.sv
-/home/diatomstone/Documents/Workspace/Cursor/.venv/lib/python3.12/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_axi_stream_interface -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/interface.sv /home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:86: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/home/systemuser/Documents/ECE/510/GitHub/project/m2/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
 rm -f results.xml
 COCOTB_TEST_MODULES=tb_interface COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_axi_stream_interface TOPLEVEL_LANG=verilog \
-         /usr/bin/vvp -M /home/diatomstone/Documents/Workspace/Cursor/.venv/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
-     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/diatomstone/Documents/Workspace/Cursor/.venv/bin/python3
+         /usr/bin/vvp -M /home/systemuser/.local/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /usr/bin/python3
      -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
      0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
-     0.00ns INFO     cocotb                             Seeding Python random module with 1777802424
-     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/diatomstone/Documents/Workspace/Cursor/.venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1778125497
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/systemuser/.local/lib/python3.13/site-packages/cocotb
      0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
      0.00ns INFO     cocotb                             Running tests
      0.00ns INFO     cocotb.regression                  running tb_interface.test_axi_stream_gelu_packet (1/1)
                                                             Drive one AXI4-Stream packet and verify GELU outputs.
-[0] x=  0.50 expected=0.3457 got=0.3508 rel_err=0.0147 tlast=0
-[1] x=  1.00 expected=0.8412 got=0.8386 rel_err=0.0031 tlast=0
-[2] x=  1.50 expected=1.3996 got=1.3976 rel_err=0.0014 tlast=0
-[3] x=  2.00 expected=1.9546 got=1.9532 rel_err=0.0007 tlast=0
-[4] x= -0.50 expected=-0.1543 got=-0.1492 rel_err=0.0330 tlast=0
-[5] x= -1.00 expected=-0.1588 got=-0.1614 rel_err=0.0165 tlast=0
-[6] x= -1.50 expected=-0.1004 got=-0.1024 rel_err=0.0201 tlast=0
-[7] x= -2.00 expected=-0.0454 got=-0.0468 rel_err=0.0318 tlast=1
-PASS: AXI4-Stream GELU interface packet matched Python reference
-   260.00ns INFO     cocotb.regression                  tb_interface.test_axi_stream_gelu_packet passed
+[0] x=  0.50 expected=0.3457 got=1.3990 rel_err=3.0467 tlast=0
+   260.00ns WARNING  ..cket.test_axi_stream_gelu_packet x=0.5: expected 0.3457, got 1.3990, rel_err=3.0467
+                                                        Traceback (most recent call last):
+                                                          File "/home/systemuser/Documents/ECE/510/GitHub/project/m2/tb/tb_interface.py", line 106, in test_axi_stream_gelu_packet
+                                                            assert err < tolerance, (
+                                                                   ^^^^^^^^^^^^^^^
+                                                        AssertionError: x=0.5: expected 0.3457, got 1.3990, rel_err=3.0467
+   260.00ns WARNING  cocotb.regression                  tb_interface.test_axi_stream_gelu_packet failed
    260.00ns INFO     cocotb.regression                  **************************************************************************************************
                                                         ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
                                                         **************************************************************************************************
-                                                        ** tb_interface.test_axi_stream_gelu_packet   PASS         260.00           0.01      22633.80  **
+                                                        ** tb_interface.test_axi_stream_gelu_packet   FAIL         260.00           0.00      65012.46  **
                                                         **************************************************************************************************
-                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                            260.00           0.01      18441.80  **
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                            260.00           0.01      26415.05  **
                                                         **************************************************************************************************
-VCD info: dumpfile dump.vcd opened for output.
-make[1]: Leaving directory '/home/diatomstone/Documents/Workspace/Cursor/project/m2'
+make[1]: *** [/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:67: results.xml] Error 1
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/GitHub/project/m2'
+make: *** [/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2

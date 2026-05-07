@@ -1,66 +1,55 @@
 rm -f results.xml
 "make" -f Makefile results.xml
-make[1]: Entering directory '/home/diatomstone/Documents/Workspace/Cursor/project/m2'
-mkdir -p sim_build
-/usr/bin/iverilog -o sim_build/sim.vvp -s compute_core -g2012 -g2012 -f sim_build/cmds.f  /home/diatomstone/Documents/Workspace/Cursor/project/m2/rtl/compute_core.sv
-/home/diatomstone/Documents/Workspace/Cursor/.venv/lib/python3.12/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/GitHub/project/m2'
+/home/systemuser/.local/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
 rm -f results.xml
 COCOTB_TEST_MODULES=tb_compute_core COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=compute_core TOPLEVEL_LANG=verilog \
-         /usr/bin/vvp -M /home/diatomstone/Documents/Workspace/Cursor/.venv/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
-     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/diatomstone/Documents/Workspace/Cursor/.venv/bin/python3
+         /usr/bin/vvp -M /home/systemuser/.local/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /usr/bin/python3
      -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
      0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
-     0.00ns INFO     cocotb                             Seeding Python random module with 1777803599
-     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/diatomstone/Documents/Workspace/Cursor/.venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1778131970
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/systemuser/.local/lib/python3.13/site-packages/cocotb
      0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
      0.00ns INFO     cocotb                             Running tests
-     0.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_known_values (1/5)
-                                                            Check GELU output against reference for known inputs.
-x=  0.00 | expected=0.0000 | got=0.0000 | valid_out=1
-x=  1.00 | expected=0.8412 | got=0.8386 | valid_out=1
-x= -1.00 | expected=-0.1588 | got=-0.1614 | valid_out=1
-x=  2.00 | expected=1.9546 | got=1.9532 | valid_out=1
-x= -2.00 | expected=-0.0454 | got=-0.0468 | valid_out=1
-x=  0.50 | expected=0.3457 | got=0.3508 | valid_out=1
-x= -0.50 | expected=-0.1543 | got=-0.1492 | valid_out=1
-   430.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_known_values passed
-   430.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_saturation (2/5)
-                                                            Large inputs should saturate tanh to ±1.
-x=  5.00 | expected=5.0000 | got=5.0000
-x=  8.00 | expected=8.0000 | got=8.0000
-x= -5.00 | expected=-0.0000 | got=0.0000
-x= -8.00 | expected=-0.0000 | got=0.0000
-   690.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_saturation passed
-   690.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_valid_pipeline (3/5)
+     0.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_sweep_error (1/4)
+                                                            Sweep from -4.0 to 4.0 in 0.05 steps to calculate Max and Avg Error.
+
+=== PWL Error Characterization ===
+Points Tested : 161
+Average Error : 0.010362
+Max Error     : 0.026296 (Occurred at x = -2.25)
+==================================
+
+  1650.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_sweep_error passed
+  1650.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_edge_cases (2/4)
+                                                            Test zero crossing and extreme tails to ensure no overflow.
+Edge Case x=   0.00 | expected= 0.0000 | got= 0.0000
+Edge Case x=  -0.01 | expected=-0.0050 | got=-0.0040
+Edge Case x=   0.01 | expected= 0.0050 | got= 0.0060
+Edge Case x=  10.00 | expected=10.0000 | got=10.0000
+Edge Case x= -10.00 | expected= 0.0000 | got= 0.0000
+Edge Case x=  50.00 | expected=50.0000 | got=50.0000
+Edge Case x= -50.00 | expected= 0.0000 | got= 0.0000
+Edge Case x= 100.00 | expected=100.0000 | got=100.0000
+Edge Case x=-100.00 | expected= 0.0000 | got= 0.0000
+  2030.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_edge_cases passed
+  2030.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_valid_pipeline (3/4)
                                                             valid_out should appear exactly PIPE_DEPTH cycles after valid_in.
-valid_out timing: PASS
-   770.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_valid_pipeline passed
-   770.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_zero (4/5)
-                                                            GELU(0) should be 0.
-GELU(0) = 0.0 (expected 0.0)
-   850.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_zero passed
-   850.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_streaming (5/5)
-                                                            Send multiple values back to back and collect outputs.
-Collected 8 outputs from 8 inputs
-  [0] x=  0.50 expected=0.3457 got=0.3508
-  [1] x=  1.00 expected=0.8412 got=0.8386
-  [2] x=  1.50 expected=1.3996 got=1.3976
-  [3] x=  2.00 expected=1.9546 got=1.9532
-  [4] x= -0.50 expected=-0.1543 got=-0.1492
-  [5] x= -1.00 expected=-0.1588 got=-0.1614
-  [6] x= -1.50 expected=-0.1004 got=-0.1024
-  [7] x= -2.00 expected=-0.0454 got=-0.0468
-  1000.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_streaming passed
-  1000.00ns INFO     cocotb.regression                  **************************************************************************************************
+Pipeline valid_out timing exactly 3 cycles: PASS
+  2090.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_valid_pipeline passed
+  2090.00ns INFO     cocotb.regression                  running tb_compute_core.test_gelu_streaming (4/4)
+                                                            Stream 50 random values back-to-back with zero gaps.
+Successfully streamed 50 overlapping cycles.
+  2640.00ns INFO     cocotb.regression                  tb_compute_core.test_gelu_streaming passed
+  2640.00ns INFO     cocotb.regression                  **************************************************************************************************
                                                         ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
                                                         **************************************************************************************************
-                                                        ** tb_compute_core.test_gelu_known_values     PASS         430.00           0.01      37397.89  **
-                                                        ** tb_compute_core.test_gelu_saturation       PASS         260.00           0.01      47627.16  **
-                                                        ** tb_compute_core.test_gelu_valid_pipeline   PASS          80.00           0.00      46365.11  **
-                                                        ** tb_compute_core.test_gelu_zero             PASS          80.00           0.00      48524.12  **
-                                                        ** tb_compute_core.test_gelu_streaming        PASS         150.00           0.00      41021.43  **
+                                                        ** tb_compute_core.test_gelu_sweep_error      PASS        1650.00           0.01     122075.84  **
+                                                        ** tb_compute_core.test_gelu_edge_cases       PASS         380.00           0.00     148623.23  **
+                                                        ** tb_compute_core.test_gelu_valid_pipeline   PASS          60.00           0.00     124030.68  **
+                                                        ** tb_compute_core.test_gelu_streaming        PASS         550.00           0.02      28533.74  **
                                                         **************************************************************************************************
-                                                        ** TESTS=5 PASS=5 FAIL=0 SKIP=0                           1000.00           0.03      30267.95  **
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0                           2640.00           0.04      70102.53  **
                                                         **************************************************************************************************
-VCD info: dumpfile dump.vcd opened for output.
-make[1]: Leaving directory '/home/diatomstone/Documents/Workspace/Cursor/project/m2'
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/GitHub/project/m2'
