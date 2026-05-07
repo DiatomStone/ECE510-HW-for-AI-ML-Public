@@ -63,11 +63,13 @@
 │   │   │       └── synth_yosys.log
 │   │   └── review
 │   │       └── mac_code_review.md
-│   └── cf05
-│       ├── cman_systolic_trace.md
-│       ├── cman_systolic_trace.png
-│       ├── mac.sv
-│       └── sarray.sv
+│   ├── cf05
+│   │   ├── cman_systolic_trace.md
+│   │   ├── cman_systolic_trace.png
+│   │   ├── mac.sv
+│   │   └── sarray.sv
+│   └── cf06
+│       └── cman_sneak_path.md
 ├── draft_algorithms
 │   ├── examples
 │   │   ├── cnn_backprop
@@ -214,4 +216,4 @@
 │   └── verilator_eg.sh
 └── tree.log
 
-51 directories, 164 files
+52 directories, 165 files
