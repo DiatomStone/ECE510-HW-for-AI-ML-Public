@@ -1,0 +1,233 @@
+.
+├── codefest
+│   ├── cf01
+│   │   ├── cman_workload_accounting.md
+│   │   └── profiling
+│   │       ├── resnet18_analysis.md
+│   │       ├── resnet18_profile.py
+│   │       └── resnet18_profile.txt
+│   ├── cf02
+│   │   ├── analysis
+│   │   │   ├── ai_calculation.md
+│   │   │   └── partition_rationale.md
+│   │   ├── cman_desmos.png
+│   │   ├── cman_roofline.md
+│   │   └── profiling
+│   │       ├── project_profile.txt
+│   │       └── roofline_project.png
+│   ├── cf03
+│   │   ├── analysis
+│   │   │   ├── gemm_analysis.md
+│   │   │   └── gemm_roofline_copy.png
+│   │   ├── cman_dram_traffic.md
+│   │   ├── cuda
+│   │   │   ├── gemm_naive.cu
+│   │   │   ├── gemm_tiled.cu
+│   │   │   ├── profile_naive.ncu-rep
+│   │   │   ├── profile_tiled.ncu-rep
+│   │   │   ├── results.md
+│   │   │   └── run.sh
+│   │   └── profiling
+│   │       └── gemm_roofline.png
+│   ├── cf04
+│   │   ├── cman_quantization.md
+│   │   ├── cocotb_mac
+│   │   │   ├── mac_correct.sv
+│   │   │   ├── makefile
+│   │   │   ├── __pycache__
+│   │   │   │   └── test_mac.cpython-313.pyc
+│   │   │   ├── result
+│   │   │   │   ├── output.vcd
+│   │   │   │   ├── simulation.log
+│   │   │   │   ├── test_mac_all.vcd
+│   │   │   │   ├── test_mac_basic.png
+│   │   │   │   └── test_mac_basic.vcd
+│   │   │   ├── run.sh
+│   │   │   ├── test_mac_overflow.md
+│   │   │   ├── test_mac.py
+│   │   │   └── waveform.png
+│   │   ├── hdl
+│   │   │   ├── mac_correct.sv
+│   │   │   ├── mac_llm_A.sv
+│   │   │   ├── mac_llm_B.sv
+│   │   │   ├── mac_llm_C.sv
+│   │   │   ├── mac_llm_D.sv
+│   │   │   ├── mac_llm_E.sv
+│   │   │   ├── mac.sv
+│   │   │   ├── mac_tb.sv
+│   │   │   └── script
+│   │   │       ├── run_compile_sim.sh
+│   │   │       ├── run_lint.sh
+│   │   │       ├── run_synth.sh
+│   │   │       ├── simulation.log
+│   │   │       └── synth_yosys.log
+│   │   └── review
+│   │       └── mac_code_review.md
+│   ├── cf05
+│   │   ├── cman_systolic_trace.md
+│   │   ├── cman_systolic_trace.png
+│   │   ├── mac.sv
+│   │   └── sarray.sv
+│   ├── cf06
+│   │   └── cman_sneak_path.md
+│   └── presentation
+│       ├── Aproximation vs true tanh.png
+│       └── Pipeline.png
+├── draft_algorithms
+│   ├── examples
+│   │   ├── cnn_backprop
+│   │   │   ├── cnn.py
+│   │   │   └── train.py
+│   │   └── qlearning
+│   │       ├── agent.pkl
+│   │       ├── __pycache__
+│   │       │   └── qlearning.cpython-313.pyc
+│   │       ├── qlearning.py
+│   │       └── train.py
+│   ├── initial_transformer_analysis.md
+│   ├── old diagrams
+│   │   ├── Pasted image.png
+│   │   └── system_diagram_1.png
+│   ├── Pasted image.png
+│   ├── profile
+│   │   ├── mobilenet_profile.txt
+│   │   ├── mobilenet_v2.py
+│   │   └── TinyML_depthwise_sep_conv.py
+│   ├── roofline_gemini.png
+│   ├── static_quantization_baseline.py
+│   ├── static_quantization.py
+│   ├── transformer_analysis.md
+│   └── transformer_lm
+│       ├── baseline_benchmark.md
+│       ├── data
+│       │   └── sample.txt
+│       ├── logs
+│       │   ├── checkpoint.pkl
+│       │   ├── loss_curve.png
+│       │   ├── memory.log
+│       │   ├── mprofile_20260405184245.dat
+│       │   ├── mprofile_20260405202141.dat
+│       │   ├── runtime.log
+│       │   └── script.sh
+│       ├── __pycache__
+│       │   ├── transformer.cpython-312.pyc
+│       │   └── transformer.cpython-313.pyc
+│       ├── train.py
+│       ├── transformer_analysis.md
+│       └── transformer.py
+├── Local LLM Survey Project
+│   ├── activities.log
+│   └── Gemma-piper api
+│       ├── Gemma_4
+│       │   ├── AGENT.md
+│       │   ├── code
+│       │   │   ├── application.py
+│       │   │   ├── CLI.sh
+│       │   │   ├── makefile
+│       │   │   ├── program
+│       │   │   └── program.c
+│       │   ├── context.md
+│       │   ├── Gemma 4 kernel
+│       │   ├── gemma.sh
+│       │   ├── inputs
+│       │   │   └── Pasted image.png
+│       │   └── text.md
+│       ├── README.md
+│       └── TTS
+│           ├── Edge-tts.sh
+│           ├── input
+│           ├── output
+│           ├── Piper_rttts.sh
+│           ├── Piper-tts.sh
+│           ├── piper.txt
+│           └── voices
+├── project
+│   ├── algorithm_diagram.png
+│   ├── GELU_calculations.md
+│   ├── hdl
+│   │   ├── dump_waves.sv
+│   │   ├── gelu.sv
+│   │   ├── Makefile
+│   │   ├── __pycache__
+│   │   │   └── test_gelu.cpython-313.pyc
+│   │   ├── result
+│   │   │   ├── output.vcd
+│   │   │   ├── preliminary.vcd
+│   │   │   ├── simulation.log
+│   │   │   └── waveform.png
+│   │   ├── run.sh
+│   │   └── test_gelu.py
+│   ├── heilmeier.md
+│   ├── m1
+│   │   ├── interface_selection.md
+│   │   ├── sw_baseline.md
+│   │   └── system_diagram.png
+│   ├── m2
+│   │   ├── explainations.md
+│   │   ├── Makefile
+│   │   ├── precision.md
+│   │   ├── README.md
+│   │   ├── results.xml
+│   │   ├── rtl
+│   │   │   ├── compute_core_p3.sv
+│   │   │   ├── compute_core_p5.sv
+│   │   │   ├── compute_core_pipe7.sv
+│   │   │   ├── compute_core.sv
+│   │   │   └── interface.sv
+│   │   ├── sim
+│   │   │   ├── compute_core_run.log
+│   │   │   ├── compute_core_run.vcd
+│   │   │   ├── interface_run.log
+│   │   │   ├── interface_run.vcd
+│   │   │   └── waveform.png
+│   │   ├── sim_build
+│   │   │   ├── cmds.f
+│   │   │   └── sim.vvp
+│   │   ├── sim_compute_core.sh
+│   │   ├── sim_interface.sh
+│   │   ├── simulation.sh
+│   │   └── tb
+│   │       ├── __pycache__
+│   │       │   ├── tb_compute_core.cpython-312.pyc
+│   │       │   ├── tb_compute_core.cpython-313.pyc
+│   │       │   ├── tb_interface.cpython-312.pyc
+│   │       │   └── tb_interface.cpython-313.pyc
+│   │       ├── tb_compute_core_p5.py
+│   │       ├── tb_compute_core_p7.py
+│   │       ├── tb_compute_core.py
+│   │       ├── tb_compute_core.sv
+│   │       ├── tb_interface.py
+│   │       └── tb_interface.sv
+│   └── transformer_lm
+│       ├── checkpoint.pkl
+│       ├── data
+│       │   └── sample.txt
+│       ├── hdl.sv
+│       ├── log
+│       ├── log1
+│       ├── logs
+│       │   ├── checkpoint.pkl
+│       │   ├── loss_curve.png
+│       │   ├── memory.log
+│       │   ├── mprofile_20260405184245.dat
+│       │   ├── mprofile_20260405202141.dat
+│       │   ├── runtime.log
+│       │   └── script.sh
+│       ├── loss_curve.png
+│       ├── Pasted image.png
+│       ├── __pycache__
+│       │   ├── transformer.cpython-312.pyc
+│       │   └── transformer.cpython-313.pyc
+│       ├── train.py
+│       └── transformer.py
+├── README.md
+└── tools
+    ├── deliverable_check.sh
+    ├── info.txt
+    ├── profile.sh
+    ├── pushscript.sh
+    ├── pytorch.sh
+    ├── tree.log
+    └── verilator_eg.sh
+
+57 directories, 174 files

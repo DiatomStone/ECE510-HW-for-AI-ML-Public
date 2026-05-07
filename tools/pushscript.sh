@@ -4,7 +4,7 @@ echo "Current Branch:"
 git branch
 echo "branch sync..."
 git pull
-tree > tree.log
+tree > tools/tree.log
 echo "Enter commit message... (type 'void' to skip)"
 git add .
 read -r message
