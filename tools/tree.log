@@ -69,7 +69,14 @@
 │   │   ├── mac.sv
 │   │   └── sarray.sv
 │   ├── cf06
-│   │   └── cman_sneak_path.md
+│   │   ├── cllm.md
+│   │   ├── cman_sneak_path.md
+│   │   └── hdl
+│   │       ├── crossbar_mac.sv
+│   │       ├── crossbar_run.log
+│   │       ├── crossbar_tb.sv
+│   │       ├── README.md
+│   │       └── sim_crossbar.sh
 │   └── presentation
 │       ├── Aproximation vs true tanh.png
 │       └── Pipeline.png
@@ -135,12 +142,9 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
-│           ├── input
-│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           ├── piper.txt
-│           └── voices
+│           └── piper.txt
 ├── project
 │   ├── algorithm_diagram.png
 │   ├── GELU_calculations.md
@@ -230,4 +234,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-57 directories, 174 files
+55 directories, 180 files
