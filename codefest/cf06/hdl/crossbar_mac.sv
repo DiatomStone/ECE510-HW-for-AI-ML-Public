@@ -17,14 +17,15 @@
 //   enough to hold the sum of four signed 8-bit terms.
 //
 // Weight encoding:
-//   weight_bit[i][j] = 1'b1 means +1
-//   weight_bit[i][j] = 1'b0 means -1
+//   weight_code[i][j] = 2'b00 means reset/neutral (no contribution)
+//   weight_code[i][j] = 2'b01 means +1
+//   weight_code[i][j] = 2'b11 means -1
 //
 // Ports:
 //   clk          - input,  1-bit            : System clock
 //   rst          - input,  1-bit            : Synchronous active-high reset
 //   load_weights - input,  1-bit            : Load strobe for weight_in
-//   weight_in    - input,  [15:0]           : Row-major 4x4 binary weights
+//   weight_in    - input,  [31:0]           : Row-major 4x4 2-bit weights
 //   in0-in3      - input,  signed [7:0]     : Input lines
 //   out0-out3    - output, signed [10:0]    : Accumulator outputs
 
@@ -32,7 +33,7 @@ module crossbar_mac (
     input  logic              clk,
     input  logic              rst,
     input  logic              load_weights,
-    input  logic [15:0]       weight_in,
+    input  logic [31:0]       weight_in,
     input  logic signed [7:0] in0,
     input  logic signed [7:0] in1,
     input  logic signed [7:0] in2,
@@ -43,7 +44,7 @@ module crossbar_mac (
     output logic signed [10:0] out3
 );
 
-    logic weight_bit [4][4];
+    logic [1:0] weight_code [4][4];
     logic signed [10:0] in_ext [4];
     logic signed [10:0] sum [4];
 
@@ -56,9 +57,9 @@ module crossbar_mac (
         for (int j = 0; j < 4; j++) begin
             sum[j] = '0;
             for (int i = 0; i < 4; i++) begin
-                if (weight_bit[i][j]) begin
+                if (weight_code[i][j] == 2'b01) begin
                     sum[j] += in_ext[i];
-                end else begin
+                end else if (weight_code[i][j] == 2'b11) begin
                     sum[j] -= in_ext[i];
                 end
             end
@@ -69,7 +70,7 @@ module crossbar_mac (
         if (rst) begin
             for (int i = 0; i < 4; i++) begin
                 for (int j = 0; j < 4; j++) begin
-                    weight_bit[i][j] <= 1'b0;
+                    weight_code[i][j] <= 2'b00;
                 end
             end
             out0 <= '0;
@@ -80,7 +81,7 @@ module crossbar_mac (
             if (load_weights) begin
                 for (int i = 0; i < 4; i++) begin
                     for (int j = 0; j < 4; j++) begin
-                        weight_bit[i][j] <= weight_in[(i * 4) + j];
+                        weight_code[i][j] <= weight_in[((i * 4 + j) * 2) +: 2];
                     end
                 end
             end

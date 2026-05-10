@@ -10,7 +10,7 @@ module crossbar_tb;
     logic clk;
     logic rst;
     logic load_weights;
-    logic [15:0] weight_in;
+    logic [31:0] weight_in;
 
     logic signed [7:0] in0;
     logic signed [7:0] in1;
@@ -59,7 +59,7 @@ module crossbar_tb;
         end
     endtask
 
-    task automatic load_weight_matrix(input logic [15:0] weights);
+    task automatic load_weight_matrix(input logic [31:0] weights);
         begin
             @(negedge clk);
             weight_in = weights;
@@ -132,9 +132,13 @@ module crossbar_tb;
         //    [-1,  1,  1, -1],
         //    [-1, -1, -1,  1]]
         //
-        // weight_in is row-major with bit 1 = +1 and bit 0 = -1:
-        //   row0 = 4'b0101, row1 = 4'b0011, row2 = 4'b0110, row3 = 4'b1000
-        load_weight_matrix(16'h8635);
+        // weight_in is row-major with 2'b01 = +1 and 2'b11 = -1.
+        // The second bit of each 2-bit code selects subtraction when high.
+        //   row0 = {2'b11, 2'b01, 2'b11, 2'b01} = 8'hDD
+        //   row1 = {2'b11, 2'b11, 2'b01, 2'b01} = 8'hF5
+        //   row2 = {2'b11, 2'b01, 2'b01, 2'b11} = 8'hD7
+        //   row3 = {2'b01, 2'b11, 2'b11, 2'b11} = 8'h7F
+        load_weight_matrix(32'h7FD7F5DD);
 
         // Input vector [10, 20, 30, 40].
         // Expected:

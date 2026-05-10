@@ -26,33 +26,36 @@ Each output is 11 bits wide. This is enough range for the sum of four signed
 
 ## Weight Storage
 
-The weights are stored in an internal 4 by 4 register array:
+The weights are stored in an internal 4 by 4 register array. Each stored
+element is 2 bits wide:
 
 ```systemverilog
-logic weight_bit [4][4];
+logic [1:0] weight_code [4][4];
 ```
 
-Each stored bit represents a binary weight:
+Each stored 2-bit code represents a binary weight:
 
-- `1'b1` means `+1`
-- `1'b0` means `-1`
+- `2'b00` means reset or neutral state, no contribution
+- `2'b01` means `+1`
+- `2'b11` means `-1`
 
 The weights are loaded at runtime through the `weight_in` input vector. The
-vector is interpreted row-major, so bit `(i * 4) + j` loads
-`weight_bit[i][j]`.
+vector is 32 bits wide and interpreted row-major, so bits
+`((i * 4 + j) * 2) +: 2` load `weight_code[i][j]`.
 
 The load happens on a rising clock edge when `load_weights` is asserted:
 
 ```systemverilog
 if (load_weights) begin
-    weight_bit[i][j] <= weight_in[(i * 4) + j];
+    weight_code[i][j] <= weight_in[((i * 4 + j) * 2) +: 2];
 end
 ```
 
 This satisfies the requirement that the weights are stored in a 4 by 4 register
 array rather than being hard-coded only in combinational logic. Reset clears
-the weight registers to zero, which corresponds to all weights being `-1`,
-until the testbench or another controller loads a new vector.
+the weight registers to `2'b00`, which is a neutral state. During the MAC, the
+input is added only when the stored code is exactly `2'b01`, subtracted only
+when the stored code is exactly `2'b11`, and ignored for `2'b00`.
 
 ## Input Sign Extension
 
@@ -80,8 +83,9 @@ column `j`, and the inner loop walks over all four input rows `i`.
 
 For every input and output pair:
 
-- if the weight bit is `1`, the signed input is added
-- if the weight bit is `0`, the signed input is subtracted
+- if the stored code is `2'b01`, the signed input is added
+- if the stored code is `2'b11`, the signed input is subtracted
+- if the stored code is `2'b00`, the input contributes zero
 
 This implements multiplication by `+1` or `-1` without a hardware multiplier.
 
@@ -107,16 +111,16 @@ The testbench loads `crossbar_mac` with a specific weight matrix:
 The corresponding `weight_in` value is:
 
 ```systemverilog
-16'h8635
+32'h7FD7F5DD
 ```
 
-This value is row-major with `1` meaning `+1` and `0` meaning `-1`:
+This value is row-major with `2'b01` meaning `+1` and `2'b11` meaning `-1`:
 
 ```text
-row0 = 0101
-row1 = 0011
-row2 = 0110
-row3 = 1000
+row0 = 8'hDD = {2'b11, 2'b01, 2'b11, 2'b01}
+row1 = 8'hF5 = {2'b11, 2'b11, 2'b01, 2'b01}
+row2 = 8'hD7 = {2'b11, 2'b01, 2'b01, 2'b11}
+row3 = 8'h7F = {2'b01, 2'b11, 2'b11, 2'b11}
 ```
 
 The `load_weight_matrix` task drives `weight_in`, asserts `load_weights` for
