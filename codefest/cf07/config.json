@@ -1,0 +1,8 @@
+{
+  "DESIGN_NAME": "synth_top",
+  "VERILOG_FILES": ["dir::hdl/synth_top.sv"],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 22,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd"
+}

@@ -1,0 +1,8 @@
+{
+  "DESIGN_NAME": "gelu16_axi_top",
+  "VERILOG_FILES": ["dir::hdl/synth_top.sv", "dir::hdl/gelu16_axi_top.sv"],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd"
+}

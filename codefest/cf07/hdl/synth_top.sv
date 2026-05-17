@@ -5,7 +5,7 @@
 //   to maximize accuracy in high-curvature regions of the GELU function.
 // =========================================================================
 
-module compute_core #(
+module synth_top #(
     parameter int DATA_WIDTH = 32,
     parameter int FRAC_BITS  = 16,
     parameter int PIPE_DEPTH = 4

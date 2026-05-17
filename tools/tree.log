@@ -78,7 +78,26 @@
 │   │       ├── README.md
 │   │       └── sim_crossbar.sh
 │   ├── cf07
-│   │   └── cman_sparsity_analysis.md
+│   │   ├── cman_sparsity_analysis.md
+│   │   ├── config_gelu16.json
+│   │   ├── config.json
+│   │   ├── hdl
+│   │   │   ├── gelu16_axi_top.sv
+│   │   │   ├── synth_top_bad_branch.sv
+│   │   │   └── synth_top.sv
+│   │   ├── PWL_values_check.png
+│   │   ├── run_openlane2.sh
+│   │   ├── synth
+│   │   │   ├── ai_interpretation.md
+│   │   │   ├── flow.log
+│   │   │   ├── m3_plan.md
+│   │   │   ├── metrics.csv
+│   │   │   ├── sta.log
+│   │   │   ├── stat.json
+│   │   │   ├── stat.rpt
+│   │   │   └── synth_interpretation.md
+│   │   └── tb
+│   │       └── tb_gelu16_axi_top.sv
 │   └── presentation
 │       ├── Aproximation vs true tanh.png
 │       └── Pipeline.png
@@ -178,6 +197,7 @@
 │   │   │   ├── compute_core_p3.sv
 │   │   │   ├── compute_core_p5.sv
 │   │   │   ├── compute_core_pipe7.sv
+│   │   │   ├── compute_core_precf07.sv
 │   │   │   ├── compute_core.sv
 │   │   │   └── interface.sv
 │   │   ├── sim
@@ -200,10 +220,12 @@
 │   │       │   └── tb_interface.cpython-313.pyc
 │   │       ├── tb_compute_core_p5.py
 │   │       ├── tb_compute_core_p7.py
+│   │       ├── tb_compute_core_prefc07.py
 │   │       ├── tb_compute_core.py
 │   │       ├── tb_compute_core.sv
 │   │       ├── tb_interface.py
 │   │       └── tb_interface.sv
+│   ├── scope_assessment.md
 │   └── transformer_lm
 │       ├── checkpoint.pkl
 │       ├── data
@@ -236,4 +258,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-56 directories, 181 files
+59 directories, 200 files

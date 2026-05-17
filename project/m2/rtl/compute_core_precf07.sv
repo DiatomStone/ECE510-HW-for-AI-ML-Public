@@ -1,5 +1,5 @@
 // =========================================================================
-// Module:  synth_top (High-Accuracy 24-Segment Parallel PWL)
+// Module:  compute_core (High-Accuracy 24-Segment Parallel PWL)
 // Description:
 //   Designed for 16-core instantiation. Uses non-uniform segmentation
 //   to maximize accuracy in high-curvature regions of the GELU function.
@@ -8,7 +8,7 @@
 module compute_core #(
     parameter int DATA_WIDTH = 32,
     parameter int FRAC_BITS  = 16,
-    parameter int PIPE_DEPTH = 4
+    parameter int PIPE_DEPTH = 3
 )(
     input  logic                        clk,
     input  logic                        rst,
@@ -19,15 +19,14 @@ module compute_core #(
 );
 
     // -------------------------------------------------------------------------
-    // STAGE 1: Boundary Decode
-    // Registers the input and decodes which PWL segment contains x.
+    // STAGE 1: Parallel Identification (The Flash Decode) [cite: 132]
     // -------------------------------------------------------------------------
     logic signed [DATA_WIDTH-1:0] s1_x;
     logic [23:0] s1_hits;
 
     always_ff @(posedge clk) begin
-        s1_x <= x;
-        // Non-uniform boundaries: high density near the high-curvature center.
+        s1_x <= x; // [cite: 133]
+        // Non-uniform boundaries: High density (0.25 steps) near the center [cite: 136, 137]
         s1_hits[0]  <= (x < -32'sd196608);                          // x < -3.0
         s1_hits[1]  <= (x >= -32'sd196608 && x < -32'sd163840);    // [-3.0, -2.5)
         s1_hits[2]  <= (x >= -32'sd163840 && x < -32'sd131072);    // [-2.5, -2.0)
@@ -47,21 +46,20 @@ module compute_core #(
         s1_hits[16] <= (x >=  32'sd98304  && x <  32'sd131072);    // [1.5, 2.0)
         s1_hits[17] <= (x >=  32'sd131072 && x <  32'sd163840);    // [2.0, 2.5)
         s1_hits[18] <= (x >=  32'sd163840 && x <  32'sd196608);    // [2.5, 3.0)
-        s1_hits[19] <= (x >=  32'sd196608);                         // x >= 3.0
+        s1_hits[19] <= (x >=  32'sd196608);                         // x >= 3.0 [cite: 140]
     end
 
     // -------------------------------------------------------------------------
-    // STAGE 2: Coefficient And Offset Select
-    // Converts the one-hot segment hit into slope, intercept, and segment base.
+    // STAGE 2: One-Hot Select & Offset [cite: 142]
     // -------------------------------------------------------------------------
     logic signed [DATA_WIDTH-1:0] s2_m, s2_b, s2_dx;
     logic signed [DATA_WIDTH-1:0] comb_m, comb_b, comb_t;
 
     always_comb begin
         // default: linear pass-through x >= 3.0
-        comb_m = 32'sd65536; comb_b = 32'sd0; comb_t = 32'sd0;
+        comb_m = 32'sd65536; comb_b = 32'sd0; comb_t = 32'sd0; // [cite: 143, 144]
         
-        unique case (1'b1)
+        unique case (1'b1) // [cite: 145, 159]
             s1_hits[0]:  begin comb_m = 32'sd0;      comb_b =  32'sd0;      comb_t =  32'sd0;      end // x < -3.0   : clamp 0
             s1_hits[1]:  begin comb_m = -32'sd2369;  comb_b = -32'sd1314;   comb_t = -32'sd196608; end // [-3.0,-2.5)
             s1_hits[2]:  begin comb_m = -32'sd4025;  comb_b = -32'sd2499;   comb_t = -32'sd163840; end // [-2.5,-2.0)
@@ -88,54 +86,35 @@ module compute_core #(
 
     always_ff @(posedge clk) begin
         s2_m  <= comb_m;
-        s2_b  <= comb_b;
-        s2_dx <= s1_x - comb_t;
+        s2_b  <= comb_b; // [cite: 161]
+        s2_dx <= s1_x - comb_t; // [cite: 162]
     end
 
     // -------------------------------------------------------------------------
-    // STAGE 3: Multiply
-    // Computes the raw product m * dx and carries b forward.
+    // STAGE 3: Mult & Saturate 
     // -------------------------------------------------------------------------
     logic [PIPE_DEPTH-2:0] v_pipe;
     always_ff @(posedge clk) begin
-        if (rst) v_pipe <= '0;
-        else     v_pipe <= {v_pipe[PIPE_DEPTH-3:0], valid_in};
+        if (rst) v_pipe <= '0; // [cite: 130]
+        else     v_pipe <= {v_pipe[0], valid_in}; // [cite: 131]
     end
 
-    logic signed [63:0] s3_mult;
-    logic signed [DATA_WIDTH-1:0] s3_b;
+    logic signed [63:0] s3_full;
+    assign s3_full = ($signed(64'(s2_m)) * $signed(64'(s2_dx))) >>> FRAC_BITS; // 
 
     always_ff @(posedge clk) begin
         if (rst) begin
-            s3_mult <= 64'sh0;
-            s3_b    <= 32'sh0;
+            valid_out <= 1'b0; // [cite: 165]
+            out       <= 0; // [cite: 166]
         end else begin
-            s3_mult <= s2_m * s2_dx;
-            s3_b    <= s2_b;
-        end
-    end
-
-    // -------------------------------------------------------------------------
-    // STAGE 4: Add, Saturate, And Output
-    // Adds the intercept, clamps to signed 32-bit Q16.16, and asserts valid_out.
-    // -------------------------------------------------------------------------
-    logic signed [63:0] s4_sum;
-
-    assign s4_sum = (s3_mult >>> FRAC_BITS) + s3_b;
-
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            valid_out <= 1'b0;
-            out       <= 0;
-        end else begin
-            valid_out <= v_pipe[PIPE_DEPTH-2];
-            // A value fits in signed 32 bits when bits [63:31] are sign extension.
-            if ((s4_sum[63:31] == 33'b0) || (s4_sum[63:31] == 33'h1_FFFF_FFFF))
-                out <= s4_sum[31:0];
-            else if (s4_sum[63])
-                out <= 32'sh8000_0000;  //-32768.0
+            valid_out <= v_pipe[1]; // [cite: 166]
+            // Saturation logic for 32-bit Q16.16 [cite: 167]
+            if ((s3_full + s2_b) > 64'sd2147483647) 
+                out <= 32'sd2147483647;
+            else if ((s3_full + s2_b) < -64'sd2147483648) // [cite: 168]
+                out <= -32'sd2147483648;
             else
-                out <= 32'sh7FFF_FFFF;  //+32767.999984 
+                out <= s3_full[31:0] + s2_b; // [cite: 169]
         end
     end
 
