@@ -82,22 +82,21 @@
 │   │   ├── config_gelu16.json
 │   │   ├── config.json
 │   │   ├── hdl
-│   │   │   ├── gelu16_axi_top.sv
 │   │   │   ├── synth_top_bad_branch.sv
 │   │   │   └── synth_top.sv
 │   │   ├── PWL_values_check.png
 │   │   ├── run_openlane2.sh
-│   │   ├── synth
-│   │   │   ├── ai_interpretation.md
-│   │   │   ├── flow.log
-│   │   │   ├── m3_plan.md
-│   │   │   ├── metrics.csv
-│   │   │   ├── sta.log
-│   │   │   ├── stat.json
-│   │   │   ├── stat.rpt
-│   │   │   └── synth_interpretation.md
-│   │   └── tb
-│   │       └── tb_gelu16_axi_top.sv
+│   │   └── synth
+│   │       ├── ai_interpretation.md
+│   │       ├── flow.log
+│   │       ├── m3_plan.md
+│   │       ├── metrics.csv
+│   │       ├── sta.log
+│   │       ├── stat.json
+│   │       ├── stat.rpt
+│   │       └── synth_interpretation.md
+│   ├── cf08
+│   │   └── cman_aer_analysis.md
 │   └── presentation
 │       ├── Aproximation vs true tanh.png
 │       └── Pipeline.png
@@ -258,4 +257,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-59 directories, 200 files
+59 directories, 199 files
