@@ -1,0 +1,12 @@
+SIM ?= icarus
+TOPLEVEL_LANG ?= verilog
+
+# Include both files in the compilation list
+VERILOG_SOURCES += $(PWD)/dma_axis_top.v
+VERILOG_SOURCES += $(PWD)/axis_accelerator.v
+
+TOPLEVEL = dma_axis_top
+MODULE = test_axis_dma
+
+include $(shell cocotb-config --makefiles)/Makefile.sim
+

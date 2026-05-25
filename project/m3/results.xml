@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1779682357" />
+    <testcase name="test_gelu_top" classname="tb_top" file="/home/systemuser/Documents/ECE/510/Project/m3/tb/tb_top.py" lineno="18" time="0.059275150299072266" sim_time_ns="2880.0" ratio_time="48586.97085488581" />
+  </testsuite>
+</testsuites>

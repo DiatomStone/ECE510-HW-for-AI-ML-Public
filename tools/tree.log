@@ -82,8 +82,11 @@
 │   │   ├── config_gelu16.json
 │   │   ├── config.json
 │   │   ├── hdl
+│   │   │   ├── fp32_to_q16.sv
+│   │   │   ├── q16_to_fp32.sv
 │   │   │   ├── synth_top_bad_branch.sv
-│   │   │   └── synth_top.sv
+│   │   │   ├── synth_top.sv
+│   │   │   └── Tb_converters.py
 │   │   ├── PWL_values_check.png
 │   │   ├── run_openlane2.sh
 │   │   └── synth
@@ -162,11 +165,29 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
+│           ├── input
+│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           └── piper.txt
+│           ├── piper.txt
+│           └── voices
 ├── project
 │   ├── algorithm_diagram.png
+│   ├── cocotb_toolchain
+│   │   ├── axis_accelerator.v
+│   │   ├── dma_axis_top.v
+│   │   ├── log.txt
+│   │   ├── Makefile
+│   │   ├── Makefile_full
+│   │   ├── __pycache__
+│   │   │   ├── tb_hwsw_pipe_axis_test.cpython-313.pyc
+│   │   │   ├── test_accelerator.cpython-313.pyc
+│   │   │   └── test_axis_dma.cpython-313.pyc
+│   │   ├── sim.sh
+│   │   ├── structure_blueprint
+│   │   ├── tb_hwsw_pipe_axis_test.py
+│   │   ├── test_accelerator.py
+│   │   └── test_axis_dma.py
 │   ├── GELU_calculations.md
 │   ├── hdl
 │   │   ├── dump_waves.sv
@@ -224,6 +245,87 @@
 │   │       ├── tb_compute_core.sv
 │   │       ├── tb_interface.py
 │   │       └── tb_interface.sv
+│   ├── m3
+│   │   ├── dump.vcd
+│   │   ├── explanation.md
+│   │   ├── helper_script
+│   │   │   ├── run_openlane2.sh
+│   │   │   ├── sim_compute_core.sh
+│   │   │   ├── sim_fp32_to_q16.sh
+│   │   │   ├── sim_gelu.sh
+│   │   │   ├── sim_interface.sh
+│   │   │   ├── sim_q16_to_fp32.sh
+│   │   │   └── sim_top.sh
+│   │   ├── Makefile
+│   │   ├── orginal_software
+│   │   │   ├── __pycache__
+│   │   │   │   └── transformer.cpython-313.pyc
+│   │   │   ├── train.py
+│   │   │   └── transformer.py
+│   │   ├── PWL_values_check.png
+│   │   ├── README.md
+│   │   ├── results.xml
+│   │   ├── rtl
+│   │   │   ├── compute_core.sv
+│   │   │   ├── fp32_to_q16.sv
+│   │   │   ├── gelu_fp32.sv
+│   │   │   ├── interface.sv
+│   │   │   ├── q16_to_fp32.sv
+│   │   │   └── top.sv
+│   │   ├── sim
+│   │   │   ├── compute_core_run.log
+│   │   │   ├── cosim_run.log
+│   │   │   ├── cosim_run.vcd
+│   │   │   ├── cosim_waveform.png
+│   │   │   ├── cosim_waveform.vcd
+│   │   │   ├── fp32_to_p16.log
+│   │   │   ├── gelu.log
+│   │   │   ├── interface_run.log
+│   │   │   └── p16_to_fp32.log
+│   │   ├── sim_build
+│   │   │   ├── cmds.f
+│   │   │   ├── cocotb_iverilog_dump.v
+│   │   │   ├── gelu_top.fst
+│   │   │   ├── sim.vvp
+│   │   │   └── tb_top.vvp
+│   │   ├── synth
+│   │   │   ├── area_report.txt
+│   │   │   ├── config.json
+│   │   │   ├── critical_path.md
+│   │   │   ├── openlane_run.log
+│   │   │   ├── power_report.txt
+│   │   │   ├── power.rpt
+│   │   │   ├── stat.rpt
+│   │   │   ├── timing_report.txt
+│   │   │   ├── wns.max.rpt
+│   │   │   ├── wns.min.rpt
+│   │   │   ├── ws.max.rpt
+│   │   │   └── ws.min.rpt
+│   │   ├── synthesis_notes.md
+│   │   └── tb
+│   │       ├── archived
+│   │       │   └── tb_top.sv
+│   │       ├── gelu_exp.hex
+│   │       ├── gelu_in.hex
+│   │       ├── gen_vectors.py
+│   │       ├── __pycache__
+│   │       │   ├── tb_axis_interface.cpython-313.pyc
+│   │       │   ├── tb_compute_core.cpython-312.pyc
+│   │       │   ├── tb_compute_core.cpython-313.pyc
+│   │       │   ├── tb_conversion.cpython-313.pyc
+│   │       │   ├── tb_fp32_to_q16.cpython-313.pyc
+│   │       │   ├── tb_gelu_fp32.cpython-313.pyc
+│   │       │   ├── tb_interface.cpython-312.pyc
+│   │       │   ├── tb_interface.cpython-313.pyc
+│   │       │   ├── tb_q16_to_fp32.cpython-313.pyc
+│   │       │   └── tb_top.cpython-313.pyc
+│   │       ├── tb_axis_interface.py
+│   │       ├── tb_compute_core.py
+│   │       ├── tb_conversion.py
+│   │       ├── tb_fp32_to_q16.py
+│   │       ├── tb_gelu_fp32.py
+│   │       ├── tb_q16_to_fp32.py
+│   │       └── tb_top.py
 │   ├── scope_assessment.md
 │   └── transformer_lm
 │       ├── checkpoint.pkl
@@ -257,4 +359,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-59 directories, 199 files
+75 directories, 285 files

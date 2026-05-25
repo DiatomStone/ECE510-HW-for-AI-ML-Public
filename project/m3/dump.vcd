@@ -1,0 +1,326 @@
+$date
+	Sun May 24 19:53:39 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_top $end
+$scope module dut $end
+$var wire 1 ! clk $end
+$var wire 1 " m_axis_tready $end
+$var wire 1 # rst $end
+$var wire 32 $ s_axil_araddr [31:0] $end
+$var wire 1 % s_axil_arvalid $end
+$var wire 32 & s_axil_awaddr [31:0] $end
+$var wire 1 ' s_axil_awvalid $end
+$var wire 1 ( s_axil_bready $end
+$var wire 1 ) s_axil_rready $end
+$var wire 32 * s_axil_wdata [31:0] $end
+$var wire 4 + s_axil_wstrb [3:0] $end
+$var wire 1 , s_axil_wvalid $end
+$var wire 32 - s_axis_tdata [31:0] $end
+$var wire 1 . s_axis_tlast $end
+$var wire 1 / s_axis_tuser $end
+$var wire 1 0 s_axis_tvalid $end
+$var wire 1 1 s_axis_tready $end
+$var wire 1 2 s_axil_wready $end
+$var wire 1 3 s_axil_rvalid $end
+$var wire 2 4 s_axil_rresp [1:0] $end
+$var wire 32 5 s_axil_rdata [31:0] $end
+$var wire 1 6 s_axil_bvalid $end
+$var wire 2 7 s_axil_bresp [1:0] $end
+$var wire 1 8 s_axil_awready $end
+$var wire 1 9 s_axil_arready $end
+$var wire 1 : m_axis_tvalid $end
+$var wire 1 ; m_axis_tuser $end
+$var wire 1 < m_axis_tlast $end
+$var wire 32 = m_axis_tdata [31:0] $end
+$scope module u_interface $end
+$var wire 1 > axis_in_fire $end
+$var wire 1 ? axis_out_fire $end
+$var wire 1 ! clk $end
+$var wire 32 @ m_axis_tdata [31:0] $end
+$var wire 1 < m_axis_tlast $end
+$var wire 1 " m_axis_tready $end
+$var wire 1 ; m_axis_tuser $end
+$var wire 1 # rst $end
+$var wire 32 A s_axil_araddr [31:0] $end
+$var wire 1 % s_axil_arvalid $end
+$var wire 32 B s_axil_awaddr [31:0] $end
+$var wire 1 ' s_axil_awvalid $end
+$var wire 1 ( s_axil_bready $end
+$var wire 1 ) s_axil_rready $end
+$var wire 32 C s_axil_wdata [31:0] $end
+$var wire 4 D s_axil_wstrb [3:0] $end
+$var wire 1 , s_axil_wvalid $end
+$var wire 32 E s_axis_tdata [31:0] $end
+$var wire 1 . s_axis_tlast $end
+$var wire 1 1 s_axis_tready $end
+$var wire 1 / s_axis_tuser $end
+$var wire 1 0 s_axis_tvalid $end
+$var wire 6 F pending_count [5:0] $end
+$var wire 1 : m_axis_tvalid $end
+$var wire 1 G core_valid_out $end
+$var wire 32 H core_data_out [31:0] $end
+$var parameter 32 I CNT_W $end
+$var parameter 32 J DATA_WIDTH $end
+$var parameter 32 K FIFO_CAP $end
+$var parameter 32 L FIFO_DEPTH $end
+$var parameter 32 M PIPE_DEPTH $end
+$var parameter 32 N PTR_W $end
+$var parameter 32 O USER_WIDTH $end
+$var reg 6 P fifo_count [5:0] $end
+$var reg 4 Q fifo_rd_ptr [3:0] $end
+$var reg 4 R fifo_wr_ptr [3:0] $end
+$var reg 6 S in_flight_count [5:0] $end
+$var reg 12 T meta_tlast_pipe [11:0] $end
+$var reg 1 U pipeline_enable $end
+$var reg 1 9 s_axil_arready $end
+$var reg 1 8 s_axil_awready $end
+$var reg 2 V s_axil_bresp [1:0] $end
+$var reg 1 6 s_axil_bvalid $end
+$var reg 32 W s_axil_rdata [31:0] $end
+$var reg 2 X s_axil_rresp [1:0] $end
+$var reg 1 3 s_axil_rvalid $end
+$var reg 1 2 s_axil_wready $end
+$scope module u_gelu_fp32 $end
+$var wire 1 ! clk $end
+$var wire 32 Y data_in [31:0] $end
+$var wire 1 # rst $end
+$var wire 1 > valid_in $end
+$var wire 1 G valid_out $end
+$var wire 1 Z s2_valid $end
+$var wire 32 [ s2_data [31:0] $end
+$var wire 1 \ s1_valid $end
+$var wire 32 ] s1_data [31:0] $end
+$var wire 32 ^ data_out [31:0] $end
+$scope module u_fp32_to_q16 $end
+$var wire 1 ! clk $end
+$var wire 32 _ data_in [31:0] $end
+$var wire 1 ` round_up $end
+$var wire 1 # rst $end
+$var wire 1 > valid_in $end
+$var wire 1 a sticky_bit $end
+$var wire 32 b signed_val [31:0] $end
+$var wire 32 c rounded_mag [31:0] $end
+$var wire 1 d round_bit $end
+$var reg 32 e data_out [31:0] $end
+$var reg 9 f raw_shift [8:0] $end
+$var reg 8 g s1_exp [7:0] $end
+$var reg 1 h s1_is_zero $end
+$var reg 23 i s1_mant [22:0] $end
+$var reg 1 j s1_sign $end
+$var reg 1 k s1_valid $end
+$var reg 1 l s2_is_zero $end
+$var reg 32 m s2_norm_mag [31:0] $end
+$var reg 1 n s2_overflow $end
+$var reg 6 o s2_shift [5:0] $end
+$var reg 1 p s2_sign $end
+$var reg 1 q s2_valid $end
+$var reg 32 r s3_frac [31:0] $end
+$var reg 1 s s3_is_zero $end
+$var reg 32 t s3_mag [31:0] $end
+$var reg 1 u s3_overflow $end
+$var reg 1 v s3_sign $end
+$var reg 1 w s3_valid $end
+$var reg 64 x shift_in [63:0] $end
+$var reg 64 y shift_out [63:0] $end
+$var reg 1 \ valid_out $end
+$upscope $end
+$scope module u_q16_to_fp32 $end
+$var wire 1 ! clk $end
+$var wire 1 z round_up $end
+$var wire 1 # rst $end
+$var wire 1 Z valid_in $end
+$var wire 24 { rounded_mantissa [23:0] $end
+$var wire 32 | data_in [31:0] $end
+$var reg 32 } data_out [31:0] $end
+$var reg 1 ~ s1_is_zero $end
+$var reg 32 !" s1_mag [31:0] $end
+$var reg 1 "" s1_sign $end
+$var reg 1 #" s1_valid $end
+$var reg 5 $" s2_clz [4:0] $end
+$var reg 8 %" s2_exp [7:0] $end
+$var reg 1 &" s2_is_zero $end
+$var reg 32 '" s2_mag [31:0] $end
+$var reg 1 (" s2_sign $end
+$var reg 1 )" s2_valid $end
+$var reg 8 *" s3_exp [7:0] $end
+$var reg 1 +" s3_is_zero $end
+$var reg 32 ," s3_norm_mag [31:0] $end
+$var reg 1 -" s3_sign $end
+$var reg 1 ." s3_valid $end
+$var reg 1 G valid_out $end
+$scope function clz32 $end
+$upscope $end
+$upscope $end
+$scope module u_synth_top $end
+$var wire 1 ! clk $end
+$var wire 1 # rst $end
+$var wire 1 \ valid_in $end
+$var wire 32 /" x [31:0] $end
+$var wire 64 0" s4_sum [63:0] $end
+$var parameter 32 1" DATA_WIDTH $end
+$var parameter 32 2" FRAC_BITS $end
+$var parameter 32 3" PIPE_DEPTH $end
+$var reg 32 4" comb_b [31:0] $end
+$var reg 32 5" comb_m [31:0] $end
+$var reg 32 6" comb_t [31:0] $end
+$var reg 32 7" out [31:0] $end
+$var reg 24 8" s1_hits [23:0] $end
+$var reg 32 9" s1_x [31:0] $end
+$var reg 32 :" s2_b [31:0] $end
+$var reg 32 ;" s2_dx [31:0] $end
+$var reg 32 <" s2_m [31:0] $end
+$var reg 32 =" s3_b [31:0] $end
+$var reg 64 >" s3_mult [63:0] $end
+$var reg 3 ?" v_pipe [2:0] $end
+$var reg 1 Z valid_out $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop0 $end
+$var integer 32 @" i [31:0] $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$var integer 32 A" i [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100 3"
+b10000 2"
+b100000 1"
+b1 O
+b100 N
+b1100 M
+b10000 L
+b10000 K
+b100000 J
+b110 I
+$end
+#0
+$dumpvars
+b0 A"
+b0 @"
+bx ?"
+bx >"
+bx ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+bx 7"
+b0 6"
+b10000000000000000 5"
+b0 4"
+bx 0"
+bx /"
+x."
+x-"
+bx ,"
+x+"
+bx *"
+x)"
+x("
+bx '"
+x&"
+bx %"
+bx $"
+x#"
+x""
+bx !"
+x~
+bx }
+bx |
+bx {
+xz
+bx y
+bx x
+xw
+xv
+xu
+bx t
+xs
+bx r
+xq
+xp
+bx o
+xn
+bx m
+xl
+xk
+xj
+bx i
+xh
+bx g
+bx f
+bx e
+xd
+bx c
+bx b
+xa
+x`
+b0 _
+bx ^
+bx ]
+x\
+bx [
+xZ
+b0 Y
+bx X
+bx W
+bx V
+xU
+bx T
+bx S
+bx R
+bx Q
+bx P
+bx H
+xG
+bx F
+b0 E
+b0 D
+b0 C
+b0 B
+b0 A
+bx @
+0?
+0>
+bx =
+x<
+x;
+x:
+x9
+x8
+bx 7
+x6
+bx 5
+bx 4
+x3
+x2
+x1
+00
+0/
+0.
+b0 -
+0,
+b0 +
+b0 *
+0)
+0(
+0'
+b0 &
+0%
+b0 $
+1#
+0"
+0!
+$end

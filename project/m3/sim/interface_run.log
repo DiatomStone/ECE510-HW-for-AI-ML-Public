@@ -1,0 +1,84 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_axi_stream_interface -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/Project/m3/rtl/interface.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/gelu_fp32.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/fp32_to_q16.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/q16_to_fp32.sv
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_axis_interface COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_axi_stream_interface TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779670896
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_axis_interface.test_axil_enable_readback (1/6)
+                                                            pipeline_enable register must read back correctly after write.
+[PASS] AXI-Lite pipeline_enable write / readback
+   140.00ns INFO     cocotb.regression                  tb_axis_interface.test_axil_enable_readback passed
+   140.00ns INFO     cocotb.regression                  running tb_axis_interface.test_pipeline_gate (2/6)
+                                                            s_axis_tready must stay low while pipeline_enable=0.
+[PASS] pipeline gate: tready gated correctly by pipeline_enable
+   280.00ns INFO     cocotb.regression                  tb_axis_interface.test_pipeline_gate passed
+   280.00ns INFO     cocotb.regression                  running tb_axis_interface.test_single_value (3/6)
+                                                            One FP32 operand must produce the correct GELU result at m_axis.
+[PASS] x=1.0  expected=0.84119  got=0.84119  err=0.00001
+   510.00ns INFO     cocotb.regression                  tb_axis_interface.test_single_value passed
+   510.00ns INFO     cocotb.regression                  running tb_axis_interface.test_tlast_propagation (4/6)
+                                                            TLAST on last input beat must appear on the corresponding output beat.
+  [PASS] beat 0: data=0.3486  tlast=0 (exp 0)
+  [PASS] beat 1: data=0.8412  tlast=0 (exp 0)
+  [PASS] beat 2: data=1.3863  tlast=0 (exp 0)
+  [PASS] beat 3: data=1.9312  tlast=1 (exp 1)
+[PASS] TLAST propagated correctly through 12-stage pipeline
+   770.00ns INFO     cocotb.regression                  tb_axis_interface.test_tlast_propagation passed
+   770.00ns INFO     cocotb.regression                  running tb_axis_interface.test_backpressure (5/6)
+                                                            Fill the output FIFO with tready=0; verify tready deasserts then recovers.
+  tready deasserted after 17 beats (FIFO_DEPTH=16)
+[PASS] backpressure: tready deasserts at capacity, recovers on drain
+  1050.00ns INFO     cocotb.regression                  tb_axis_interface.test_backpressure passed
+  1050.00ns INFO     cocotb.regression                  running tb_axis_interface.test_accuracy_sweep (6/6)
+                                                            50 uniformly-spaced FP32 inputs; all outputs must be within 0.05 of gelu_ref.
+
+=== Accuracy Sweep (50 pts, -3.5 → 3.5) ===
+  Avg error : 0.011668
+  Max error : 0.026290  (x = -2.214)
+==========================================
+
+[PASS] accuracy sweep
+  1770.01ns INFO     cocotb.regression                  tb_axis_interface.test_accuracy_sweep passed
+  1770.01ns INFO     cocotb.regression                  *****************************************************************************************************
+                                                        ** TEST                                         STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *****************************************************************************************************
+                                                        ** tb_axis_interface.test_axil_enable_readback   PASS         140.00           0.00      68694.73  **
+                                                        ** tb_axis_interface.test_pipeline_gate          PASS         140.00           0.00     112211.46  **
+                                                        ** tb_axis_interface.test_single_value           PASS         230.00           0.00     108599.56  **
+                                                        ** tb_axis_interface.test_tlast_propagation      PASS         260.00           0.00     104256.12  **
+                                                        ** tb_axis_interface.test_backpressure           PASS         280.00           0.00     119654.11  **
+                                                        ** tb_axis_interface.test_accuracy_sweep         PASS         720.00           0.01      88927.79  **
+                                                        *****************************************************************************************************
+                                                        ** TESTS=6 PASS=6 FAIL=0 SKIP=0                              1770.01           0.02      84693.05  **
+                                                        *****************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

@@ -1,0 +1,87 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/Tools/cocotb_toolchain'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s axis_accelerator -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/Tools/cocotb_toolchain/axis_accelerator.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_hwsw_pipe_axis_test COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=axis_accelerator TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779612084
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_hwsw_pipe_axis_test.main_python_algorithm (1/1)
+                                                            Main Python routine that executes an algorithm via AXI-Stream.
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     AXI stream source
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     cocotbext-axi version 0.1.28
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     Copyright (c) 2020-2025 Alex Forencich
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     https://github.com/alexforencich/cocotbext-axi
+    25.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:302: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.bus.tvalid.setimmediatevalue(self._valid_init)
+    25.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:315: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          s.setimmediatevalue(v)
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     AXI stream source configuration:
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       Byte size: 8 bits
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       Data width: 32 bits (4 bytes)
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     AXI stream source signals:
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tdata width: 32 bits
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tdest: not present
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tid: not present
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tkeep: not present
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tlast width: 1 bits
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tready width: 1 bits
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tuser: not present
+    25.00ns INFO     cocotb.axis_accelerator.s_axis       tvalid width: 1 bits
+    25.00ns INFO     cocotb.axis_accelerator.s_axis     Reset de-asserted
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     AXI stream sink
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     cocotbext-axi version 0.1.28
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     Copyright (c) 2020-2025 Alex Forencich
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     https://github.com/alexforencich/cocotbext-axi
+    25.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:304: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.bus.tready.setimmediatevalue(self._ready_init)
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     AXI stream sink configuration:
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       Byte size: 8 bits
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       Data width: 32 bits (4 bytes)
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     AXI stream sink signals:
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tdata width: 32 bits
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tdest: not present
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tid: not present
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tkeep: not present
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tlast width: 1 bits
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tready width: 1 bits
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tuser: not present
+    25.00ns INFO     cocotb.axis_accelerator.m_axis       tvalid width: 1 bits
+    25.00ns INFO     cocotb.axis_accelerator.m_axis     Reset de-asserted
+
+[Python Step 1] Executing raw software algorithm...
+📦 Source Data Array created in Python RAM: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+[Python Step 2] Offloading calculation payload to HDL via AXI-Stream...
+[Python Step 3] Awaiting accelerated streaming payload from hardware...
+    25.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/reset.py:59: DeprecationWarning: Use `signal.value_change` instead.
+                                                          await Edge(reset_signal)
+    35.00ns INFO     cocotb.axis_accelerator.s_axis     TX frame: AxiStreamFrame(tdata=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], tkeep=None, tid=None, tdest=None, tuser=None, sim_time_start=35000, sim_time_end=None)
+    65.00ns INFO     cocotb.axis_accelerator.m_axis     RX frame: AxiStreamFrame(tdata=bytearray(b'\x05\n\x0f\x14\x19\x1e#(-2\x00\x00'), tkeep=[], tid=[], tdest=[], tuser=[], sim_time_start=45000, sim_time_end=65000)
+
+[Python Step 4] Resuming main program. Processing return metrics...
+
+=======================================================
+📈 AXI-STREAM DIRECT HOOK BENCHMARK REPORT
+=======================================================
+📥 Received Array (Cleaned) : [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+⏱️  Hardware Time             : 40.0 ns
+💻 Wall-Clock Time           : 0.000819 seconds
+=======================================================
+✅ Success! Hardware acceleration math matches software expectations.
+    65.00ns INFO     cocotb.regression                  tb_hwsw_pipe_axis_test.main_python_algorithm passed
+    65.00ns INFO     cocotb.regression                  ******************************************************************************************************
+                                                        ** TEST                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ******************************************************************************************************
+                                                        ** tb_hwsw_pipe_axis_test.main_python_algorithm   PASS          65.00           0.00      18149.91  **
+                                                        ******************************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                                 65.00           0.00      15629.75  **
+                                                        ******************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/Tools/cocotb_toolchain'

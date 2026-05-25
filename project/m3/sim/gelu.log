@@ -1,0 +1,169 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/GitHub/project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_fp32 -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/fp32_to_q16.sv /home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv /home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/q16_to_fp32.sv /home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/gelu_fp32.sv
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:65: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:66: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:67: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:68: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:69: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:70: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:71: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:72: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:73: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:74: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:75: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:76: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:77: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:78: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:79: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:80: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:81: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:82: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:83: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:84: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/GitHub/project/m3/rtl/compute_core.sv:64: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_gelu_fp32 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_fp32 TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779615335
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_gelu_fp32.test_reset (1/7)
+                                                            After reset, valid_out and data_out must both be 0.
+     0.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:46: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    50.00ns INFO     cocotb.regression                  tb_gelu_fp32.test_reset passed
+    50.00ns INFO     cocotb.regression                  running tb_gelu_fp32.test_gelu_sweep_error (2/7)
+                                                            Sweep -4.0 to 4.0 in 0.05 steps; report Max and Avg Error.
+    50.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:63: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+
+=== FP32 GELU Error Characterization (fp32 → PWL → fp32) ===
+Points Tested : 161
+Average Error : 0.010362
+Max Error     : 0.026296  (at x = -2.25)
+=============================================================
+
+  1830.00ns INFO     cocotb.regression                  tb_gelu_fp32.test_gelu_sweep_error passed
+  1830.00ns INFO     cocotb.regression                  running tb_gelu_fp32.test_gelu_edge_cases (3/7)
+                                                            Verify zero-crossing, saturation clamps, and extreme tails.
+  1830.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:126: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+[PASS] zero                                     x=    0.00 | exp=    0.0000 | got=    0.0000 | err=0.0000
+[PASS] just below zero                          x=   -0.01 | exp=   -0.0050 | got=   -0.0040 | err=0.0010
+[PASS] just above zero                          x=    0.01 | exp=    0.0050 | got=    0.0060 | err=0.0010
+[PASS] exactly at negative clamp boundary       x=   -3.00 | exp=   -0.0036 | got=   -0.0201 | err=0.0164
+[PASS] clamped negative tail (x < -3.0 → 0)     x=   -3.50 | exp=    0.0000 | got=    0.0000 | err=0.0000
+[PASS] deep negative clamped to 0               x=  -10.00 | exp=    0.0000 | got=    0.0000 | err=0.0000
+[PASS] exactly at positive linear boundary      x=    3.00 | exp=    3.0000 | got=    3.0000 | err=0.0000
+[PASS] linear positive tail passthrough         x=    3.50 | exp=    3.5000 | got=    3.5000 | err=0.0000
+[PASS] deep positive passthrough                x=   10.00 | exp=   10.0000 | got=   10.0000 | err=0.0000
+  3050.00ns INFO     cocotb.regression                  tb_gelu_fp32.test_gelu_edge_cases passed
+  3050.00ns INFO     cocotb.regression                  running tb_gelu_fp32.test_valid_pipeline_timing (4/7)
+                                                            valid_out must assert exactly PIPE_DEPTH cycles after valid_in.
+  3050.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:163: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+valid_out timing: exactly 12 cycles — PASS
+  3230.00ns INFO     cocotb.regression                  tb_gelu_fp32.test_valid_pipeline_timing passed
+  3230.00ns INFO     cocotb.regression                  running tb_gelu_fp32.test_gelu_streaming (5/7)
+                                                            Stream 100 random values back-to-back; verify no dropped samples.
+  3230.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:191: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+Streamed 100 samples — no drops. Max stream error: 0.026294
+  4400.00ns INFO     cocotb.regression                  tb_gelu_fp32.test_gelu_streaming passed
+  4400.00ns INFO     cocotb.regression                  running tb_gelu_fp32.test_segment_boundaries (6/7)
+                                                            Test values just inside each PWL segment boundary to catch
+  4400.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:235: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+
+=== Segment Boundary Check (57 points) ===
+Max error at boundaries: 0.023447
+  x=-3.00002 | exp=-0.00364 | got= 0.00000 | err=0.003637
+  x=-3.00000 | exp=-0.00364 | got=-0.02005 | err=0.016413
+  x=-2.99998 | exp=-0.00364 | got=-0.02007 | err=0.016428
+  x=-2.50002 | exp=-0.01508 | got=-0.03813 | err=0.023048
+  x=-2.50000 | exp=-0.01508 | got=-0.03813 | err=0.023047
+  x=-2.49998 | exp=-0.01508 | got=-0.03815 | err=0.023062
+  x=-2.00002 | exp=-0.04540 | got=-0.06885 | err=0.023447 <-- WORST
+  x=-2.00000 | exp=-0.04540 | got=-0.06883 | err=0.023430
+  x=-1.99998 | exp=-0.04540 | got=-0.06885 | err=0.023444
+  x=-1.50002 | exp=-0.10043 | got=-0.11372 | err=0.013297
+  x=-1.50000 | exp=-0.10043 | got=-0.11371 | err=0.013280
+  x=-1.49998 | exp=-0.10043 | got=-0.11372 | err=0.013293
+  x=-1.25002 | exp=-0.13228 | got=-0.13834 | err=0.006052
+  x=-1.25000 | exp=-0.13229 | got=-0.13834 | err=0.006050
+  x=-1.24998 | exp=-0.13229 | got=-0.13835 | err=0.006064
+  x=-1.00002 | exp=-0.15881 | got=-0.15881 | err=0.000007
+  x=-1.00000 | exp=-0.15881 | got=-0.15881 | err=0.000005
+  x=-0.99998 | exp=-0.15881 | got=-0.15883 | err=0.000019
+  x=-0.75002 | exp=-0.17004 | got=-0.16699 | err=0.003047
+  x=-0.75000 | exp=-0.17004 | got=-0.16698 | err=0.003063
+  x=-0.74998 | exp=-0.17004 | got=-0.16698 | err=0.003062
+  x=-0.50002 | exp=-0.15429 | got=-0.15146 | err=0.002829
+  x=-0.50000 | exp=-0.15429 | got=-0.15144 | err=0.002843
+  x=-0.49998 | exp=-0.15428 | got=-0.15144 | err=0.002840
+  x=-0.25002 | exp=-0.10033 | got=-0.09933 | err=0.000995
+  x=-0.25000 | exp=-0.10032 | got=-0.09932 | err=0.001005
+  x=-0.24998 | exp=-0.10032 | got=-0.09932 | err=0.001001
+  x=-0.00002 | exp=-0.00001 | got=-0.00002 | err=0.000008
+  x= 0.00000 | exp= 0.00000 | got= 0.00000 | err=0.000000
+  x= 0.00002 | exp= 0.00001 | got= 0.00000 | err=0.000008
+  x= 0.24998 | exp= 0.14966 | got= 0.15067 | err=0.001001
+  x= 0.25000 | exp= 0.14968 | got= 0.15068 | err=0.001005
+  x= 0.25002 | exp= 0.14969 | got= 0.15068 | err=0.000995
+  x= 0.49998 | exp= 0.34570 | got= 0.34854 | err=0.002840
+  x= 0.50000 | exp= 0.34571 | got= 0.34856 | err=0.002843
+  x= 0.50002 | exp= 0.34573 | got= 0.34856 | err=0.002829
+  x= 0.74998 | exp= 0.57995 | got= 0.58301 | err=0.003062
+  x= 0.75000 | exp= 0.57996 | got= 0.58302 | err=0.003063
+  x= 0.75002 | exp= 0.57998 | got= 0.58304 | err=0.003063
+  x= 0.99998 | exp= 0.84118 | got= 0.84117 | err=0.000004
+  x= 1.00000 | exp= 0.84119 | got= 0.84119 | err=0.000005
+  x= 1.00002 | exp= 0.84121 | got= 0.84120 | err=0.000007
+  x= 1.24998 | exp= 1.11770 | got= 1.11163 | err=0.006064
+  x= 1.25000 | exp= 1.11771 | got= 1.11166 | err=0.006050
+  x= 1.25002 | exp= 1.11773 | got= 1.11168 | err=0.006052
+  x= 1.49998 | exp= 1.39955 | got= 1.38626 | err=0.013293
+  x= 1.50000 | exp= 1.39957 | got= 1.38629 | err=0.013280
+  x= 1.50002 | exp= 1.39959 | got= 1.38631 | err=0.013282
+  x= 1.99998 | exp= 1.95458 | got= 1.93115 | err=0.023429
+  x= 2.00000 | exp= 1.95460 | got= 1.93117 | err=0.023430
+  x= 2.00002 | exp= 1.95461 | got= 1.93118 | err=0.023431
+  x= 2.49998 | exp= 2.48490 | got= 2.46185 | err=0.023047
+  x= 2.50000 | exp= 2.48492 | got= 2.46187 | err=0.023047
+  x= 2.50002 | exp= 2.48493 | got= 2.46188 | err=0.023048
+  x= 2.99998 | exp= 2.99635 | got= 2.97992 | err=0.016428
+  x= 3.00000 | exp= 2.99636 | got= 3.00000 | err=0.003637
+  x= 3.00002 | exp= 2.99638 | got= 3.00002 | err=0.003637
+  5140.01ns INFO     cocotb.regression                  tb_gelu_fp32.test_segment_boundaries passed
+  5140.01ns INFO     cocotb.regression                  running tb_gelu_fp32.test_fp32_special_values (7/7)
+                                                            Verify behaviour for FP32 special inputs.
+  5140.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/GitHub/project/m3/tb/tb_gelu_fp32.py:296: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+[PASS] positive zero        → 0.000000
+[PASS] negative zero        → 0.000000
+[PASS] smallest subnorm     → 0.000000
+[PASS] neg subnorm          → 0.000000
+[PASS] one                  → 0.841187
+[PASS] neg one              → -0.158813
+  5970.01ns INFO     cocotb.regression                  tb_gelu_fp32.test_fp32_special_values passed
+  5970.01ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** tb_gelu_fp32.test_reset                   PASS          50.00           0.00      32458.63  **
+                                                        ** tb_gelu_fp32.test_gelu_sweep_error        PASS        1780.00           0.03      61427.70  **
+                                                        ** tb_gelu_fp32.test_gelu_edge_cases         PASS        1220.00           0.01     104038.93  **
+                                                        ** tb_gelu_fp32.test_valid_pipeline_timing   PASS         180.00           0.00      77784.33  **
+                                                        ** tb_gelu_fp32.test_gelu_streaming          PASS        1170.00           0.02      58449.89  **
+                                                        ** tb_gelu_fp32.test_segment_boundaries      PASS         740.00           0.01      78760.28  **
+                                                        ** tb_gelu_fp32.test_fp32_special_values     PASS         830.00           0.01     135796.24  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=7 PASS=7 FAIL=0 SKIP=0                          5970.01           0.08      70494.76  **
+                                                        *************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/GitHub/project/m3'

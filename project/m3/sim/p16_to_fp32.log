@@ -1,0 +1,100 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/m2'
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_q16_to_fp32 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=q16_to_fp32 TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779589327
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_reset (1/13)
+                                                            After reset, valid_out and data_out must both be 0.
+     0.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:109: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    50.00ns INFO     cocotb.regression                  tb_q16_to_fp32.test_reset passed
+    50.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_zero (2/13)
+                                                            0x0000_0000 → FP32 should be +0.0 (0x0000_0000).
+    50.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:127: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+   190.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:99: DeprecationWarning: `task.kill()` is deprecated in favor of `task.cancel()`
+                                                          task.kill()
+   190.00ns INFO     cocotb.regression                  tb_q16_to_fp32.test_zero passed
+   190.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_one (3/13)
+                                                            Q16.16 0x0001_0000 = 1.0; FP32 result must be exactly 1.0.
+   190.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:142: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+   330.00ns INFO     cocotb.regression                  tb_q16_to_fp32.test_one passed
+   330.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_neg_one (4/13)
+                                                            Q16.16 0xFFFF_0000 = -1.0; FP32 result must be exactly -1.0.
+   330.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:155: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+   470.00ns INFO     cocotb.regression                  tb_q16_to_fp32.test_neg_one passed
+   470.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_positive_integers (5/13)
+                                                            Exact positive integers: 1.0, 2.0, 4.0, 256.0.
+   470.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:172: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+   640.00ns INFO     cocotb.regression                  tb_q16_to_fp32.test_positive_integers passed
+   640.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_negative_integers (6/13)
+                                                            Negative integers: -1.0, -2.0, -32768.0.
+   640.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:192: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+   800.00ns INFO     cocotb.regression                  tb_q16_to_fp32.test_negative_integers passed
+   800.00ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_fractional_values (7/13)
+                                                            Fractional Q16.16 values — allow 2 LSB tolerance (~3e-5).
+   800.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:212: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+   990.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_fractional_values passed
+   990.01ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_max_positive (8/13)
+                                                            0x7FFF_FFFF = +32767.99998...; FP32 result must be positive and near 32768.
+   990.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:232: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+  1130.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_max_positive passed
+  1130.01ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_min_negative (9/13)
+                                                            0x8000_0000 = -32768.0 exactly; FP32 result must be -32768.0.
+  1130.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:245: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+  1270.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_min_negative passed
+  1270.01ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_sign_bit_positive (10/13)
+                                                            All positive Q16.16 inputs must produce FP32 with sign bit = 0.
+  1270.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:262: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+  1440.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_sign_bit_positive passed
+  1440.01ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_rne_consecutive_lsb (11/13)
+                                                            Two consecutive Q16.16 LSBs must produce ordered, positive FP32 outputs.
+  1440.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:284: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+  1590.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_rne_consecutive_lsb passed
+  1590.01ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_pipeline_latency (12/13)
+                                                            valid_out must appear exactly PIPE_DEPTH cycles after valid_in.
+  1590.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:304: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+  1710.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_pipeline_latency passed
+  1710.01ns INFO     cocotb.regression                  running tb_q16_to_fp32.test_pipeline_throughput (13/13)
+                                                            N back-to-back valid inputs must produce exactly N valid outputs.
+  1710.01ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/m2/tb/tb_q16_to_fp32.py:326: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+  2000.01ns INFO     cocotb.regression                  tb_q16_to_fp32.test_pipeline_throughput passed
+  2000.01ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** tb_q16_to_fp32.test_reset                 PASS          50.00           0.00      60839.92  **
+                                                        ** tb_q16_to_fp32.test_zero                  PASS         140.00           0.00     117346.63  **
+                                                        ** tb_q16_to_fp32.test_one                   PASS         140.00           0.00     122232.01  **
+                                                        ** tb_q16_to_fp32.test_neg_one               PASS         140.00           0.00     122028.79  **
+                                                        ** tb_q16_to_fp32.test_positive_integers     PASS         170.00           0.00     125666.49  **
+                                                        ** tb_q16_to_fp32.test_negative_integers     PASS         160.00           0.00     139403.54  **
+                                                        ** tb_q16_to_fp32.test_fractional_values     PASS         190.00           0.00     139078.14  **
+                                                        ** tb_q16_to_fp32.test_max_positive          PASS         140.00           0.00     139345.65  **
+                                                        ** tb_q16_to_fp32.test_min_negative          PASS         140.00           0.00      99898.36  **
+                                                        ** tb_q16_to_fp32.test_sign_bit_positive     PASS         170.00           0.00     131120.21  **
+                                                        ** tb_q16_to_fp32.test_rne_consecutive_lsb   PASS         150.00           0.00     139562.02  **
+                                                        ** tb_q16_to_fp32.test_pipeline_latency      PASS         120.00           0.00     156358.02  **
+                                                        ** tb_q16_to_fp32.test_pipeline_throughput   PASS         290.00           0.00     133356.89  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=13 PASS=13 FAIL=0 SKIP=0                        2000.01           0.02     101890.66  **
+                                                        *************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/m2'

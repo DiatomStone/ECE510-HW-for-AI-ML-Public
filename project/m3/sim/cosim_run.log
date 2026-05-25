@@ -1,0 +1,156 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+/home/systemuser/.venv/lib/python3.13/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_top COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_top TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -fst 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779682357
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_top.test_gelu_top (1/1)
+                                                            End-to-end black-box test of gelu_top using AXI VIPs.
+     0.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/Project/m3/tb/tb_top.py:23: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          clock = Clock(dut.clk, 10, units="ns")  # 100 MHz
+     0.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/Project/m3/tb/tb_top.py:27: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          await Timer(50, units="ns")
+    50.00ns WARNING  py.warnings                        /home/systemuser/Documents/ECE/510/Project/m3/tb/tb_top.py:29: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          await Timer(50, units="ns")
+   100.00ns INFO     cocotb.gelu_top.s_axil             AXI lite master (write)
+   100.00ns INFO     cocotb.gelu_top.s_axil             cocotbext-axi version 0.1.28
+   100.00ns INFO     cocotb.gelu_top.s_axil             Copyright (c) 2020-2025 Alex Forencich
+   100.00ns INFO     cocotb.gelu_top.s_axil             https://github.com/alexforencich/cocotbext-axi
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:120: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.valid.setimmediatevalue(self._valid_init)
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:133: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          s.setimmediatevalue(v)
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:115: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.ready.setimmediatevalue(self._ready_init)
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.s_axil             AXI lite master configuration:
+   100.00ns INFO     cocotb.gelu_top.s_axil               Address width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               Byte size: 8 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               Data width: 32 bits (4 bytes)
+   100.00ns INFO     cocotb.gelu_top.s_axil             AXI lite master signals:
+   100.00ns INFO     cocotb.gelu_top.s_axil               awaddr width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               awprot: not present
+   100.00ns INFO     cocotb.gelu_top.s_axil               awready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               awvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               wdata width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               wready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               wstrb width: 4 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               wvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               bready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               bresp width: 2 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               bvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.s_axil             AXI lite master (read)
+   100.00ns INFO     cocotb.gelu_top.s_axil             cocotbext-axi version 0.1.28
+   100.00ns INFO     cocotb.gelu_top.s_axil             Copyright (c) 2020-2025 Alex Forencich
+   100.00ns INFO     cocotb.gelu_top.s_axil             https://github.com/alexforencich/cocotbext-axi
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.s_axil             AXI lite master configuration:
+   100.00ns INFO     cocotb.gelu_top.s_axil               Address width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               Byte size: 8 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               Data width: 32 bits (4 bytes)
+   100.00ns INFO     cocotb.gelu_top.s_axil             AXI lite master signals:
+   100.00ns INFO     cocotb.gelu_top.s_axil               araddr width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               arprot: not present
+   100.00ns INFO     cocotb.gelu_top.s_axil               arready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               arvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               rdata width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               rready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               rresp width: 2 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil               rvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axil             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.s_axis             AXI stream source
+   100.00ns INFO     cocotb.gelu_top.s_axis             cocotbext-axi version 0.1.28
+   100.00ns INFO     cocotb.gelu_top.s_axis             Copyright (c) 2020-2025 Alex Forencich
+   100.00ns INFO     cocotb.gelu_top.s_axis             https://github.com/alexforencich/cocotbext-axi
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:302: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.bus.tvalid.setimmediatevalue(self._valid_init)
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:315: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          s.setimmediatevalue(v)
+   100.00ns INFO     cocotb.gelu_top.s_axis             AXI stream source configuration:
+   100.00ns INFO     cocotb.gelu_top.s_axis               Byte size: 8 bits
+   100.00ns INFO     cocotb.gelu_top.s_axis               Data width: 32 bits (4 bytes)
+   100.00ns INFO     cocotb.gelu_top.s_axis             AXI stream source signals:
+   100.00ns INFO     cocotb.gelu_top.s_axis               tdata width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.s_axis               tdest: not present
+   100.00ns INFO     cocotb.gelu_top.s_axis               tid: not present
+   100.00ns INFO     cocotb.gelu_top.s_axis               tkeep: not present
+   100.00ns INFO     cocotb.gelu_top.s_axis               tlast width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axis               tready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axis               tuser width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axis               tvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.s_axis             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top.m_axis             AXI stream sink
+   100.00ns INFO     cocotb.gelu_top.m_axis             cocotbext-axi version 0.1.28
+   100.00ns INFO     cocotb.gelu_top.m_axis             Copyright (c) 2020-2025 Alex Forencich
+   100.00ns INFO     cocotb.gelu_top.m_axis             https://github.com/alexforencich/cocotbext-axi
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:304: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.bus.tready.setimmediatevalue(self._ready_init)
+   100.00ns INFO     cocotb.gelu_top.m_axis             AXI stream sink configuration:
+   100.00ns INFO     cocotb.gelu_top.m_axis               Byte size: 8 bits
+   100.00ns INFO     cocotb.gelu_top.m_axis               Data width: 32 bits (4 bytes)
+   100.00ns INFO     cocotb.gelu_top.m_axis             AXI stream sink signals:
+   100.00ns INFO     cocotb.gelu_top.m_axis               tdata width: 32 bits
+   100.00ns INFO     cocotb.gelu_top.m_axis               tdest: not present
+   100.00ns INFO     cocotb.gelu_top.m_axis               tid: not present
+   100.00ns INFO     cocotb.gelu_top.m_axis               tkeep: not present
+   100.00ns INFO     cocotb.gelu_top.m_axis               tlast width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.m_axis               tready width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.m_axis               tuser width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.m_axis               tvalid width: 1 bits
+   100.00ns INFO     cocotb.gelu_top.m_axis             Reset de-asserted
+   100.00ns INFO     cocotb.gelu_top                    Region 1: AXI-Lite control transaction
+   100.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/reset.py:59: DeprecationWarning: Use `signal.value_change` instead.
+                                                          await Edge(reset_signal)
+   100.00ns INFO     cocotb.gelu_top.s_axil             Write start addr: 0x00000000 prot: 2 data: 01 00 00 00
+   140.00ns INFO     cocotb.gelu_top.s_axil             Write complete addr: 0x00000000 prot: 2 resp: 0 length: 4
+   140.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:336: DeprecationWarning: The data field will be removed in a future release.
+                                                          cmd.event.set(write_resp)
+   140.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:205: DeprecationWarning: The data field will be removed in a future release.
+                                                          return event.data
+   140.00ns INFO     cocotb.gelu_top.s_axil             Read start addr: 0x00000000 prot: 2 length: 4
+   180.00ns INFO     cocotb.gelu_top.s_axil             Read complete addr: 0x00000000 prot: 2 resp: 0 data: 01 00 00 00
+   180.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:572: DeprecationWarning: The data field will be removed in a future release.
+                                                          cmd.event.set(read_resp)
+   180.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:457: DeprecationWarning: The data field will be removed in a future release.
+                                                          return event.data
+   180.00ns INFO     cocotb.gelu_top                    pipeline_enable=1 verified via AXI-Lite readback.
+   180.00ns INFO     cocotb.gelu_top                    Region 2: streaming 256 FP32 beats into DUT
+   180.00ns INFO     cocotb.gelu_top                    Region 3: Waiting for output beats...
+   190.00ns INFO     cocotb.gelu_top.s_axis             TX frame: AxiStreamFrame(tdata=bytearray(b'\xbf\xc5\x84\xbf\x97\xf6\x94?I\xe4\x0c@\xbd\x99\xe4\xbe!\xc3\xa4>1\x1fZ?H\x90M?=\xc3\x16>\xbeG\xca\xbe\x1e\x92\x9f?=\x94*@\x18\xbb\xf1\xbf\xf0Y\x91?f\xf6U\xbf\xb3\xe0\x16@\xfd\xb8U\xc0\x0e+\xc2\xbf\x14\x9d\x08@\xd8\x9f\x11\xbf\xf1B\x8c\xbf,6#@7\xdc\xe8?\xe5\xf05?\xf2\xcb\x87@? \xf9\xbd\xb7C\xe9\xbdeV\x8e\xbf\x0c\x04\xd8?\xb4\xb5\xa2?mgv?\xbe?\x84\xbe\xc1\x7f\xf6?\x87\x17\x1d?\xa3\xf8\xba?<j\xb5\xbd\x9c\x8c\x13\xc0Z\xdf\xc2\xbf\x01\x8e\x1b\xc0\xeb\x13.?\x91\x81\x89?z\xbcw?\xdd\xbe\x1c\xc0uN]\xbf\x02\x93\xce>\xc5\xf7>\xc0\xa6\xa2\x02\xc0\xce%\x0c\xbeK\x000\xbe\x98\xd2\xd2\xbe\xb5\x19h\xc0%\xc5&\xbd\x8c\xd4y?\xce\xdc\xb0?\xa0R\x1d?#\xae\x00\xc0\xe08\x03\xbf\x11\xf1\xb4\xbf\x1dG(?\x15kT?l\xcb@\xbf\xcc]\xa4<\x8ay\xbb?\xa7\x03\xc8\xbf|\xaf\xaa=@4\x94\xbf\x01\x05\xc7\xbf\xa6\xe1\xe8\xbfW\xa3\x90?u\xaf\xfe?B)\x82\xbf\x9b\x88K\xc0\x9d\xc8\xc6?R\t<?\xd3\xd3\xd4\xbd\xb3\xc6\xbd?_Z\xa0\xbf\x1e\x17\xd4?8\x1c\x8a=\x88x\'@\x8co\xac\xbf`\xdc\xf5\xbf\x1bf6\xbe\x9e\xa5\x05@\xe4\xd7\xca=+j\x1e>r\xc0\x0e@\xa2\xc6\x1e@\xa8\xb4C\xbe\xa3\x85\xab?\xd3\x1d\xc7>.\xb9\xcb?\x05\xb4\t@\xd9W\x18@\x90\x14=\xc0\x06\xd8\x86\xbfe];\xbf\xbaw\x7f\xbf\xfa\x03\x0e\xbe\xa8?\xfd?\xb1\x903\xbf\x8bJ\xd7\xbe\xbe\xb2O\xbe\xa2;\xc9>\xc5*G\xc0\xf1<0>C\x9f\x8b\xbf7\x14\x8f\xbe\x91\xf0\x82>\xfcu\x05\xbf5\x17\x13=9\xfcq@Br\xf4\xbe/\x8d\xb1\xbe\xe3\x13\xb9\xbf\x9a#m\xbe\r\xdd\x01\xc0#P\x8a?2\xb7\x97?(\xe7\x88?\x16\xd1\xb2>\x88F\xa8>\xf1\x17\x86?\x86\xf9\x87=W![?\x1f\x04\x93\xbfMu\xb6>\xdaV!?\xd2Td?q\x14\x0e\xc0\x94v\x05\xc0wD\xc0\xb9,6\xe4\xbf\x10\x8dI\xc0a.\x08\xbfc\x99%=\xbc\x10\xca>\x91<\x82>4\xb9+\xc0\x8c\xbf\x11\xc0\x7fs\x9b?)k\x04\xc0\xb2m]>\x92Sv\xbf\x8c\xb5\xb3\xbf\xb5\xcb\xef?\xd9r\x86?Sx\'=^\xf3$?\xb2\x80h>^\xb5\x11\xbeJ\xb5\xc9?\x87\x00\t?\x9c\x9f\x83\xbf\xea\x9c,\xbf\xaa\xac\x0f?\xbe\xbb\xc2?\x15\r\xf0?\xb2\x12\x10@\xc0\xc8\xf7\xbf\xc0\x84\xb9\xbe\xd6\xe2\x1f?P\x94\x13@\xceQ^\xbf "(?\xc0(\xcf>\xadL\x13\xbf\x8d|\x07\xc0\x90M\x18\xc0\xc2=\xb3=\xb0\x84i?\xcft\xb6\xbe\xd97\x87\xc0\\s\xf8?\x81\xc4\xc5\xbfG\xfe\xa5\xbd\xce\xc3\xc1<(\x91\xbe?X\xf8;?\x88O8\xbf\xe5\xf1\xdb\xbdT\x94\x19\xbf\xe3\xbd\t\xc0\x0cR6?\xb3\xc7\x1a>\x016\x94\xbfFVs=\xc6\xfb\xf0\xbe\x8f\xebL\xc0\xaa\x95\xfb\xbd7\xfb\n\xc0Z\xaei\xbf\xba\xb3\x86@\n\x1f\x08=\xb2&\x18>]\xf7\xe4\xbe\xdbS\xa8?Q\xfe\xd6?:\x8c\x80\xbf-\xee\x94?{\xc6\x82\xbd\xbc\x10\xcc>\x8f\x7fy\xbf\x11\xba\x9d?$<\x02@\x01x\xdf>\xad\xd9\xd8\xbf.\rL\xc0^\xda\x9a?\x1e\xdd\x1e?\x82\x8f\x95>\x11\xdf\x02@0$]?\x99>\x8e\xbf\xe4\xebi>\xcd\xd4\xb4\xbf\xc1\x88\xca?\xccA\x9e\xbf\x84\x00(\xbe\xa4L\xa3=\x93\xcc\xa1>\x05A\x9d=\\\x9bW\xbfm-8\xbf\x156\xed\xbeO_{?\x1fO\x8e?E\xb3\xd5\xbf\xb4\xbc\x82\xbe\xc4)\r\xc0\x93M\x1a?5\x10\xa7\xbe\xe6(\x1a\xbf\xcc\x01n>\xd0\\V\xbf\x18\x9a\x88\xbf\x9bu\xd2?Z\xd0!\xbfmYX?\x809\xbc\xbe\x0cs\xba=\xca|\x80\xbe\xe4\x07\x80\xbfMW\x9a\xbd%\x1f\x97?\x9c\xc2>=\xf2=/\xbf\xd3\xe4\xa6\xbf\xda\x93\xa2?\xe8)\x1f@\xdd4"?\xa8\x0c\x0c>\xabP\x87\xbdd-V\xbf\xa5\x9d\xa3\xbff\xf2\xb4\xbf\x7f\xadT\xc0'), tkeep=None, tid=None, tdest=None, tuser=None, sim_time_start=190000, sim_time_end=None)
+  2880.00ns INFO     cocotb.gelu_top.m_axis             RX frame: AxiStreamFrame(tdata=bytearray(b'\x00\x80\x1f\xbe\x80Y\x82?\x00G\t@\x00\xa8\x0f\xbe\x00|T>\x00:0?\x00B#?\x00\xb8\xb5=\x00\xb0\x04\xbe\x80\xd3\x8d?@\x85(@\x00x\xa1\xbd\x00\xe3|?\x00 (\xbe\x80\xe0\x13@\x00\x00\x00\x00\x00\xc8\xe5\xbd\x80\xbc\x04@\x00x\x1f\xbe\x00\x98\x1a\xbe\x00\xe3 @\x80\xf8\xdd?\x00\xd1\x0b?\x00\xcc\x87@\x00\xf0E\xbd\x00`9\xbd\x00<\x19\xbe\x80\x9d\xcb?\x80D\x91?\x00oM?\x00\xf8\xce\xbd\x00\xd6\xec?\x00\x08\xe9>\x80\xeb\xab?\x000\x10\xbd\x000M\xbd\x00\xc8\xe4\xbd\x00\xb0-\xbd\x00r\x04?\x00\xe9k?\x00\xcfN?\x00\x00)\xbd\x00,\'\xbe\x00V\x8b>\x00 \xa9\xbc\x00\xd0\x87\xbd\x00\xc0^\xbd\x00\xd8\x8b\xbd\x00@\x08\xbe\x00\x00\x00\x00\x00\x80\x84\xbc\x00\xf9P?\x00\xd1\xa0?\x00v\xe9>\x00\xa8\x8b\xbd\x00\xe4\x1b\xbe\x00P\xfa\xbd\x00\x02\xfe>\x00V*?\x00\xe4*\xbe\x00\x00F<\x00y\xac?\x00h\xdd\xbd\x00\xb0M=\x00d\x15\xbe\x00\xd0\xde\xbd\x000\xae\xbd\x00X{?\x00\xc2\xf5?\x004!\xbe\x00\x00\x00\x00\x00\xd6\xb8?\x00\x89\x11?\x00 )\xbd\x00\x00\xaf?\x00`\r\xbe\x80V\xc7?\x00p&=\xc0L%@\x00\xdc\x03\xbe\x00\x88\x9b\xbd\x00\xf0\x90\xbd\x80\x96\x01@\x00\x80t=\x00\xf0\xbe=\x80@\x0b@\xc0B\x1c@\x00\x80\x9b\xbd\x00\xf3\x9a?\x00p\x85>\x008\xbe?\xc0\xe4\x05@\x80n\x15@\x00\xe0\xb1\xbc\x00$\x1e\xbe\x00\xd8)\xbe\x00\xb4"\xbe\x00\xb0a\xbd\x001\xf4?\x00\xe8\'\xbe\x00\x1c\n\xbe\x00\x08\xa5\xbd\x00\x1c\x87>\x00\x00\x00\x00\x00h\xd4=\x00\x04\x1b\xbe\x00\x00\xd8\xbd\x00\xf0\x1e>\x00p\x1c\xbe\x00@\xb1<@\xfcq@\x00D\x16\xbe\x00\xc0\xf4\xbd\x00\xd0\xf3\xbd\x00p\xbc\xbd\x00X\x89\xbd\x00\xa8m?\x00T\x85?\x00\x9bj?\x00\xbcj>\x00\x0cZ>\x00\x87d?\x00\xe0#=\x00D1?\x00,\x16\xbe\x00\x80p>\x00\xfe\xf0>\x00\xc5:?\x00\xa0b\xbd\x00@\x82\xbd\x00\x00 \xb9\x00\xe8\xb4\xbd\x00\x00\x00\x00\x00 \x1d\xbe\x00\xa0\xc7<\x00\xc4\x87>\x00\xd4\x1d>\x00\x10\x01\xbd\x00@T\xbd\x80^\x89?\x00P\x84\xbd\x00p\x05>\x00\xe4#\xbe\x00@\xfc\xbd\x80\x87\xe5?\x00Le?\x00\xe0\xc9<\x00\xc4\xf7>\x00 \x0c>\x00\x90g\xbd\x80\x06\xbc?\x00X\xc3>\x00@ \xbe\x00,&\xbe\x00\xdc\xcf>\x00l\xb4?\x00\xcf\xe5?\x80\xa7\x0c@\x00\xc8\x98\xbd\x00`\xfb\xbd\x00D\xee>@`\x10@\x00\x08\'\xbe\x00\xbc\xfd>\x00\xcc\x8b>\x00\xe4\x1f\xbe\x00\x90|\xbd\x00\x80:\xbd\x00\x10X=\x00!@?\x00\xd8\xf8\xbd\x00\x00\x00\x00\x80\xf6\xee?\x00\xa0\xe0\xbd\x00\xf0\x03\xbd\x00\x80i<\x80\xde\xaf?\x00y\x11?\x00\x14)\xbe\x00\xc0.\xbd\x00p!\xbe\x00\xb0s\xbd\x00,\x0c?\x00\x90\xba=\x00d\x15\xbe\x00\xa0\x12=\x00\xd4\x14\xbe\x00\x00\x00\x00\x00\xf0G\xbd\x00\xd0n\xbd\x00\x8c%\xbe\xc0\xb3\x86@\x00\x00\xa4<\x00h\xb7=\x00\xd0\x0f\xbe\x80p\x97?\x80\x80\xca?\x00D"\xbe\x80P\x82?\x00\xe0\xcf\xbc\x00Z\x89>\x00|#\xbe\x00\xd5\x8b?\x00\xef\xfb?\x00\xb6\x98>\x008\xc5\xbd\x00\x00\x00\x00\x00\xb9\x88?\x00Z\xec>\x00l<>\x80H\xfd?\x00X3?\x00L\x19\xbe\x00\xfc\x0c>\x00\x80\xfa\xbd\x00\xed\xbc?\x00\xd0\x0e\xbe\x00\x80\x85\xbd\x00\xd0D=\x00\xccO>\x00\x80==\x00\xe8\'\xbe\x00\x0c)\xbe\x00@\x13\xbe\x00\x90R?\x00Mv?\x00\xc0\xc9\xbd\x00\xb0\xcd\xbd\x00@f\xbd\x00\xcc\xe3>\x00\x00\xec\xbd\x00\x98!\xbe\x00p\x0f>\x00\x14(\xbe\x00\xfc\x1c\xbe\x80\x8f\xc5?\x00|#\xbe\x00e.?\x00\xa8\xfd\xbd\x00\xb0`=\x00\xd0\xcb\xbd\x00\x9c"\xbe\x00@\xf5\xbc\x80\xaf\x84?\x00\xe0\xe5<\x00\xd4&\xbe\x00<\x08\xbe\x00 \x91?\x00\xac\x1c@\x00\x9e\xf2>\x00\xd0\xa8=\x00 \xd7\xbc\x00\x18(\xbe\x00\xd0\n\xbe\x00P\xfa\xbd\x00\x00\x00\x00'), tkeep=[], tid=[], tdest=[], tuser=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], sim_time_start=330000, sim_time_end=2880000)
+  2880.00ns INFO     cocotb.gelu_top                    Received frame length: 1024 bytes (256 beats)
+  2880.00ns INFO     cocotb.gelu_top                    
+                                                        === GELU Co-Simulation Results ===
+  2880.00ns INFO     cocotb.gelu_top                      Kernel    : M1 small-config FFN layer-0, batch=0, token=0
+  2880.00ns INFO     cocotb.gelu_top                      N         : 256  (d_ff=256, seed=42)
+  2880.00ns INFO     cocotb.gelu_top                      Avg error : 0.008957
+  2880.00ns INFO     cocotb.gelu_top                      Max error : 0.026295  (index 85)
+  2880.00ns INFO     cocotb.gelu_top                      Input[85] : 0x400EC072  (2.230496)
+  2880.00ns INFO     cocotb.gelu_top                      Got[85]   : 0x80400b40  (2.175812)
+  2880.00ns INFO     cocotb.gelu_top                      Exp[85]   : 0x400CEF53  (2.202107)
+  2880.00ns INFO     cocotb.gelu_top                      Failures  : 0 / 256  (threshold 0.05)
+  2880.00ns INFO     cocotb.gelu_top                    ==================================
+PASS
+  2880.00ns INFO     cocotb.gelu_top                    PASS
+  2880.00ns INFO     cocotb.regression                  tb_top.test_gelu_top passed
+  2880.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** tb_top.test_gelu_top           PASS        2880.00           0.06      48586.97  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0               2880.00           0.06      47361.86  **
+                                                        **************************************************************************************
+FST info: dumpfile sim_build/gelu_top.fst opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'
