@@ -45,6 +45,7 @@ Every file and subfolder under `project/m3/` is listed below.
 | `tb/tb_fp32_to_q16.py` | cocotb testbench for the FP32→Q16 converter |
 | `tb/tb_q16_to_fp32.py` | cocotb testbench for the Q16→FP32 converter |
 | `tb/tb_conversion.py` | Conversion round-trip testbench (fp32→q16→fp32) |
+| `tb/info_tb_top.md` | Annotated walkthrough of `tb_top.py` — maps each region to its real-system hardware equivalent and identifies where PCIe/DMA and AXI memory plug in |
 | `tb/archived/tb_top.sv` | Original SystemVerilog testbench for `gelu_top` (archived; superseded by `tb_top.py`) |
 
 ### `sim/`

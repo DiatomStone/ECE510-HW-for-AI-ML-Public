@@ -29,9 +29,9 @@ Key to the success was running this with the gelu kernel alone first. Before syn
 | Max-slew warnings | ss_100C_1v60 corners only (extreme corner) |
 
 # Scope adjustments
-While I aim to get the co-simulaiton with PCIE/DMA from cocotb's backend sending AXI packets to a memory module which communicates to the interface(core module chain) via AXI. The current scope is functional cosimulation with AXI. As an end product this would still be useful since we can integrate the AXI stream/lite GELU module (as a chiplet) into a larger AXI communication based chiplet. Scope may be limited to AXI if there are unforseen issues with memory or PCIE/DMA. 
+In tb_top.py the PCIe/DMA as well as AXI memory backend was simulated using cocotb's IP, this current form contains timed DMA controled axi transfers between memory and our Kernel.  RTL contains up to AXI, custom HDL DMA and PCIe and memory may be possible however my core interest is creating an acceleration kernel with an interface. AXI seems to be widely accepted as an onchip interface. The current scope is functional cosimulation with AXI, with gen_vector.py creating input values that would be created by transformer_ml.py. As an end product this would be useful since we can integrate the AXI stream/lite GELU module (as a chiplet) into a larger AXI communication based chiplet. 
 
 As mentioned in the cf07, the original plan was to instantiate this module 16x in parallel, however speedup calculation showed that with one module already gives x3000 speedup at the synthesized 22 ns; 16 module yeilds about x55000 speedup. This compute speed is expected to by far exceed bandwidth limits. So the adjusted plan is instantiate just one GELU pipeline and increase only with bandwith availablility. 
 
-If the PCIE/dma backend is successfully setup and there is available time, I will proceed with implementing the feed forward loop ( weight stationary systolic array) after the FP32_P16 and before the PWL GELU. Otherwise I will do this after the class is concluded. 
-
+Further clarification is required if the DMA RTL is needed cocotbext-PCIe should be used. If there is available time, I will proceed with implementing the feed forward loop ( weight stationary systolic array) after the FP32_P16 and before the PWL GELU.  
+Next step would be in-loop simulation and timing measuremet.s 

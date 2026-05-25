@@ -1,0 +1,591 @@
+
+Magic 8.3 revision 489 - Compiled on Thu Aug 22 13:45:15 UTC 2024.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+Using NULL graphics device.
+Processing system .magicrc file
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "/nix/store/h0ldzjka94yryiq8yxbxmwargpnmwhx6-python3-3.11.9-env/lib/python3.11/site-packages/openlane/scripts/magic/wrapper.tcl" from command line.
+> lef read /home/systemuser/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+Reading LEF data from file /home/systemuser/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef.
+This action cannot be undone.
+LEF read, Line 82 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 83 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 116 (Message): Unknown keyword "MINENCLOSEDAREA" in LEF file; ignoring.
+LEF read, Line 118 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 119 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 125 (Message): Unknown keyword "MAXIMUMDENSITY" in LEF file; ignoring.
+LEF read, Line 126 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 127 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 160 (Message): Unknown keyword "MINENCLOSEDAREA" in LEF file; ignoring.
+LEF read, Line 168 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 169 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 171 (Message): Unknown keyword "MAXIMUMDENSITY" in LEF file; ignoring.
+LEF read, Line 172 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 173 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 210 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 211 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 213 (Message): Unknown keyword "MAXIMUMDENSITY" in LEF file; ignoring.
+LEF read, Line 214 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 215 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 252 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 253 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 255 (Message): Unknown keyword "MAXIMUMDENSITY" in LEF file; ignoring.
+LEF read, Line 256 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 257 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 294 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 295 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read: Processed 801 lines.
+> lef read /home/systemuser/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef
+Reading LEF data from file /home/systemuser/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef.
+This action cannot be undone.
+LEF read: Processed 278 lines.
+> lef read /home/systemuser/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef
+Reading LEF data from file /home/systemuser/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef.
+This action cannot be undone.
+LEF read: Processed 56536 lines.
+> def read /home/systemuser/Documents/ECE/510/Project/m3/synth/runs/RUN_2026-05-24_21-40-35/52-odb-cellfrequencytables/gelu_top.def -noblockage -labels
+Reading DEF data from file /home/systemuser/Documents/ECE/510/Project/m3/synth/runs/RUN_2026-05-24_21-40-35/52-odb-cellfrequencytables/gelu_top.def.
+This action cannot be undone.
+  Processed 4 vias total.
+  Processed 23819 subcell instances total.
+  Processed 222 pins total.
+  Processed 2 special nets total.
+  Processed 9706 nets total.
+DEF read: Processed 165666 lines.
+Moving label "_00003_" from metal2 to via2 in cell gelu_top.
+Moving label "_00008_" from metal1 to via1 in cell gelu_top.
+Moving label "_00014_" from metal1 to via1 in cell gelu_top.
+Moving label "_00016_" from metal1 to via1 in cell gelu_top.
+Moving label "_00017_" from metal1 to via1 in cell gelu_top.
+Moving label "_00021_" from metal1 to via1 in cell gelu_top.
+Moving label "_00028_" from metal1 to via1 in cell gelu_top.
+Moving label "_00029_" from metal1 to via1 in cell gelu_top.
+Moving label "_00040_" from metal1 to via1 in cell gelu_top.
+Moving label "_00043_" from metal1 to via1 in cell gelu_top.
+Moving label "_00050_" from metal1 to via1 in cell gelu_top.
+Moving label "_00053_" from metal1 to via1 in cell gelu_top.
+Moving label "_00059_" from metal1 to via1 in cell gelu_top.
+Moving label "_00071_" from metal1 to via1 in cell gelu_top.
+Moving label "_00075_" from metal1 to via1 in cell gelu_top.
+Moving label "_00078_" from metal1 to via1 in cell gelu_top.
+Moving label "_00100_" from metal1 to via1 in cell gelu_top.
+Moving label "_00108_" from metal1 to via1 in cell gelu_top.
+Moving label "_00116_" from metal1 to via1 in cell gelu_top.
+Moving label "_00135_" from metal1 to via1 in cell gelu_top.
+Moving label "_00171_" from metal1 to via1 in cell gelu_top.
+Moving label "_00192_" from metal1 to via1 in cell gelu_top.
+Moving label "_00193_" from metal1 to via1 in cell gelu_top.
+Moving label "_00196_" from metal1 to via1 in cell gelu_top.
+Moving label "_00197_" from metal1 to viali in cell gelu_top.
+Moving label "_00199_" from metal1 to via1 in cell gelu_top.
+Moving label "_00207_" from metal1 to via1 in cell gelu_top.
+Moving label "_00215_" from metal1 to viali in cell gelu_top.
+Moving label "_00218_" from metal1 to via1 in cell gelu_top.
+Moving label "_00226_" from metal1 to via1 in cell gelu_top.
+Moving label "_00227_" from metal1 to via1 in cell gelu_top.
+Moving label "_00230_" from metal1 to via1 in cell gelu_top.
+Moving label "_00231_" from metal1 to via1 in cell gelu_top.
+Moving label "_00269_" from metal1 to via1 in cell gelu_top.
+Moving label "_00270_" from metal1 to via1 in cell gelu_top.
+Moving label "_00278_" from metal1 to via1 in cell gelu_top.
+Moving label "_00281_" from metal1 to via1 in cell gelu_top.
+Moving label "_00299_" from metal1 to via1 in cell gelu_top.
+Moving label "_00304_" from metal1 to via1 in cell gelu_top.
+Moving label "_00307_" from metal1 to via1 in cell gelu_top.
+Moving label "_00313_" from metal1 to via1 in cell gelu_top.
+Moving label "_00315_" from metal1 to viali in cell gelu_top.
+Moving label "_00327_" from metal1 to via1 in cell gelu_top.
+Moving label "_00332_" from metal1 to via1 in cell gelu_top.
+Moving label "_00340_" from metal1 to via1 in cell gelu_top.
+Moving label "_00362_" from metal1 to via1 in cell gelu_top.
+Moving label "_00367_" from metal1 to via1 in cell gelu_top.
+Moving label "_00369_" from metal1 to via1 in cell gelu_top.
+Moving label "_00379_" from metal1 to via1 in cell gelu_top.
+Moving label "_00404_" from metal1 to via1 in cell gelu_top.
+Moving label "_00416_" from metal1 to via1 in cell gelu_top.
+Moving label "_00425_" from metal1 to via1 in cell gelu_top.
+Moving label "_00436_" from metal1 to via1 in cell gelu_top.
+Moving label "_00441_" from metal1 to via1 in cell gelu_top.
+Moving label "_00442_" from metal1 to viali in cell gelu_top.
+Moving label "_00447_" from metal1 to via1 in cell gelu_top.
+Moving label "_00451_" from metal1 to via1 in cell gelu_top.
+Moving label "_00454_" from metal1 to via1 in cell gelu_top.
+Moving label "_00458_" from metal1 to via1 in cell gelu_top.
+Moving label "_00459_" from metal1 to via1 in cell gelu_top.
+Moving label "_00465_" from metal1 to via1 in cell gelu_top.
+Moving label "_00477_" from metal1 to via1 in cell gelu_top.
+Moving label "_00480_" from metal1 to via1 in cell gelu_top.
+Moving label "_00494_" from metal1 to via1 in cell gelu_top.
+Moving label "_00499_" from metal2 to via2 in cell gelu_top.
+Moving label "_00513_" from metal1 to via1 in cell gelu_top.
+Moving label "_00523_" from metal2 to via2 in cell gelu_top.
+Moving label "_00541_" from metal1 to via1 in cell gelu_top.
+Moving label "_00553_" from metal1 to via1 in cell gelu_top.
+Moving label "_00566_" from metal1 to via1 in cell gelu_top.
+Moving label "_00580_" from metal1 to via1 in cell gelu_top.
+Moving label "_00588_" from metal1 to via1 in cell gelu_top.
+Moving label "_00589_" from metal1 to via1 in cell gelu_top.
+Moving label "_00596_" from metal1 to via1 in cell gelu_top.
+Moving label "_00622_" from metal1 to via1 in cell gelu_top.
+Moving label "_00628_" from metal1 to via1 in cell gelu_top.
+Moving label "_00631_" from metal1 to via1 in cell gelu_top.
+Moving label "_00649_" from metal1 to via1 in cell gelu_top.
+Moving label "_00650_" from metal1 to via1 in cell gelu_top.
+Moving label "_00655_" from metal1 to via1 in cell gelu_top.
+Moving label "_00659_" from metal1 to viali in cell gelu_top.
+Moving label "_00662_" from metal1 to via1 in cell gelu_top.
+Moving label "_00663_" from metal1 to via1 in cell gelu_top.
+Moving label "_00679_" from metal1 to via1 in cell gelu_top.
+Moving label "_00682_" from metal1 to via1 in cell gelu_top.
+Moving label "_00683_" from metal1 to via1 in cell gelu_top.
+Moving label "_00704_" from metal1 to via1 in cell gelu_top.
+Moving label "_00705_" from metal1 to via1 in cell gelu_top.
+Moving label "_00709_" from metal1 to via1 in cell gelu_top.
+Moving label "_00715_" from metal1 to viali in cell gelu_top.
+Moving label "_00724_" from metal1 to via1 in cell gelu_top.
+Moving label "_00725_" from metal1 to via1 in cell gelu_top.
+Moving label "_00726_" from metal1 to via1 in cell gelu_top.
+Moving label "_00728_" from metal1 to via1 in cell gelu_top.
+Moving label "_00735_" from metal1 to via1 in cell gelu_top.
+Moving label "_00739_" from metal1 to via1 in cell gelu_top.
+Moving label "_00740_" from metal1 to via1 in cell gelu_top.
+Moving label "_00742_" from metal1 to via1 in cell gelu_top.
+Moving label "_00746_" from metal1 to via1 in cell gelu_top.
+Moving label "_00747_" from metal1 to via1 in cell gelu_top.
+Moving label "_00752_" from metal1 to via1 in cell gelu_top.
+Moving label "_00754_" from metal1 to via1 in cell gelu_top.
+Moving label "_00781_" from metal1 to via1 in cell gelu_top.
+Moving label "_00782_" from metal1 to viali in cell gelu_top.
+Moving label "_00789_" from metal1 to via1 in cell gelu_top.
+Moving label "_00799_" from metal1 to via1 in cell gelu_top.
+Moving label "_00802_" from metal1 to via1 in cell gelu_top.
+Moving label "_00808_" from metal1 to via1 in cell gelu_top.
+Moving label "_00814_" from metal1 to via1 in cell gelu_top.
+Moving label "_00815_" from metal1 to via1 in cell gelu_top.
+Moving label "_00821_" from metal1 to via1 in cell gelu_top.
+Moving label "_00832_" from metal1 to via1 in cell gelu_top.
+Moving label "_00845_" from metal1 to via1 in cell gelu_top.
+Moving label "_00859_" from metal1 to via1 in cell gelu_top.
+Moving label "_00860_" from metal1 to via1 in cell gelu_top.
+Moving label "_00861_" from metal1 to via1 in cell gelu_top.
+Moving label "_00862_" from metal1 to via1 in cell gelu_top.
+Moving label "_00870_" from metal1 to via1 in cell gelu_top.
+Moving label "_00871_" from metal1 to via1 in cell gelu_top.
+Moving label "_00879_" from metal1 to via1 in cell gelu_top.
+Moving label "_00918_" from metal1 to via1 in cell gelu_top.
+Moving label "_00934_" from metal1 to via1 in cell gelu_top.
+Moving label "_00939_" from metal1 to viali in cell gelu_top.
+Moving label "_00948_" from metal1 to via1 in cell gelu_top.
+Moving label "_00952_" from metal1 to via1 in cell gelu_top.
+Moving label "_00956_" from metal2 to via2 in cell gelu_top.
+Moving label "_00958_" from metal1 to via1 in cell gelu_top.
+Moving label "_00960_" from metal1 to via1 in cell gelu_top.
+Moving label "_00966_" from metal1 to via1 in cell gelu_top.
+Moving label "_00968_" from metal1 to via1 in cell gelu_top.
+Moving label "_00978_" from metal1 to via1 in cell gelu_top.
+Moving label "_00982_" from metal1 to via1 in cell gelu_top.
+Moving label "_00983_" from metal1 to via1 in cell gelu_top.
+Moving label "_00984_" from metal1 to via1 in cell gelu_top.
+Moving label "_00989_" from metal1 to via1 in cell gelu_top.
+Moving label "_01034_" from metal1 to via1 in cell gelu_top.
+Moving label "_01036_" from metal1 to via1 in cell gelu_top.
+Moving label "_01037_" from metal1 to via1 in cell gelu_top.
+Moving label "_01039_" from metal1 to via1 in cell gelu_top.
+Moving label "_01040_" from metal1 to via1 in cell gelu_top.
+Moving label "_01045_" from metal1 to via1 in cell gelu_top.
+Moving label "_01064_" from metal1 to via1 in cell gelu_top.
+Moving label "_01069_" from metal1 to via1 in cell gelu_top.
+Moving label "_01090_" from metal1 to via1 in cell gelu_top.
+Moving label "_01094_" from metal1 to via1 in cell gelu_top.
+Moving label "_01207_" from metal1 to viali in cell gelu_top.
+Moving label "_01360_" from metal2 to via1 in cell gelu_top.
+Moving label "_01367_" from metal2 to via2 in cell gelu_top.
+Moving label "_01479_" from metal2 to via2 in cell gelu_top.
+Moving label "_01492_" from metal2 to via1 in cell gelu_top.
+Moving label "_01503_" from metal2 to via2 in cell gelu_top.
+Moving label "_01519_" from metal2 to via2 in cell gelu_top.
+Moving label "_01522_" from metal3 to via3 in cell gelu_top.
+Moving label "_01564_" from metal2 to via2 in cell gelu_top.
+Moving label "_01585_" from metal1 to viali in cell gelu_top.
+Moving label "_01661_" from metal2 to via2 in cell gelu_top.
+Moving label "_01676_" from metal2 to via2 in cell gelu_top.
+Moving label "_01680_" from metal3 to via3 in cell gelu_top.
+Moving label "_01682_" from metal1 to via1 in cell gelu_top.
+Moving label "_01692_" from metal1 to via1 in cell gelu_top.
+Moving label "_01694_" from metal1 to viali in cell gelu_top.
+Moving label "_01732_" from metal1 to via1 in cell gelu_top.
+Moving label "_01741_" from metal1 to viali in cell gelu_top.
+Moving label "_01928_" from metal2 to via2 in cell gelu_top.
+Moving label "_01936_" from metal2 to via2 in cell gelu_top.
+Moving label "_01956_" from metal1 to via1 in cell gelu_top.
+Moving label "_01986_" from metal1 to via1 in cell gelu_top.
+Moving label "_02002_" from metal1 to viali in cell gelu_top.
+Moving label "_02018_" from metal1 to viali in cell gelu_top.
+Moving label "_02034_" from metal1 to viali in cell gelu_top.
+Moving label "_02051_" from metal1 to viali in cell gelu_top.
+Moving label "_02186_" from metal1 to via1 in cell gelu_top.
+Moving label "_02199_" from metal1 to via1 in cell gelu_top.
+Moving label "_02215_" from metal1 to viali in cell gelu_top.
+Moving label "_02226_" from metal1 to via1 in cell gelu_top.
+Moving label "_02236_" from metal1 to via1 in cell gelu_top.
+Moving label "_02462_" from metal2 to via1 in cell gelu_top.
+Moving label "_02465_" from metal2 to via1 in cell gelu_top.
+Moving label "_02479_" from metal1 to viali in cell gelu_top.
+Moving label "_02482_" from metal1 to via1 in cell gelu_top.
+Moving label "_02647_" from metal1 to viali in cell gelu_top.
+Moving label "_02671_" from metal1 to via1 in cell gelu_top.
+Moving label "_02676_" from metal2 to via2 in cell gelu_top.
+Moving label "_02724_" from metal1 to via1 in cell gelu_top.
+Moving label "_02727_" from metal1 to viali in cell gelu_top.
+Moving label "_02769_" from metal2 to via2 in cell gelu_top.
+Moving label "_02787_" from metal1 to via1 in cell gelu_top.
+Moving label "_02805_" from metal1 to via1 in cell gelu_top.
+Moving label "_02848_" from metal2 to via2 in cell gelu_top.
+Moving label "_02898_" from metal1 to via1 in cell gelu_top.
+Moving label "_02939_" from metal1 to via1 in cell gelu_top.
+Moving label "_02952_" from metal1 to via1 in cell gelu_top.
+Moving label "_03040_" from metal1 to via1 in cell gelu_top.
+Moving label "_03069_" from metal1 to viali in cell gelu_top.
+Moving label "_03113_" from metal1 to viali in cell gelu_top.
+Moving label "_03133_" from metal1 to viali in cell gelu_top.
+Moving label "_03201_" from metal2 to via1 in cell gelu_top.
+Moving label "_03229_" from metal1 to via1 in cell gelu_top.
+Moving label "_03240_" from metal1 to via1 in cell gelu_top.
+Moving label "_03271_" from metal2 to via2 in cell gelu_top.
+Moving label "_03331_" from metal2 to via2 in cell gelu_top.
+Moving label "_03338_" from metal2 to via1 in cell gelu_top.
+Moving label "_03339_" from metal1 to via1 in cell gelu_top.
+Moving label "_03349_" from metal2 to via2 in cell gelu_top.
+Moving label "_03440_" from metal1 to via1 in cell gelu_top.
+Moving label "_03469_" from metal1 to viali in cell gelu_top.
+Moving label "_03471_" from metal1 to via1 in cell gelu_top.
+Moving label "_03517_" from metal1 to via1 in cell gelu_top.
+Moving label "_03537_" from metal1 to via1 in cell gelu_top.
+Moving label "_03563_" from metal1 to via1 in cell gelu_top.
+Moving label "_03583_" from metal2 to via2 in cell gelu_top.
+Moving label "_03600_" from metal1 to via1 in cell gelu_top.
+Moving label "_03657_" from metal2 to via2 in cell gelu_top.
+Moving label "_03775_" from metal2 to via2 in cell gelu_top.
+Moving label "_03777_" from metal2 to via1 in cell gelu_top.
+Moving label "_03861_" from metal1 to via1 in cell gelu_top.
+Moving label "_03872_" from metal2 to via1 in cell gelu_top.
+Moving label "_03910_" from metal2 to via2 in cell gelu_top.
+Moving label "_03941_" from metal1 to via1 in cell gelu_top.
+Moving label "_03957_" from metal1 to viali in cell gelu_top.
+Moving label "_03983_" from metal2 to via2 in cell gelu_top.
+Moving label "_03986_" from metal2 to via2 in cell gelu_top.
+Moving label "_04015_" from metal2 to via1 in cell gelu_top.
+Moving label "_04133_" from metal1 to via1 in cell gelu_top.
+Moving label "_04145_" from metal2 to via2 in cell gelu_top.
+Moving label "_04212_" from metal1 to via1 in cell gelu_top.
+Moving label "_04226_" from metal2 to via1 in cell gelu_top.
+Moving label "_04332_" from metal2 to via1 in cell gelu_top.
+Moving label "_04362_" from metal1 to via1 in cell gelu_top.
+Moving label "_04439_" from metal1 to via1 in cell gelu_top.
+Moving label "_04479_" from metal1 to via1 in cell gelu_top.
+Moving label "_04570_" from metal1 to via1 in cell gelu_top.
+Moving label "_04643_" from metal2 to via2 in cell gelu_top.
+Moving label "_04647_" from metal2 to via2 in cell gelu_top.
+Moving label "_04688_" from metal1 to via1 in cell gelu_top.
+Moving label "_04716_" from metal2 to via2 in cell gelu_top.
+Moving label "_04718_" from metal2 to via2 in cell gelu_top.
+Moving label "_04734_" from metal2 to via1 in cell gelu_top.
+Moving label "_04735_" from metal1 to via1 in cell gelu_top.
+Moving label "_04772_" from metal2 to via2 in cell gelu_top.
+Moving label "_04827_" from metal1 to via1 in cell gelu_top.
+Moving label "_04847_" from metal2 to via2 in cell gelu_top.
+Moving label "_04852_" from metal2 to via2 in cell gelu_top.
+Moving label "_04857_" from metal1 to via1 in cell gelu_top.
+Moving label "_04929_" from metal2 to via2 in cell gelu_top.
+Moving label "_05045_" from metal2 to via2 in cell gelu_top.
+Moving label "_05129_" from metal2 to via2 in cell gelu_top.
+Moving label "_05244_" from metal1 to via1 in cell gelu_top.
+Moving label "_05299_" from metal2 to via1 in cell gelu_top.
+Moving label "_05329_" from metal2 to via2 in cell gelu_top.
+Moving label "_05414_" from metal2 to via2 in cell gelu_top.
+Moving label "_05439_" from metal1 to viali in cell gelu_top.
+Moving label "_05640_" from metal1 to via1 in cell gelu_top.
+Moving label "_05664_" from metal2 to via1 in cell gelu_top.
+Moving label "_05741_" from metal2 to via2 in cell gelu_top.
+Moving label "_05906_" from metal1 to viali in cell gelu_top.
+Moving label "_05934_" from metal1 to via1 in cell gelu_top.
+Moving label "_05950_" from metal1 to via1 in cell gelu_top.
+Moving label "_06064_" from metal2 to via1 in cell gelu_top.
+Moving label "_06067_" from metal1 to via1 in cell gelu_top.
+Moving label "_06109_" from metal1 to via1 in cell gelu_top.
+Moving label "_06147_" from metal1 to via1 in cell gelu_top.
+Moving label "_06150_" from metal1 to viali in cell gelu_top.
+Moving label "_06191_" from metal1 to viali in cell gelu_top.
+Moving label "_06200_" from metal1 to via1 in cell gelu_top.
+Moving label "_06262_" from metal1 to via1 in cell gelu_top.
+Moving label "_06287_" from metal2 to via2 in cell gelu_top.
+Moving label "_06318_" from metal1 to via1 in cell gelu_top.
+Moving label "_06324_" from metal1 to viali in cell gelu_top.
+Moving label "_06341_" from metal1 to via1 in cell gelu_top.
+Moving label "_06342_" from metal2 to via1 in cell gelu_top.
+Moving label "_06343_" from metal1 to viali in cell gelu_top.
+Moving label "_06344_" from metal2 to via2 in cell gelu_top.
+Moving label "_06345_" from metal1 to via1 in cell gelu_top.
+Moving label "_06357_" from metal2 to via2 in cell gelu_top.
+Moving label "_06370_" from metal2 to via1 in cell gelu_top.
+Moving label "_06383_" from metal2 to via2 in cell gelu_top.
+Moving label "_06386_" from metal2 to via2 in cell gelu_top.
+Moving label "m_axis_tdata[17]" from metal2 to via2 in cell gelu_top.
+Moving label "m_axis_tdata[24]" from metal2 to via2 in cell gelu_top.
+Moving label "m_axis_tdata[28]" from metal2 to via2 in cell gelu_top.
+Moving label "m_axis_tdata[5]" from metal2 to via2 in cell gelu_top.
+Moving label "net117" from metal2 to via2 in cell gelu_top.
+Moving label "net1178" from metal1 to via1 in cell gelu_top.
+Moving label "net1246" from metal1 to via1 in cell gelu_top.
+Moving label "net1303" from metal1 to via1 in cell gelu_top.
+Moving label "net137" from metal2 to via2 in cell gelu_top.
+Moving label "net1379" from metal1 to via1 in cell gelu_top.
+Moving label "net1384" from metal1 to via1 in cell gelu_top.
+Moving label "net14" from metal2 to via2 in cell gelu_top.
+Moving label "net1456" from metal1 to via1 in cell gelu_top.
+Moving label "net1490" from metal1 to via1 in cell gelu_top.
+Moving label "net1551" from metal1 to via1 in cell gelu_top.
+Moving label "net1560" from metal1 to via1 in cell gelu_top.
+Moving label "net1585" from metal1 to via1 in cell gelu_top.
+Moving label "net1592" from metal1 to viali in cell gelu_top.
+Moving label "net1595" from metal1 to via1 in cell gelu_top.
+Moving label "net1605" from metal1 to viali in cell gelu_top.
+Moving label "net1702" from metal1 to via1 in cell gelu_top.
+Moving label "net1709" from metal1 to via1 in cell gelu_top.
+Moving label "net1739" from metal1 to via1 in cell gelu_top.
+Moving label "net180" from metal2 to via1 in cell gelu_top.
+Moving label "net238" from metal2 to via2 in cell gelu_top.
+Moving label "net255" from metal2 to via2 in cell gelu_top.
+Moving label "net280" from metal1 to viali in cell gelu_top.
+Moving label "net313" from metal2 to via2 in cell gelu_top.
+Moving label "net319" from metal2 to via2 in cell gelu_top.
+Moving label "net32" from metal2 to via2 in cell gelu_top.
+Moving label "net346" from metal2 to via2 in cell gelu_top.
+Moving label "net39" from metal2 to via2 in cell gelu_top.
+Moving label "net401" from metal1 to via1 in cell gelu_top.
+Moving label "net422" from metal2 to via2 in cell gelu_top.
+Moving label "net433" from metal2 to via1 in cell gelu_top.
+Moving label "net463" from metal2 to via1 in cell gelu_top.
+Moving label "net516" from metal1 to via1 in cell gelu_top.
+Moving label "net517" from metal1 to viali in cell gelu_top.
+Moving label "net538" from metal1 to via1 in cell gelu_top.
+Moving label "net54" from metal2 to via2 in cell gelu_top.
+Moving label "net548" from metal2 to via1 in cell gelu_top.
+Moving label "net6" from metal1 to viali in cell gelu_top.
+Moving label "net615" from metal2 to via1 in cell gelu_top.
+Moving label "net667" from metal2 to via2 in cell gelu_top.
+Moving label "net68" from metal1 to viali in cell gelu_top.
+Moving label "net748" from metal2 to via1 in cell gelu_top.
+Moving label "net751" from metal2 to via1 in cell gelu_top.
+Moving label "net752" from metal1 to via1 in cell gelu_top.
+Moving label "net835" from metal2 to via2 in cell gelu_top.
+Moving label "net850" from metal2 to via2 in cell gelu_top.
+Moving label "net854" from metal2 to via2 in cell gelu_top.
+Moving label "net855" from metal2 to via2 in cell gelu_top.
+Moving label "net860" from metal2 to via2 in cell gelu_top.
+Moving label "net867" from metal1 to via1 in cell gelu_top.
+Moving label "net881" from metal1 to via1 in cell gelu_top.
+Moving label "net886" from metal1 to via1 in cell gelu_top.
+Moving label "net896" from metal1 to via1 in cell gelu_top.
+Moving label "net898" from metal1 to via1 in cell gelu_top.
+Moving label "net899" from metal1 to via1 in cell gelu_top.
+Moving label "net954" from metal1 to via1 in cell gelu_top.
+Moving label "net978" from metal1 to via1 in cell gelu_top.
+Moving label "s_axis_tlast" from metal2 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[10\]\[20\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[10\]\[26\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[10\]\[9\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[11\]\[24\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.fifo_data\[11\]\[6\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[13\]\[16\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[14\]\[14\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[14\]\[17\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[14\]\[22\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[14\]\[3\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[14\]\[5\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[15\]\[27\]" from metal2 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[2\]\[1\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[2\]\[23\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[2\]\[7\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[3\]\[19\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[5\]\[27\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[0\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[13\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[16\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[18\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[29\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[4\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[6\]\[8\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[8\]\[16\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[8\]\[3\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_data\[9\]\[20\]" from metal2 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_tlast\[3\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_tuser\[14\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.fifo_tuser\[6\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.s2_data\[17\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_fp32_to_q16.s3_frac\[11\]" from metal2 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_fp32_to_q16.s3_mag\[20\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s1_mag\[28\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s1_mag\[29\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s1_mag\[4\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s1_mag\[6\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s2_mag\[21\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s2_mag\[3\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s2_mag\[5\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s2_mag\[7\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_q16_to_fp32.s3_norm_mag\[24\]" from metal1 to via1 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s2_b\[0\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s2_b\[10\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s2_b\[2\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s2_b\[5\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s2_dx\[10\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s2_m\[16\]" from metal2 to via2 in cell gelu_top.
+Moving label "u_interface.u_gelu_fp32.u_synth_top.s3_mult\[52\]" from metal1 to viali in cell gelu_top.
+Processing gelu_top
+Extracting sky130_ef_sc_hd__decap_12 into sky130_ef_sc_hd__decap_12.ext:
+Extracting sky130_fd_sc_hd__decap_3 into sky130_fd_sc_hd__decap_3.ext:
+Extracting sky130_fd_sc_hd__fill_1 into sky130_fd_sc_hd__fill_1.ext:
+Extracting sky130_fd_sc_hd__tapvpwrvgnd_1 into sky130_fd_sc_hd__tapvpwrvgnd_1.ext:
+Extracting sky130_fd_sc_hd__decap_4 into sky130_fd_sc_hd__decap_4.ext:
+Extracting sky130_fd_sc_hd__fill_2 into sky130_fd_sc_hd__fill_2.ext:
+Extracting sky130_fd_sc_hd__decap_6 into sky130_fd_sc_hd__decap_6.ext:
+Extracting sky130_fd_sc_hd__conb_1 into sky130_fd_sc_hd__conb_1.ext:
+Extracting sky130_fd_sc_hd__decap_8 into sky130_fd_sc_hd__decap_8.ext:
+Extracting sky130_fd_sc_hd__inv_2 into sky130_fd_sc_hd__inv_2.ext:
+Extracting sky130_fd_sc_hd__xnor2_1 into sky130_fd_sc_hd__xnor2_1.ext:
+Extracting sky130_fd_sc_hd__xor2_1 into sky130_fd_sc_hd__xor2_1.ext:
+Extracting sky130_fd_sc_hd__a21o_1 into sky130_fd_sc_hd__a21o_1.ext:
+Extracting sky130_fd_sc_hd__and2b_1 into sky130_fd_sc_hd__and2b_1.ext:
+Extracting sky130_fd_sc_hd__nor2_1 into sky130_fd_sc_hd__nor2_1.ext:
+Extracting sky130_fd_sc_hd__or2_1 into sky130_fd_sc_hd__or2_1.ext:
+Extracting sky130_fd_sc_hd__nor3_1 into sky130_fd_sc_hd__nor3_1.ext:
+Extracting sky130_fd_sc_hd__nand2_1 into sky130_fd_sc_hd__nand2_1.ext:
+Extracting sky130_fd_sc_hd__and3_1 into sky130_fd_sc_hd__and3_1.ext:
+Extracting sky130_fd_sc_hd__diode_2 into sky130_fd_sc_hd__diode_2.ext:
+Extracting sky130_fd_sc_hd__o32a_1 into sky130_fd_sc_hd__o32a_1.ext:
+Extracting sky130_fd_sc_hd__o211a_1 into sky130_fd_sc_hd__o211a_1.ext:
+Extracting sky130_fd_sc_hd__nand3_1 into sky130_fd_sc_hd__nand3_1.ext:
+Extracting sky130_fd_sc_hd__nand2b_1 into sky130_fd_sc_hd__nand2b_1.ext:
+Extracting sky130_fd_sc_hd__o21a_1 into sky130_fd_sc_hd__o21a_1.ext:
+Extracting sky130_fd_sc_hd__and2_1 into sky130_fd_sc_hd__and2_1.ext:
+Extracting sky130_fd_sc_hd__a31o_1 into sky130_fd_sc_hd__a31o_1.ext:
+Extracting sky130_fd_sc_hd__xnor2_4 into sky130_fd_sc_hd__xnor2_4.ext:
+Extracting sky130_fd_sc_hd__a21oi_1 into sky130_fd_sc_hd__a21oi_1.ext:
+Extracting sky130_fd_sc_hd__a21bo_1 into sky130_fd_sc_hd__a21bo_1.ext:
+Extracting sky130_fd_sc_hd__and3b_1 into sky130_fd_sc_hd__and3b_1.ext:
+Extracting sky130_fd_sc_hd__buf_1 into sky130_fd_sc_hd__buf_1.ext:
+Extracting sky130_fd_sc_hd__a22oi_1 into sky130_fd_sc_hd__a22oi_1.ext:
+Extracting sky130_fd_sc_hd__nand2_4 into sky130_fd_sc_hd__nand2_4.ext:
+Extracting sky130_fd_sc_hd__a22o_1 into sky130_fd_sc_hd__a22o_1.ext:
+Extracting sky130_fd_sc_hd__o2bb2ai_1 into sky130_fd_sc_hd__o2bb2ai_1.ext:
+Extracting sky130_fd_sc_hd__and4_1 into sky130_fd_sc_hd__and4_1.ext:
+Extracting sky130_fd_sc_hd__nor2_2 into sky130_fd_sc_hd__nor2_2.ext:
+Extracting sky130_fd_sc_hd__o21ba_1 into sky130_fd_sc_hd__o21ba_1.ext:
+Extracting sky130_fd_sc_hd__buf_2 into sky130_fd_sc_hd__buf_2.ext:
+Extracting sky130_fd_sc_hd__a32o_1 into sky130_fd_sc_hd__a32o_1.ext:
+Extracting sky130_fd_sc_hd__a21oi_2 into sky130_fd_sc_hd__a21oi_2.ext:
+Extracting sky130_fd_sc_hd__xnor2_2 into sky130_fd_sc_hd__xnor2_2.ext:
+Extracting sky130_fd_sc_hd__o21bai_1 into sky130_fd_sc_hd__o21bai_1.ext:
+Extracting sky130_fd_sc_hd__and2_2 into sky130_fd_sc_hd__and2_2.ext:
+Extracting sky130_fd_sc_hd__a21boi_1 into sky130_fd_sc_hd__a21boi_1.ext:
+Extracting sky130_fd_sc_hd__o2111a_1 into sky130_fd_sc_hd__o2111a_1.ext:
+Extracting sky130_fd_sc_hd__nand4_4 into sky130_fd_sc_hd__nand4_4.ext:
+Extracting sky130_fd_sc_hd__o2bb2a_1 into sky130_fd_sc_hd__o2bb2a_1.ext:
+Extracting sky130_fd_sc_hd__nand3_2 into sky130_fd_sc_hd__nand3_2.ext:
+Extracting sky130_fd_sc_hd__dfxtp_1 into sky130_fd_sc_hd__dfxtp_1.ext:
+Extracting sky130_fd_sc_hd__clkbuf_4 into sky130_fd_sc_hd__clkbuf_4.ext:
+Extracting sky130_fd_sc_hd__nand4_1 into sky130_fd_sc_hd__nand4_1.ext:
+Extracting sky130_fd_sc_hd__clkbuf_8 into sky130_fd_sc_hd__clkbuf_8.ext:
+Extracting sky130_fd_sc_hd__inv_6 into sky130_fd_sc_hd__inv_6.ext:
+Extracting sky130_fd_sc_hd__o21ai_1 into sky130_fd_sc_hd__o21ai_1.ext:
+Extracting sky130_fd_sc_hd__clkbuf_2 into sky130_fd_sc_hd__clkbuf_2.ext:
+Extracting sky130_fd_sc_hd__or4_1 into sky130_fd_sc_hd__or4_1.ext:
+Extracting sky130_fd_sc_hd__xor2_2 into sky130_fd_sc_hd__xor2_2.ext:
+Extracting sky130_fd_sc_hd__o21ai_4 into sky130_fd_sc_hd__o21ai_4.ext:
+Extracting sky130_fd_sc_hd__a221oi_4 into sky130_fd_sc_hd__a221oi_4.ext:
+Extracting sky130_fd_sc_hd__nand3b_1 into sky130_fd_sc_hd__nand3b_1.ext:
+Extracting sky130_fd_sc_hd__buf_4 into sky130_fd_sc_hd__buf_4.ext:
+Extracting sky130_fd_sc_hd__o41ai_2 into sky130_fd_sc_hd__o41ai_2.ext:
+Extracting sky130_fd_sc_hd__dlymetal6s2s_1 into sky130_fd_sc_hd__dlymetal6s2s_1.ext:
+Extracting sky130_fd_sc_hd__or3_1 into sky130_fd_sc_hd__or3_1.ext:
+Extracting sky130_fd_sc_hd__a211o_1 into sky130_fd_sc_hd__a211o_1.ext:
+Extracting sky130_fd_sc_hd__clkinv_8 into sky130_fd_sc_hd__clkinv_8.ext:
+Extracting sky130_fd_sc_hd__o31a_1 into sky130_fd_sc_hd__o31a_1.ext:
+Extracting sky130_fd_sc_hd__or3b_1 into sky130_fd_sc_hd__or3b_1.ext:
+Extracting sky130_fd_sc_hd__o31ai_1 into sky130_fd_sc_hd__o31ai_1.ext:
+Extracting sky130_fd_sc_hd__nand4b_2 into sky130_fd_sc_hd__nand4b_2.ext:
+Extracting sky130_fd_sc_hd__a22oi_2 into sky130_fd_sc_hd__a22oi_2.ext:
+Extracting sky130_fd_sc_hd__o221a_1 into sky130_fd_sc_hd__o221a_1.ext:
+Extracting sky130_fd_sc_hd__o41a_1 into sky130_fd_sc_hd__o41a_1.ext:
+Extracting sky130_fd_sc_hd__dlygate4sd3_1 into sky130_fd_sc_hd__dlygate4sd3_1.ext:
+Extracting sky130_fd_sc_hd__o21bai_2 into sky130_fd_sc_hd__o21bai_2.ext:
+Extracting sky130_fd_sc_hd__mux2_1 into sky130_fd_sc_hd__mux2_1.ext:
+Extracting sky130_fd_sc_hd__a21boi_2 into sky130_fd_sc_hd__a21boi_2.ext:
+Extracting sky130_fd_sc_hd__nand4_2 into sky130_fd_sc_hd__nand4_2.ext:
+Extracting sky130_fd_sc_hd__o22a_1 into sky130_fd_sc_hd__o22a_1.ext:
+Extracting sky130_fd_sc_hd__inv_8 into sky130_fd_sc_hd__inv_8.ext:
+Extracting sky130_fd_sc_hd__or4b_1 into sky130_fd_sc_hd__or4b_1.ext:
+Extracting sky130_fd_sc_hd__mux4_1 into sky130_fd_sc_hd__mux4_1.ext:
+Extracting sky130_fd_sc_hd__inv_12 into sky130_fd_sc_hd__inv_12.ext:
+Extracting sky130_fd_sc_hd__clkinv_4 into sky130_fd_sc_hd__clkinv_4.ext:
+Extracting sky130_fd_sc_hd__o21ai_2 into sky130_fd_sc_hd__o21ai_2.ext:
+Extracting sky130_fd_sc_hd__o211ai_1 into sky130_fd_sc_hd__o211ai_1.ext:
+Extracting sky130_fd_sc_hd__nor4_1 into sky130_fd_sc_hd__nor4_1.ext:
+Extracting sky130_fd_sc_hd__clkinvlp_4 into sky130_fd_sc_hd__clkinvlp_4.ext:
+Extracting sky130_fd_sc_hd__bufinv_16 into sky130_fd_sc_hd__bufinv_16.ext:
+Extracting sky130_fd_sc_hd__clkbuf_1 into sky130_fd_sc_hd__clkbuf_1.ext:
+Extracting sky130_fd_sc_hd__or2_2 into sky130_fd_sc_hd__or2_2.ext:
+Extracting sky130_fd_sc_hd__or4bb_1 into sky130_fd_sc_hd__or4bb_1.ext:
+Extracting sky130_fd_sc_hd__a31oi_2 into sky130_fd_sc_hd__a31oi_2.ext:
+Extracting sky130_fd_sc_hd__nand2_2 into sky130_fd_sc_hd__nand2_2.ext:
+Extracting sky130_fd_sc_hd__o311a_1 into sky130_fd_sc_hd__o311a_1.ext:
+Extracting sky130_fd_sc_hd__and4bb_1 into sky130_fd_sc_hd__and4bb_1.ext:
+Extracting sky130_fd_sc_hd__and4b_1 into sky130_fd_sc_hd__and4b_1.ext:
+Extracting sky130_fd_sc_hd__a211oi_1 into sky130_fd_sc_hd__a211oi_1.ext:
+Extracting sky130_fd_sc_hd__clkbuf_16 into sky130_fd_sc_hd__clkbuf_16.ext:
+Extracting sky130_fd_sc_hd__inv_16 into sky130_fd_sc_hd__inv_16.ext:
+Extracting sky130_fd_sc_hd__a2111o_1 into sky130_fd_sc_hd__a2111o_1.ext:
+Extracting sky130_fd_sc_hd__a2bb2o_1 into sky130_fd_sc_hd__a2bb2o_1.ext:
+Extracting sky130_fd_sc_hd__clkinv_2 into sky130_fd_sc_hd__clkinv_2.ext:
+Extracting sky130_fd_sc_hd__nand3_4 into sky130_fd_sc_hd__nand3_4.ext:
+Extracting sky130_fd_sc_hd__o211ai_2 into sky130_fd_sc_hd__o211ai_2.ext:
+Extracting sky130_fd_sc_hd__a211oi_4 into sky130_fd_sc_hd__a211oi_4.ext:
+Extracting sky130_fd_sc_hd__a211oi_2 into sky130_fd_sc_hd__a211oi_2.ext:
+Extracting sky130_fd_sc_hd__a2bb2oi_1 into sky130_fd_sc_hd__a2bb2oi_1.ext:
+Extracting sky130_fd_sc_hd__a21o_2 into sky130_fd_sc_hd__a21o_2.ext:
+Extracting sky130_fd_sc_hd__a221o_1 into sky130_fd_sc_hd__a221o_1.ext:
+Extracting sky130_fd_sc_hd__or3b_2 into sky130_fd_sc_hd__or3b_2.ext:
+Extracting sky130_fd_sc_hd__dfxtp_2 into sky130_fd_sc_hd__dfxtp_2.ext:
+Extracting sky130_fd_sc_hd__or4bb_4 into sky130_fd_sc_hd__or4bb_4.ext:
+Extracting sky130_fd_sc_hd__o211ai_4 into sky130_fd_sc_hd__o211ai_4.ext:
+Extracting sky130_fd_sc_hd__a32oi_4 into sky130_fd_sc_hd__a32oi_4.ext:
+Extracting sky130_fd_sc_hd__and4_2 into sky130_fd_sc_hd__and4_2.ext:
+Extracting sky130_fd_sc_hd__or3_2 into sky130_fd_sc_hd__or3_2.ext:
+Extracting sky130_fd_sc_hd__nand2b_2 into sky130_fd_sc_hd__nand2b_2.ext:
+Extracting sky130_fd_sc_hd__and3_2 into sky130_fd_sc_hd__and3_2.ext:
+Extracting sky130_fd_sc_hd__nand3b_2 into sky130_fd_sc_hd__nand3b_2.ext:
+Extracting sky130_fd_sc_hd__a31oi_1 into sky130_fd_sc_hd__a31oi_1.ext:
+Extracting sky130_fd_sc_hd__a31o_2 into sky130_fd_sc_hd__a31o_2.ext:
+Extracting sky130_fd_sc_hd__a31oi_4 into sky130_fd_sc_hd__a31oi_4.ext:
+Extracting sky130_fd_sc_hd__or4bb_2 into sky130_fd_sc_hd__or4bb_2.ext:
+Extracting sky130_fd_sc_hd__o2111ai_1 into sky130_fd_sc_hd__o2111ai_1.ext:
+Extracting sky130_fd_sc_hd__or4_2 into sky130_fd_sc_hd__or4_2.ext:
+Extracting sky130_fd_sc_hd__nor3_2 into sky130_fd_sc_hd__nor3_2.ext:
+Extracting sky130_fd_sc_hd__nor3b_1 into sky130_fd_sc_hd__nor3b_1.ext:
+Extracting sky130_fd_sc_hd__o31ai_2 into sky130_fd_sc_hd__o31ai_2.ext:
+Extracting sky130_fd_sc_hd__nand4b_1 into sky130_fd_sc_hd__nand4b_1.ext:
+Extracting sky130_fd_sc_hd__and3_4 into sky130_fd_sc_hd__and3_4.ext:
+Extracting sky130_fd_sc_hd__a41o_1 into sky130_fd_sc_hd__a41o_1.ext:
+Extracting sky130_fd_sc_hd__or4b_4 into sky130_fd_sc_hd__or4b_4.ext:
+Extracting sky130_fd_sc_hd__or4_4 into sky130_fd_sc_hd__or4_4.ext:
+Extracting sky130_fd_sc_hd__or4b_2 into sky130_fd_sc_hd__or4b_2.ext:
+Extracting gelu_top into gelu_top.ext:
+exttospice finished.
+Using technology "sky130A", version 1.0.493-0-g0fe599b

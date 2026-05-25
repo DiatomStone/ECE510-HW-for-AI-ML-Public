@@ -1,0 +1,5 @@
+
+20. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$f24af84939c09afd46b8f862bcb8298dce9e3aca\compute_core.\comb_m' from process `$paramod$f24af84939c09afd46b8f862bcb8298dce9e3aca\compute_core.$proc$/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:0$206'.
+No latch inferred for signal `$paramod$f24af84939c09afd46b8f862bcb8298dce9e3aca\compute_core.\comb_b' from process `$paramod$f24af84939c09afd46b8f862bcb8298dce9e3aca\compute_core.$proc$/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:0$206'.
+No latch inferred for signal `$paramod$f24af84939c09afd46b8f862bcb8298dce9e3aca\compute_core.\comb_t' from process `$paramod$f24af84939c09afd46b8f862bcb8298dce9e3aca\compute_core.$proc$/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:0$206'.
