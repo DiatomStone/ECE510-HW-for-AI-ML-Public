@@ -18,3 +18,5 @@ This is an atempt of understanding SW/HW pipeline. AXIS file was successfuly pip
 ### Local LLM survey: 
 The point of the Local LLM survey is to better understand the
 landscape and use of AI, and become embeded in AI terminology.
+
+### current progress co09
