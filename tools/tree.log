@@ -101,6 +101,9 @@
 │   ├── cf08
 │   │   └── cman_aer_analysis.md
 │   ├── cf09
+│   │   ├── benchmarks
+│   │   │   ├── benchmark_results.md
+│   │   │   └── roofline_analysis.md
 │   │   ├── cman_ai_analysis.md
 │   │   ├── cman_roofline_sketch.png
 │   │   └── cman_roofline_theoretical.png
@@ -331,6 +334,7 @@
 │   │       ├── tb_gelu_fp32.py
 │   │       ├── tb_q16_to_fp32.py
 │   │       └── tb_top.py
+│   ├── remaining_tasks.md
 │   ├── scope_assessment.md
 │   └── transformer_lm
 │       ├── checkpoint.pkl
@@ -364,4 +368,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-76 directories, 289 files
+77 directories, 292 files
