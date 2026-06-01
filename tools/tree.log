@@ -101,7 +101,9 @@
 │   ├── cf08
 │   │   └── cman_aer_analysis.md
 │   ├── cf09
-│   │   └── cman_roofline_sketch.md
+│   │   ├── cman_roofline_sketch.md
+│   │   ├── cman_roofline_sketch.png
+│   │   └── cman_roofline_theoretical.png
 │   └── presentation
 │       ├── Aproximation vs true tanh.png
 │       └── Pipeline.png
@@ -167,9 +169,12 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
+│           ├── input
+│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           └── piper.txt
+│           ├── piper.txt
+│           └── voices
 ├── project
 │   ├── algorithm_diagram.png
 │   ├── cocotb_toolchain
@@ -359,4 +364,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-73 directories, 287 files
+76 directories, 289 files
