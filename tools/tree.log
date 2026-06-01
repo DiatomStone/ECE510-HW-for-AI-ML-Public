@@ -103,8 +103,11 @@
 │   ├── cf09
 │   │   ├── benchmarks
 │   │   │   ├── benchmark_results.md
-│   │   │   └── roofline_analysis.md
+│   │   │   ├── roofline_analysis.md
+│   │   │   ├── roofline_plot_ops.png
+│   │   │   └── roofline_plot.png
 │   │   ├── cman_ai_analysis.md
+│   │   ├── cman_roofline_sketch.pdf
 │   │   ├── cman_roofline_sketch.png
 │   │   └── cman_roofline_theoretical.png
 │   └── presentation
@@ -368,4 +371,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-77 directories, 292 files
+77 directories, 295 files

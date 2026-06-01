@@ -7,6 +7,7 @@ parameters train.py --config small --steps 500
 |Throughput| 13.647 K elem/s| 
 |Throughput| 122.8 K flops/s| 
 |Memory-profiler result gelu |294.477 Mib *| 
+|Theoretical Input memory | 2^17 * 
 
 - memory profile -1713.062 Mib - 2000.539 Mib = 294.477 MiB (1000 calls) 0.294477 Mib per call 
 - total floating operation 9 per gelu
@@ -14,12 +15,13 @@ parameters train.py --config small --steps 500
 - throughput = 2^17 / 9.604 s = 13647.65 elements/s
 - throughput = 13647.65 elements/s * 9 = 122.8 Kflops/s
 - note software does math in FLOPS but our accelerator uses int operations, so this is simplified to OPS
-# Acceleratied kernel
+- Bytes = 2^17 * 2^3 (fp64) = 1 MB
+# Accelerated kernel
 |Accelerated kernel |Metric|
 |--|--|
 |Gelu execution time| 6.062 ms|
 |Measured Throughput| 45.45 M elem/s| 
-|Throughput| 2.8179 B Ops/s|          
+|Throughput| 2.8179 G Ops/s|          
 |Memory | streaming*| 
 |Measured AXI bandwidth | 363.3 MB/s|
 |Total power | 30.22 mW |
@@ -32,6 +34,9 @@ parameters train.py --config small --steps 500
 ## Throughput calculation
 62 per gelu pass in hardware (cf09 cman)
 throughput = 45.45 M elem/s * 62 = 2.8179 B Ops/s
+
+
+
 # simulation result (tb_top_inloop.py)
 ```
                                                          === Full-Model In-Loop GELU Co-Sim — Timing & Metrics ===
