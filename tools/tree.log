@@ -101,7 +101,7 @@
 │   ├── cf08
 │   │   └── cman_aer_analysis.md
 │   ├── cf09
-│   │   ├── cman_roofline_sketch.md
+│   │   ├── cman_ai_analysis.md
 │   │   ├── cman_roofline_sketch.png
 │   │   └── cman_roofline_theoretical.png
 │   └── presentation
