@@ -14,7 +14,7 @@ source pytorch.sh
 mkdir -p "$(dirname "$output")"
 cd ../project/transformer_lm
 echo "------------[ 2x config=medium ]--------------" >> $output
-cli_loop "2" "medium"
+cli_loop "2" "small"
 
 read -p "[Enter] to close"
 

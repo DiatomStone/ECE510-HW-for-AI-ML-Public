@@ -13,6 +13,7 @@
 │   │   ├── cman_desmos.png
 │   │   ├── cman_roofline.md
 │   │   └── profiling
+│   │       ├── project_profile_staging.txt
 │   │       ├── project_profile.txt
 │   │       └── roofline_project.png
 │   ├── cf03
@@ -175,12 +176,9 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
-│           ├── input
-│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           ├── piper.txt
-│           └── voices
+│           └── piper.txt
 ├── project
 │   ├── algorithm_diagram.png
 │   ├── cocotb_toolchain
@@ -458,7 +456,6 @@
 │   │       ├── tb_top_inloop_x32.py
 │   │       └── tb_top.py
 │   ├── m5
-│   │   ├── documents
 │   │   ├── helper_script
 │   │   │   ├── run_openlane2.sh
 │   │   │   └── sim_master.sh
@@ -553,10 +550,11 @@
 └── tools
     ├── deliverable_check.sh
     ├── info.txt
+    ├── output
     ├── profile.sh
     ├── pushscript.sh
     ├── pytorch.sh
     ├── tree.log
     └── verilator_eg.sh
 
-105 directories, 455 files
+102 directories, 456 files
