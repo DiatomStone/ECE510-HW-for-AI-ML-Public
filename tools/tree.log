@@ -346,7 +346,13 @@
 │   │   │   └── sim_master.sh
 │   │   ├── Makefile
 │   │   ├── orginal_software
+│   │   │   ├── checkpoint.pkl
+│   │   │   ├── data
+│   │   │   │   └── sample.txt
+│   │   │   ├── loss_curve.png
+│   │   │   ├── project_profile.txt
 │   │   │   ├── __pycache__
+│   │   │   │   ├── transformer.cpython-312.pyc
 │   │   │   │   ├── transformer.cpython-313.pyc
 │   │   │   │   └── transformer.cpython-314.pyc
 │   │   │   ├── train.py
@@ -557,4 +563,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-102 directories, 456 files
+103 directories, 461 files
