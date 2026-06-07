@@ -1,0 +1,80 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s mm2s_buffer -g2012 -g2012 -f sim_build/cmds.f -s cocotb_iverilog_dump  /home/systemuser/Documents/ECE/510/Project/m3/rtl/mm2s_buffer.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/openram_1k_wrap.sv sim_build/cocotb_iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_mm2s_buffer COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=mm2s_buffer TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -fst 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779958992
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_mm2s_buffer.test_single_beat (1/5)
+                                                            Write one word via AXI-MM, stream it out, verify value and tlast.
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          AXI stream sink
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          cocotbext-axi version 0.1.28
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          Copyright (c) 2020-2025 Alex Forencich
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          https://github.com/alexforencich/cocotbext-axi
+    70.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axis.py:304: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.bus.tready.setimmediatevalue(self._ready_init)
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          AXI stream sink configuration:
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            Byte size: 8 bits
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            Data width: 32 bits (4 bytes)
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          AXI stream sink signals:
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tdata width: 32 bits
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tdest: not present
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tid: not present
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tkeep: not present
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tlast width: 1 bits
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tready width: 1 bits
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tuser: not present
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis            tvalid width: 1 bits
+    70.00ns INFO     cocotb.mm2s_buffer.m_axis          Reset de-asserted
+    70.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/reset.py:59: DeprecationWarning: Use `signal.value_change` instead.
+                                                          await Edge(reset_signal)
+   130.00ns INFO     cocotb.mm2s_buffer.m_axis          RX frame: AxiStreamFrame(tdata=bytearray(b'\xef\xbe\xad\xde'), tkeep=[], tid=[], tdest=[], tuser=[], sim_time_start=130000, sim_time_end=130000)
+   130.00ns INFO     cocotb.mm2s_buffer                 single beat: 0xDEADBEEF OK
+   130.00ns INFO     cocotb.mm2s_buffer                 PASS: test_single_beat
+   130.00ns INFO     cocotb.regression                  tb_mm2s_buffer.test_single_beat passed
+   130.00ns INFO     cocotb.regression                  running tb_mm2s_buffer.test_burst_write_drain (2/5)
+                                                            Write an 8-beat burst via AXI-MM, drain all 8 beats via AXI-Stream.
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 0: 0xA0000000 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 1: 0xA0000001 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 2: 0xA0000002 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 3: 0xA0000003 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 4: 0xA0000004 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 5: 0xA0000005 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 6: 0xA0000006 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 beat 7: 0xA0000007 OK
+   400.00ns INFO     cocotb.mm2s_buffer                 PASS: test_burst_write_drain
+   400.00ns INFO     cocotb.regression                  tb_mm2s_buffer.test_burst_write_drain passed
+   400.00ns INFO     cocotb.regression                  running tb_mm2s_buffer.test_stream_enable_gate (3/5)
+                                                            Verify no output beats are issued while stream_enable=0.
+   710.00ns INFO     cocotb.mm2s_buffer                 PASS: test_stream_enable_gate
+   710.00ns INFO     cocotb.regression                  tb_mm2s_buffer.test_stream_enable_gate passed
+   710.00ns INFO     cocotb.regression                  running tb_mm2s_buffer.test_backpressure_wready (4/5)
+                                                            Fill the FIFO to the backpressure limit; verify wready deasserts.
+  5940.00ns INFO     cocotb.mm2s_buffer                 512 beats written without stall — wready held correctly
+ 11080.00ns INFO     cocotb.mm2s_buffer                 PASS: test_backpressure_wready
+ 11080.00ns INFO     cocotb.regression                  tb_mm2s_buffer.test_backpressure_wready passed
+ 11080.00ns INFO     cocotb.regression                  running tb_mm2s_buffer.test_simultaneous_write_drain (5/5)
+                                                            DMA writes and kernel drains run concurrently (pipelined).
+ 11590.00ns INFO     cocotb.mm2s_buffer                 PASS: test_simultaneous_write_drain
+ 11590.00ns INFO     cocotb.regression                  tb_mm2s_buffer.test_simultaneous_write_drain passed
+ 11590.00ns INFO     cocotb.regression                  ******************************************************************************************************
+                                                        ** TEST                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ******************************************************************************************************
+                                                        ** tb_mm2s_buffer.test_single_beat                PASS         130.00           0.00      33674.62  **
+                                                        ** tb_mm2s_buffer.test_burst_write_drain          PASS         270.00           0.00     111561.63  **
+                                                        ** tb_mm2s_buffer.test_stream_enable_gate         PASS         310.00           0.00     155511.81  **
+                                                        ** tb_mm2s_buffer.test_backpressure_wready        PASS       10370.00           0.08     125902.57  **
+                                                        ** tb_mm2s_buffer.test_simultaneous_write_drain   PASS         510.00           0.01      85639.16  **
+                                                        ******************************************************************************************************
+                                                        ** TESTS=5 PASS=5 FAIL=0 SKIP=0                              11590.00           0.10     117350.84  **
+                                                        ******************************************************************************************************
+FST info: dumpfile sim_build/mm2s_buffer.fst opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

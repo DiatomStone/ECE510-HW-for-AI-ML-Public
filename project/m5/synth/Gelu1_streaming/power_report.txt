@@ -1,0 +1,46 @@
+OpenLane 2 Power Estimation Report
+Design  : gelu_top
+PDK     : sky130A  /  sky130_fd_sc_hd
+Run     : RUN_2026-05-24_21-40-35
+Tool    : OpenROAD (report_power, post-route with extracted parasitics)
+Corner  : nom_tt_025C_1v80  (nominal process, 25°C, 1.8 V)
+
+============================================================
+POWER SUMMARY
+============================================================
+
+Group            Internal (W)   Switching (W)   Leakage (W)     Total (W)    %
+─────────────────────────────────────────────────────────────────────────────────
+Sequential      2.484576e-03   2.410085e-04    9.320504e-09   2.725594e-03   9.0%
+Combinational   1.192750e-02   1.407319e-02    3.511983e-08   2.600073e-02  86.0%
+Clock           6.308313e-04   8.615513e-04    1.560690e-08   1.492398e-03   4.9%
+Macro           0.000000e+00   0.000000e+00    0.000000e+00   0.000000e+00   0.0%
+Pad             0.000000e+00   0.000000e+00    0.000000e+00   0.000000e+00   0.0%
+─────────────────────────────────────────────────────────────────────────────────
+Total           1.504286e-02   1.517576e-02    6.004764e-08   3.021868e-02 100.0%
+                     49.8%          50.2%           ~0.0%
+
+  Total power :  30.22 mW
+  Internal    :  15.04 mW  (49.8%)
+  Switching   :  15.18 mW  (50.2%)
+  Leakage     :  60.05 nW  (~0%)
+
+============================================================
+NOTES
+============================================================
+
+- Power estimation used OpenROAD report_power with post-route
+  extracted parasitics (SPEF). Activity factors are the OpenROAD
+  defaults (toggle rate = 0.1, static probability = 0.5).
+- Combinational logic dominates at 87.3% of total power, consistent
+  with the large 32x32-bit multiply in compute_core stage 3.
+- Switching power (53.6%) exceeds internal power (46.4%), indicating
+  the design is net-switching dominated — typical for datapath-heavy
+  arithmetic pipelines.
+- For M4: a more accurate power estimate should use a VCD toggle-rate
+  file derived from the cocotb co-simulation to replace the default
+  activity factors. The current estimate is a valid baseline but will
+  overstate power for inputs near zero (where the PWL clamps early and
+  switching activity is low).
+
+Source: 54-openroad-stapostpnr/nom_tt_025C_1v80/power.rpt

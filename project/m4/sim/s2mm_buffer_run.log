@@ -1,0 +1,59 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s s2mm_buffer -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/Project/m3/rtl/s2mm_buffer.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/openram_1k_wrap.sv
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_s2mm_buffer COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=s2mm_buffer TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779944642
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_s2mm_buffer.test_single_beat_then_read (1/5)
+                                                            Stream one word in, read it back via AXI-MM.
+   110.00ns INFO     cocotb.s2mm_buffer                 single beat: 0xDEADBEEF OK
+   110.00ns INFO     cocotb.s2mm_buffer                 PASS: test_single_beat_then_read
+   110.00ns INFO     cocotb.regression                  tb_s2mm_buffer.test_single_beat_then_read passed
+   110.00ns INFO     cocotb.regression                  running tb_s2mm_buffer.test_burst_stream_then_burst_read (2/5)
+                                                            Stream 8 words in, read all 8 back as a burst.
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 0: 0xB0000000 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 1: 0xB0000001 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 2: 0xB0000002 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 3: 0xB0000003 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 4: 0xB0000004 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 5: 0xB0000005 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 6: 0xB0000006 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 beat 7: 0xB0000007 OK
+   430.00ns INFO     cocotb.s2mm_buffer                 PASS: test_burst_stream_then_burst_read
+   430.00ns INFO     cocotb.regression                  tb_s2mm_buffer.test_burst_stream_then_burst_read passed
+   430.00ns INFO     cocotb.regression                  running tb_s2mm_buffer.test_backpressure_to_kernel (3/5)
+                                                            Fill the FIFO; verify s_axis_tready deasserts when full.
+ 10750.00ns INFO     cocotb.s2mm_buffer                 tready correctly deasserted on full FIFO
+ 15880.00ns INFO     cocotb.s2mm_buffer                 PASS: test_backpressure_to_kernel
+ 15880.00ns INFO     cocotb.regression                  tb_s2mm_buffer.test_backpressure_to_kernel passed
+ 15880.00ns INFO     cocotb.regression                  running tb_s2mm_buffer.test_simultaneous_fill_drain (4/5)
+                                                            Kernel streams in while DMA reads out concurrently.
+ 16680.00ns INFO     cocotb.s2mm_buffer                 PASS: test_simultaneous_fill_drain
+ 16680.00ns INFO     cocotb.regression                  tb_s2mm_buffer.test_simultaneous_fill_drain passed
+ 16680.00ns INFO     cocotb.regression                  running tb_s2mm_buffer.test_rlast (5/5)
+                                                            Verify rlast is asserted on the final beat of each read burst.
+ 17080.00ns INFO     cocotb.s2mm_buffer                 burst 0: rlast correctly on beat 7
+ 17250.00ns INFO     cocotb.s2mm_buffer                 burst 1: rlast correctly on beat 7
+ 17250.00ns INFO     cocotb.s2mm_buffer                 PASS: test_rlast
+ 17250.00ns INFO     cocotb.regression                  tb_s2mm_buffer.test_rlast passed
+ 17250.00ns INFO     cocotb.regression                  **********************************************************************************************************
+                                                        ** TEST                                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************
+                                                        ** tb_s2mm_buffer.test_single_beat_then_read          PASS         110.00           0.00      90821.54  **
+                                                        ** tb_s2mm_buffer.test_burst_stream_then_burst_read   PASS         320.00           0.00     154789.21  **
+                                                        ** tb_s2mm_buffer.test_backpressure_to_kernel         PASS       15450.00           0.10     155735.10  **
+                                                        ** tb_s2mm_buffer.test_simultaneous_fill_drain        PASS         800.00           0.01     145566.06  **
+                                                        ** tb_s2mm_buffer.test_rlast                          PASS         570.00           0.00     149909.29  **
+                                                        **********************************************************************************************************
+                                                        ** TESTS=5 PASS=5 FAIL=0 SKIP=0                                  17250.00           0.11     151552.80  **
+                                                        **********************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

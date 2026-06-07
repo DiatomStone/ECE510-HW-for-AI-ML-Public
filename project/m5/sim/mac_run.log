@@ -1,0 +1,41 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s mac -g2012 -g2012 -f sim_build/cmds.f -s cocotb_iverilog_dump  /home/systemuser/Documents/ECE/510/Project/m3/rtl/sarray/mac.sv sim_build/cocotb_iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_mac COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=mac TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -fst 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1780787531
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_mac.test_mac_random (1/4)
+
+MAC random: 200 ops bit-exact. Max float delta 0
+
+  4021.00ns INFO     cocotb.regression                  tb_mac.test_mac_random passed
+  4021.00ns INFO     cocotb.regression                  running tb_mac.test_mac_weight_hold (2/4)
+MAC weight-hold: 50 ops with one load — weight stayed put.
+  4562.00ns INFO     cocotb.regression                  tb_mac.test_mac_weight_hold passed
+  4562.00ns INFO     cocotb.regression                  running tb_mac.test_mac_passthrough (3/4)
+MAC pass-through: a_out tracks a_in with 1-cycle delay.
+  4802.00ns INFO     cocotb.regression                  tb_mac.test_mac_passthrough passed
+  4802.00ns INFO     cocotb.regression                  running tb_mac.test_mac_saturate (4/4)
+MAC saturation: clamps to signed Q16.16 min/max.
+  4873.00ns INFO     cocotb.regression                  tb_mac.test_mac_saturate passed
+  4873.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** tb_mac.test_mac_random         PASS        4021.00           0.06      63781.26  **
+                                                        ** tb_mac.test_mac_weight_hold    PASS         541.00           0.01      62783.42  **
+                                                        ** tb_mac.test_mac_passthrough    PASS         240.00           0.00      69332.11  **
+                                                        ** tb_mac.test_mac_saturate       PASS          71.00           0.00      67252.84  **
+                                                        **************************************************************************************
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0               4873.00           0.08      61846.16  **
+                                                        **************************************************************************************
+FST info: dumpfile sim_build/mac.fst opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

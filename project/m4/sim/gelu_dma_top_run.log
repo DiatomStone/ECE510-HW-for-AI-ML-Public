@@ -1,0 +1,180 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_dma_top -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/Project/m3/rtl/gelu_dma_top.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/top.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/interface.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/gelu_fp32.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/fp32_to_q16.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/q16_to_fp32.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/mm2s_buffer.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/s2mm_buffer.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/openram_1k_wrap.sv
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_gelu_dma_top COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_dma_top TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779960420
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_gelu_dma_top.test_gelu_dma_small (1/2)
+                                                            End-to-end: 8 FP32 values through DMA buffers and GELU kernel.
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master (write)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         cocotbext-axi version 0.1.28
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Copyright (c) 2020-2025 Alex Forencich
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         https://github.com/alexforencich/cocotbext-axi
+    70.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:120: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.valid.setimmediatevalue(self._valid_init)
+    70.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:133: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          s.setimmediatevalue(v)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:115: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.ready.setimmediatevalue(self._ready_init)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master configuration:
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           Address width: 32 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           Byte size: 8 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           Data width: 32 bits (4 bytes)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master signals:
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           awaddr width: 32 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           awprot: not present
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           awready width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           awvalid width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           wdata width: 32 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           wready width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           wstrb width: 4 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           wvalid width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           bready width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           bresp width: 2 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           bvalid width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master (read)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         cocotbext-axi version 0.1.28
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Copyright (c) 2020-2025 Alex Forencich
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         https://github.com/alexforencich/cocotbext-axi
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master configuration:
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           Address width: 32 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           Byte size: 8 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           Data width: 32 bits (4 bytes)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master signals:
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           araddr width: 32 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           arprot: not present
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           arready width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           arvalid width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           rdata width: 32 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           rready width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           rresp width: 2 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil           rvalid width: 1 bits
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+    70.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/reset.py:59: DeprecationWarning: Use `signal.value_change` instead.
+                                                          await Edge(reset_signal)
+    70.00ns INFO     cocotb.gelu_dma_top.s_axil         Write start addr: 0x00000000 prot: 2 data: 01 00 00 00
+   110.00ns INFO     cocotb.gelu_dma_top.s_axil         Write complete addr: 0x00000000 prot: 2 resp: 0 length: 4
+   110.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:336: DeprecationWarning: The data field will be removed in a future release.
+                                                          cmd.event.set(write_resp)
+   110.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:205: DeprecationWarning: The data field will be removed in a future release.
+                                                          return event.data
+   110.00ns INFO     cocotb.gelu_dma_top.s_axil         Read start addr: 0x00000000 prot: 2 length: 4
+   150.00ns INFO     cocotb.gelu_dma_top.s_axil         Read complete addr: 0x00000000 prot: 2 resp: 0 data: 01 00 00 00
+   150.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:572: DeprecationWarning: The data field will be removed in a future release.
+                                                          cmd.event.set(read_resp)
+   150.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:457: DeprecationWarning: The data field will be removed in a future release.
+                                                          return event.data
+  1420.00ns INFO     cocotb.gelu_dma_top                === GELU DMA small test results ===
+  1420.00ns INFO     cocotb.gelu_dma_top                  [0] input= -2.00  expected=-0.0455  got=-0.0688  err=0.0233
+  1420.00ns INFO     cocotb.gelu_dma_top                  [1] input= -1.00  expected=-0.1587  got=-0.1588  err=0.0002
+  1420.00ns INFO     cocotb.gelu_dma_top                  [2] input= -0.50  expected=-0.1543  got=-0.1514  err=0.0028
+  1420.00ns INFO     cocotb.gelu_dma_top                  [3] input=  0.00  expected=0.0000  got=0.0000  err=0.0000
+  1420.00ns INFO     cocotb.gelu_dma_top                  [4] input=  0.50  expected=0.3457  got=0.3486  err=0.0028
+  1420.00ns INFO     cocotb.gelu_dma_top                  [5] input=  1.00  expected=0.8413  got=0.8412  err=0.0002
+  1420.00ns INFO     cocotb.gelu_dma_top                  [6] input=  2.00  expected=1.9545  got=1.9312  err=0.0233
+  1420.00ns INFO     cocotb.gelu_dma_top                  [7] input=  3.00  expected=2.9960  got=3.0000  err=0.0040
+  1420.00ns INFO     cocotb.gelu_dma_top                PASS: test_gelu_dma_small
+  1420.00ns INFO     cocotb.regression                  tb_gelu_dma_top.test_gelu_dma_small passed
+  1420.00ns INFO     cocotb.regression                  running tb_gelu_dma_top.test_gelu_dma_vectors (2/2)
+                                                            End-to-end co-simulation using gelu_in.hex / gelu_exp.hex vectors.
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master (write)
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         cocotbext-axi version 0.1.28
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Copyright (c) 2020-2025 Alex Forencich
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         https://github.com/alexforencich/cocotbext-axi
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master configuration:
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           Address width: 32 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           Byte size: 8 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           Data width: 32 bits (4 bytes)
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master signals:
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           awaddr width: 32 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           awprot: not present
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           awready width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           awvalid width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           wdata width: 32 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           wready width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           wstrb width: 4 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           wvalid width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           bready width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           bresp width: 2 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           bvalid width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master (read)
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         cocotbext-axi version 0.1.28
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Copyright (c) 2020-2025 Alex Forencich
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         https://github.com/alexforencich/cocotbext-axi
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master configuration:
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           Address width: 32 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           Byte size: 8 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           Data width: 32 bits (4 bytes)
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master signals:
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           araddr width: 32 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           arprot: not present
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           arready width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           arvalid width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           rdata width: 32 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           rready width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           rresp width: 2 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil           rvalid width: 1 bits
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+  1490.00ns INFO     cocotb.gelu_dma_top                Loaded 256 test vectors
+  1490.00ns INFO     cocotb.gelu_dma_top.s_axil         Write start addr: 0x00000000 prot: 2 data: 01 00 00 00
+  1530.00ns INFO     cocotb.gelu_dma_top.s_axil         Write complete addr: 0x00000000 prot: 2 resp: 0 length: 4
+ 12240.00ns INFO     cocotb.gelu_dma_top                Chunk 0–255 done
+ 12240.00ns INFO     cocotb.gelu_dma_top                === GELU DMA Co-Simulation Results ===
+ 12240.00ns INFO     cocotb.gelu_dma_top                  N         : 256
+ 12240.00ns INFO     cocotb.gelu_dma_top                  Avg error : 0.008957
+ 12240.00ns INFO     cocotb.gelu_dma_top                  Max error : 0.026295  (index 85)
+ 12240.00ns INFO     cocotb.gelu_dma_top                  Failures  : 0 / 256  (threshold 0.05)
+ 12240.00ns INFO     cocotb.gelu_dma_top                =======================================
+ 12240.00ns INFO     cocotb.gelu_dma_top                PASS: test_gelu_dma_vectors
+ 12240.00ns INFO     cocotb.regression                  tb_gelu_dma_top.test_gelu_dma_vectors passed
+ 12240.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** tb_gelu_dma_top.test_gelu_dma_small     PASS        1420.00           0.02      70856.47  **
+                                                        ** tb_gelu_dma_top.test_gelu_dma_vectors   PASS       10820.00           0.11      98340.71  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=2 PASS=2 FAIL=0 SKIP=0                       12240.00           0.13      92704.03  **
+                                                        ***********************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

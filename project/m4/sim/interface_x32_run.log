@@ -1,0 +1,736 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_axi_stream_interface_v2 -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/Project/m3/rtl/interface_v2.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/gelu_fp32.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/fp32_to_q16.sv /home/systemuser/Documents/ECE/510/Project/m3/rtl/q16_to_fp32.sv
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m3/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_axis_interface_v2 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_axi_stream_interface_v2 TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1780726850
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_axis_interface_v2.test_axil_enable_readback (1/6)
+                                                            pipeline_enable read/write, plus the read-only NUM_LANES register (0x04).
+[PASS] AXI-Lite pipeline_enable write/readback; NUM_LANES reg = 32
+   170.00ns INFO     cocotb.regression                  tb_axis_interface_v2.test_axil_enable_readback passed
+   170.00ns INFO     cocotb.regression                  running tb_axis_interface_v2.test_pipeline_gate (2/6)
+                                                            s_axis_tready must stay low while pipeline_enable=0.
+[PASS] pipeline gate: tready gated correctly by pipeline_enable
+   310.00ns INFO     cocotb.regression                  tb_axis_interface_v2.test_pipeline_gate passed
+   310.00ns INFO     cocotb.regression                  running tb_axis_interface_v2.test_single_beat (3/6)
+                                                            One packed beat of NUM_LANES distinct operands → NUM_LANES GELU results.
+[PASS] single beat: 32 lanes, max err 0.02590
+   540.00ns INFO     cocotb.regression                  tb_axis_interface_v2.test_single_beat passed
+   540.00ns INFO     cocotb.regression                  running tb_axis_interface_v2.test_tlast_propagation (4/6)
+                                                            TLAST on the last input beat must appear on the corresponding output beat.
+  [PASS] beat 0: lane0=-0.0201  tlast=0 (exp 0)
+  [PASS] beat 1: lane0=-0.1149  tlast=0 (exp 0)
+  [PASS] beat 2: lane0=0.0142  tlast=0 (exp 0)
+  [PASS] beat 3: lane0=1.4249  tlast=1 (exp 1)
+[PASS] TLAST propagated correctly across multi-beat packet
+   800.00ns INFO     cocotb.regression                  tb_axis_interface_v2.test_tlast_propagation passed
+   800.00ns INFO     cocotb.regression                  running tb_axis_interface_v2.test_backpressure (5/6)
+                                                            Fill the output FIFO with tready=0; verify tready deasserts then recovers.
+  tready deasserted after 17 beats (FIFO_DEPTH=16)
+[PASS] backpressure: tready deasserts at capacity, recovers on drain
+  1080.00ns INFO     cocotb.regression                  tb_axis_interface_v2.test_backpressure passed
+  1080.00ns INFO     cocotb.regression                  running tb_axis_interface_v2.test_accuracy_sweep (6/6)
+                                                            N FP32 inputs spread over multiple beats; all within 0.05 of gelu_ref.
+
+=== Accuracy Sweep (135 pts over 5 beats, -3.5 → 3.5) ===
+  Lanes     : 32 (1024-bit AXI-Stream)
+  Avg error : 0.011847
+  Max error : 0.026301  (x = -2.246)
+==========================================
+
+[PASS] accuracy sweep
+  1350.01ns INFO     cocotb.regression                  tb_axis_interface_v2.test_accuracy_sweep passed
+  1350.01ns INFO     cocotb.regression                  ********************************************************************************************************
+                                                        ** TEST                                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************************
+                                                        ** tb_axis_interface_v2.test_axil_enable_readback   PASS         170.00           0.02      10132.18  **
+                                                        ** tb_axis_interface_v2.test_pipeline_gate          PASS         140.00           0.01      21005.28  **
+                                                        ** tb_axis_interface_v2.test_single_beat            PASS         230.00           0.01      17752.20  **
+                                                        ** tb_axis_interface_v2.test_tlast_propagation      PASS         260.00           0.02      17276.37  **
+                                                        ** tb_axis_interface_v2.test_backpressure           PASS         280.00           0.01      19090.12  **
+                                                        ** tb_axis_interface_v2.test_accuracy_sweep         PASS         270.00           0.02      16654.10  **
+                                                        ********************************************************************************************************
+                                                        ** TESTS=6 PASS=6 FAIL=0 SKIP=0                                 1350.01           0.09      15335.35  **
+                                                        ********************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

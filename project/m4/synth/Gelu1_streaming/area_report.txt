@@ -1,0 +1,65 @@
+OpenLane 2 Area Report — Post-Route (Yosys + OpenROAD)
+Design  : gelu_top
+PDK     : sky130A  /  sky130_fd_sc_hd
+Run     : RUN_2026-05-24_21-40-35
+
+============================================================
+TOP-LEVEL SUMMARY
+============================================================
+
+  Total chip area      :  90,470.52 µm²
+  Sequential area      :  24,290.80 µm²  (26.85%)
+  Combinational area   :  66,179.72 µm²  (73.15%)
+
+  Total cell count     :   7,704
+  Flip-flops (dfxtp_2):   1,142
+  Ports                :      29  (220 bits)
+
+============================================================
+MODULE-LEVEL BREAKDOWN
+============================================================
+
+  Module                   Role                        Notes
+  ─────────────────────────────────────────────────────────
+  gelu_top                 Top-level passthrough        No logic, port connections only
+  gelu_axi_stream_interface AXI-Stream/Lite wrapper     FIFOs, counters, AXI-Lite CSRs
+  gelu_fp32                FP32 end-to-end datapath     12-stage pipeline chain
+    fp32_to_q16            IEEE-754 → Q16.16            4 stages, barrel shifter + RNE
+    compute_core           GELU PWL approximation       4 stages, 32×32 multiply
+    q16_to_fp32            Q16.16 → IEEE-754            4 stages, CLZ + normalise + RNE
+
+  Note: OpenLane flattens the hierarchy at synthesis; per-module area is not
+  reported separately in the post-route stat. The 1,142 DFFs map to the 12
+  pipeline stages × ~95 bits/stage across gelu_fp32, plus FIFO and counter
+  state in gelu_axi_stream_interface.
+
+============================================================
+CELL COUNT BY TYPE (post-route, sky130_fd_sc_hd)
+============================================================
+
+  Sequential
+    dfxtp_2   (D flip-flop)                    1142
+
+  Combinational — complex gates
+    a21o_2 / a21oi_2                            655
+    a211o_2 / a211oi_2                          112
+    a22o_2  / a22oi_2                           313
+    a31o_2  / a31oi_2                           145
+    a21bo_2 / a21boi_2                          124
+    o21a_2  / o21ai_2                           341
+    o211a_2 / o211ai_2                          115
+    o21ba_2 / o21bai_2                           85
+    (other AOI/OAI variants)                     ~60
+
+  Combinational — simple gates
+    and2_2 / and2b_2 / and3_2 / and3b_2 / and4*  561
+    or2_2  / or3_2  / or3b_2  / or4*             314
+    nand2_2 / nand2b_2 / nand3_2 / nand3b_2/4    783
+    nor2_2  / nor3_2  / nor3b_2  / nor4_2        515
+    xor2_2 / xnor2_2                             799
+    mux2_1 / mux4_2                              967
+    inv_2                                         85
+    buf_2                                          1
+    conb_1  (tie-high/low cells)                  35
+
+Source: 06-yosys-synthesis/reports/stat.rpt

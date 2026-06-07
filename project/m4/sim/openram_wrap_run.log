@@ -1,0 +1,48 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m3'
+/usr/bin/iverilog -o sim_build/sim.vvp -s openram_1k_wrap -g2012 -g2012 -f sim_build/cmds.f  /home/systemuser/Documents/ECE/510/Project/m3/rtl/openram_1k_wrap.sv
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_openram_1k_wrap COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=openram_1k_wrap TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -none 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1779942496
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_openram_1k_wrap.test_p0_write_read (1/4)
+                                                            Write via port 0, read back via port 0.
+   111.00ns INFO     cocotb.openram_1k_wrap             p0 addr=0: 0xDEADBEEF OK
+   131.00ns INFO     cocotb.openram_1k_wrap             p0 addr=1: 0xCAFEBABE OK
+   151.00ns INFO     cocotb.openram_1k_wrap             p0 addr=511: 0x12345678 OK
+   171.00ns INFO     cocotb.openram_1k_wrap             p0 addr=1023: 0xFFFFFFFF OK
+   171.00ns INFO     cocotb.openram_1k_wrap             PASS: test_p0_write_read
+   171.00ns INFO     cocotb.regression                  tb_openram_1k_wrap.test_p0_write_read passed
+   171.00ns INFO     cocotb.regression                  running tb_openram_1k_wrap.test_p1_read_after_p0_write (2/4)
+                                                            Write via port 0, read back via port 1.
+   262.00ns INFO     cocotb.openram_1k_wrap             p1 addr=10: 0xABCD1234 OK
+   282.00ns INFO     cocotb.openram_1k_wrap             p1 addr=20: 0x00000001 OK
+   302.00ns INFO     cocotb.openram_1k_wrap             p1 addr=100: 0x7FFFFFFF OK
+   302.00ns INFO     cocotb.openram_1k_wrap             PASS: test_p1_read_after_p0_write
+   302.00ns INFO     cocotb.regression                  tb_openram_1k_wrap.test_p1_read_after_p0_write passed
+   302.00ns INFO     cocotb.regression                  running tb_openram_1k_wrap.test_byte_mask (3/4)
+                                                            Partial-byte writes via p0_wmask.
+   453.00ns INFO     cocotb.openram_1k_wrap             PASS: test_byte_mask
+   453.00ns INFO     cocotb.regression                  tb_openram_1k_wrap.test_byte_mask passed
+   453.00ns INFO     cocotb.regression                  running tb_openram_1k_wrap.test_simultaneous_p0_write_p1_read (4/4)
+                                                            Port 0 write and port 1 read to different addresses on the same cycle.
+   524.00ns INFO     cocotb.openram_1k_wrap             PASS: test_simultaneous_p0_write_p1_read
+   524.00ns INFO     cocotb.regression                  tb_openram_1k_wrap.test_simultaneous_p0_write_p1_read passed
+   524.00ns INFO     cocotb.regression                  ***************************************************************************************************************
+                                                        ** TEST                                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************************
+                                                        ** tb_openram_1k_wrap.test_p0_write_read                   PASS         171.00           0.00      37884.32  **
+                                                        ** tb_openram_1k_wrap.test_p1_read_after_p0_write          PASS         131.00           0.00      63359.53  **
+                                                        ** tb_openram_1k_wrap.test_byte_mask                       PASS         151.00           0.00      73936.48  **
+                                                        ** tb_openram_1k_wrap.test_simultaneous_p0_write_p1_read   PASS          71.00           0.00      69921.48  **
+                                                        ***************************************************************************************************************
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0                                         524.00           0.01      44225.45  **
+                                                        ***************************************************************************************************************
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m3'

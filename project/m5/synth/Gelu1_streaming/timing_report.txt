@@ -1,0 +1,68 @@
+OpenLane 2 Post-Route Static Timing Analysis
+Design  : gelu_top
+PDK     : sky130A  /  sky130_fd_sc_hd
+Run     : RUN_2026-05-24_21-40-35
+Clock   : clk  period = 22.000 ns
+
+============================================================
+SUMMARY — nom_tt_025C_1v80 (nominal, typical-typical corner)
+============================================================
+
+  Worst Negative Slack (setup) :   0.000 ns   ← MET
+  Worst Negative Slack (hold)  :   0.000 ns   ← MET
+  Total Negative Slack (setup) :   0.000 ns
+  Total Negative Slack (hold)  :   0.000 ns
+
+  Critical path arrival time   :  10.174 ns
+  Clock period (constraint)    :  22.000 ns
+  Setup slack on critical path :  11.826 ns
+
+  Max-cap violations           :   0
+  Max-slew violations          :   0 (nom_tt); 55 (max_ss_100C_1v60 — extreme corner)
+
+============================================================
+CRITICAL PATH DETAIL  (Setup, nom_tt_025C_1v80)
+============================================================
+
+  Startpoint : _13499_  (FF, posedge clk)
+               net: u_interface.u_gelu_fp32.u_synth_top.s2_m[12]
+               — Stage-2 slope register (s2_m) in compute_core
+
+  Endpoint   : _13985_  (FF, posedge clk)
+               — Downstream pipeline register (Stage 3/4 boundary in compute_core)
+
+  Path delay breakdown (selected stages):
+    Clock launch + clock tree                      1.010 ns
+    _13499_/Q  (dfxtp_1, slope bit output)         0.393 ns
+    Fanout buffers  (fanout683 → 682 → 681 → 680)  0.908 ns
+    NAND/OR/AND multiply logic                     ~5.8 ns
+    OR/AND adder tree                              ~1.7 ns
+    Final gate → endpoint/D                        ~0.4 ns
+    ─────────────────────────────────────────────
+    Data arrival time                             10.174 ns
+    Data required time (22 ns - uncertainty)      22.000 ns
+    Slack                                         11.826 ns  (MET)
+
+============================================================
+MULTI-CORNER WNS SUMMARY
+============================================================
+
+  Corner                  Setup WNS    Hold WNS
+  ──────────────────────────────────────────────
+  Corner                  Setup WNS    Hold WNS
+  ──────────────────────────────────────────────
+  nom_tt_025C_1v80         11.826        0.301   MET
+  nom_ff_n40C_1v95         15.415        0.113   MET
+  nom_ss_100C_1v60          1.719        0.832   MET
+  max_tt_025C_1v80         11.676        0.304   MET
+  max_ff_n40C_1v95         15.333        0.114   MET
+  max_ss_100C_1v60          1.440        0.837   MET
+  min_tt_025C_1v80         11.973        0.298   MET
+  min_ff_n40C_1v95         15.496        0.111   MET
+  min_ss_100C_1v60          1.978        0.828   MET
+
+All corners: setup and hold timing MET. No violations.
+Max-slew violations present only at ss_100C_1v60 corners (55/44/32 paths) —
+extreme temperature/voltage operating point, not the design target.
+
+Source: 54-openroad-stapostpnr/summary.rpt, nom_tt_025C_1v80/{wns,tns,min,max}.rpt

@@ -1,0 +1,3 @@
+# M5 systolic array integration
+
+Milestone 5 is an opening continuation of the 510 project. This is not intended as submission for the final but a hot start to pickup the project after the class ends. The changes contain a mac and weightstationary 8x8 systolic array that accepts q16.16, these modules have been tested and verified, but not yet synthesized. Tiling is done by host. The size limit is so that openlane might beable to synthesize in reasonable time. 

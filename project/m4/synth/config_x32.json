@@ -1,0 +1,18 @@
+{
+  "DESIGN_NAME": "gelu_top_x32",
+  "VERILOG_FILES": [
+    "dir::../rtl/top_x32.sv",
+    "dir::../rtl/interface_x32.sv",
+    "dir::../rtl/gelu_fp32.sv",
+    "dir::../rtl/compute_core.sv",
+    "dir::../rtl/fp32_to_q16.sv",
+    "dir::../rtl/q16_to_fp32.sv"
+  ],
+  "VERILOG_DEFINES": ["SYNTHESIS", "GELU_NUM_LANES=32"],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 22,
+  "FP_CORE_UTIL": 35,
+  "PL_TARGET_DENSITY_PCT": 45,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd"
+}

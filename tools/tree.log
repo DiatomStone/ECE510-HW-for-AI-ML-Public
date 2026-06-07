@@ -337,6 +337,194 @@
 │   │       ├── tb_gelu_fp32.py
 │   │       ├── tb_q16_to_fp32.py
 │   │       └── tb_top.py
+│   ├── m4
+│   │   ├── documents
+│   │   │   ├── benchmark_results.md
+│   │   │   ├── explanation.md
+│   │   │   ├── info_tb_top.md
+│   │   │   └── PWL_values_check.png
+│   │   ├── helper_script
+│   │   │   ├── run_openlane2.sh
+│   │   │   └── sim_master.sh
+│   │   ├── Makefile
+│   │   ├── orginal_software
+│   │   │   ├── __pycache__
+│   │   │   │   ├── transformer.cpython-313.pyc
+│   │   │   │   └── transformer.cpython-314.pyc
+│   │   │   ├── train.py
+│   │   │   ├── transformer (Copy).py
+│   │   │   └── transformer.py
+│   │   ├── README.md
+│   │   ├── rtl
+│   │   │   ├── compute_core.sv
+│   │   │   ├── DMA_memory
+│   │   │   │   ├── gelu_dma_top.sv
+│   │   │   │   ├── gelu_dma_top_x32.sv
+│   │   │   │   ├── mm2s_buffer.sv
+│   │   │   │   ├── mm2s_buffer_x32.sv
+│   │   │   │   ├── openram_1k_wrap.sv
+│   │   │   │   ├── s2mm_buffer.sv
+│   │   │   │   └── s2mm_buffer_x32.sv
+│   │   │   ├── fp32_to_q16.sv
+│   │   │   ├── gelu_fp32.sv
+│   │   │   ├── interface.sv
+│   │   │   ├── interface_x32.sv
+│   │   │   ├── q16_to_fp32.sv
+│   │   │   ├── top.sv
+│   │   │   └── top_x32.sv
+│   │   ├── sim
+│   │   │   ├── compute_core_run.log
+│   │   │   ├── cosim_run.log
+│   │   │   ├── cosim_waveform.png
+│   │   │   ├── cosim_waveform.vcd
+│   │   │   ├── fp32_to_p16.log
+│   │   │   ├── gelu_dma_top_run.log
+│   │   │   ├── gelu.log
+│   │   │   ├── inloop_dma_run.log
+│   │   │   ├── inloop_dma_x32_run.log
+│   │   │   ├── inloop_dma_x8_run.log
+│   │   │   ├── inloop_run.log
+│   │   │   ├── inloop_v2_run.log
+│   │   │   ├── interface_run.log
+│   │   │   ├── interface_x32_run.log
+│   │   │   ├── mac_run.fst
+│   │   │   ├── mac_run.log
+│   │   │   ├── mm2s_buffer_run.log
+│   │   │   ├── openram_wrap_run.log
+│   │   │   ├── p16_to_fp32.log
+│   │   │   ├── s2mm_buffer_run.log
+│   │   │   ├── sarray_run.fst
+│   │   │   └── sarray_run.log
+│   │   ├── synth
+│   │   │   ├── config_dma.json
+│   │   │   ├── config_v1.json
+│   │   │   ├── config_x32.json
+│   │   │   ├── config_x8.json
+│   │   │   └── Gelu1_streaming
+│   │   │       ├── area_report.txt
+│   │   │       ├── critical_path.md
+│   │   │       ├── openlane_run.log
+│   │   │       ├── power_report.txt
+│   │   │       ├── power.rpt
+│   │   │       ├── stat.rpt
+│   │   │       ├── timing_report.txt
+│   │   │       ├── wns.max.rpt
+│   │   │       ├── wns.min.rpt
+│   │   │       ├── ws.max.rpt
+│   │   │       └── ws.min.rpt
+│   │   ├── synthesis_notes.md
+│   │   └── tb
+│   │       ├── DMA_memory
+│   │       │   ├── gelu_exp.hex
+│   │       │   ├── gelu_in.hex
+│   │       │   ├── __pycache__
+│   │       │   │   ├── tb_axis_interface.cpython-313.pyc
+│   │       │   │   ├── tb_compute_core.cpython-312.pyc
+│   │       │   │   ├── tb_compute_core.cpython-313.pyc
+│   │       │   │   ├── tb_conversion.cpython-313.pyc
+│   │       │   │   ├── tb_fp32_to_q16.cpython-313.pyc
+│   │       │   │   ├── tb_gelu_dma_top.cpython-313.pyc
+│   │       │   │   ├── tb_gelu_fp32.cpython-313.pyc
+│   │       │   │   ├── tb_interface.cpython-312.pyc
+│   │       │   │   ├── tb_interface.cpython-313.pyc
+│   │       │   │   ├── tb_mm2s_buffer.cpython-313.pyc
+│   │       │   │   ├── tb_openram_1k_wrap.cpython-313.pyc
+│   │       │   │   ├── tb_q16_to_fp32.cpython-313.pyc
+│   │       │   │   ├── tb_s2mm_buffer.cpython-313.pyc
+│   │       │   │   └── tb_top.cpython-313.pyc
+│   │       │   ├── tb_gelu_dma_top.py
+│   │       │   ├── tb_mm2s_buffer.py
+│   │       │   ├── tb_openram_1k_wrap.py
+│   │       │   └── tb_s2mm_buffer.py
+│   │       ├── gen_vectors.py
+│   │       ├── __pycache__
+│   │       │   ├── tb_axis_interface_v2.cpython-313.pyc
+│   │       │   ├── tb_top_inloop.cpython-313.pyc
+│   │       │   ├── tb_top_inloop_dma.cpython-313.pyc
+│   │       │   ├── tb_top_inloop_dma_v2.cpython-313.pyc
+│   │       │   ├── tb_top_inloop_dma_x32.cpython-313.pyc
+│   │       │   ├── tb_top_inloop_v2.cpython-313.pyc
+│   │       │   └── tb_top_inloop_x32.cpython-313.pyc
+│   │       ├── tb_axis_interface.py
+│   │       ├── tb_axis_interface_x32.py
+│   │       ├── tb_compute_core.py
+│   │       ├── tb_conversion.py
+│   │       ├── tb_fp32_to_q16.py
+│   │       ├── tb_gelu_fp32.py
+│   │       ├── tb_q16_to_fp32.py
+│   │       ├── tb_top_inloop_dma.py
+│   │       ├── tb_top_inloop_dma_x32.py
+│   │       ├── tb_top_inloop.py
+│   │       ├── tb_top_inloop_x32.py
+│   │       └── tb_top.py
+│   ├── m5
+│   │   ├── documents
+│   │   ├── helper_script
+│   │   │   ├── run_openlane2.sh
+│   │   │   └── sim_master.sh
+│   │   ├── Makefile
+│   │   ├── orginal_software
+│   │   │   ├── __pycache__
+│   │   │   │   └── transformer.cpython-313.pyc
+│   │   │   ├── train.py
+│   │   │   └── transformer.py
+│   │   ├── README.md
+│   │   ├── results.xml
+│   │   ├── rtl
+│   │   │   ├── compute_core.sv
+│   │   │   ├── fp32_to_q16.sv
+│   │   │   ├── gelu_fp32.sv
+│   │   │   ├── interface.sv
+│   │   │   ├── q16_to_fp32.sv
+│   │   │   ├── sarray
+│   │   │   │   ├── mac.sv
+│   │   │   │   └── systolic_array.sv
+│   │   │   └── top.sv
+│   │   ├── sim
+│   │   │   ├── mac_run.fst
+│   │   │   ├── mac_run.log
+│   │   │   ├── sarray_run.fst
+│   │   │   └── sarray_run.log
+│   │   ├── synth
+│   │   │   ├── config.json
+│   │   │   ├── config_v1.json
+│   │   │   ├── config_v2.json
+│   │   │   └── Gelu1_streaming
+│   │   │       ├── area_report.txt
+│   │   │       ├── critical_path.md
+│   │   │       ├── openlane_run.log
+│   │   │       ├── power_report.txt
+│   │   │       ├── power.rpt
+│   │   │       ├── stat.rpt
+│   │   │       ├── timing_report.txt
+│   │   │       ├── wns.max.rpt
+│   │   │       ├── wns.min.rpt
+│   │   │       ├── ws.max.rpt
+│   │   │       └── ws.min.rpt
+│   │   └── tb
+│   │       ├── gen_vectors.py
+│   │       ├── __pycache__
+│   │       │   ├── tb_axis_interface_v2.cpython-313.pyc
+│   │       │   ├── tb_top_inloop.cpython-313.pyc
+│   │       │   ├── tb_top_inloop_dma.cpython-313.pyc
+│   │       │   ├── tb_top_inloop_dma_v2.cpython-313.pyc
+│   │       │   └── tb_top_inloop_v2.cpython-313.pyc
+│   │       ├── sarray
+│   │       │   ├── __pycache__
+│   │       │   │   ├── tb_mac.cpython-313.pyc
+│   │       │   │   └── tb_systolic_array.cpython-313.pyc
+│   │       │   ├── tb_mac.py
+│   │       │   └── tb_systolic_array.py
+│   │       ├── tb_axis_interface.py
+│   │       ├── tb_compute_core.py
+│   │       ├── tb_conversion.py
+│   │       ├── tb_fp32_to_q16.py
+│   │       ├── tb_gelu_fp32.py
+│   │       ├── tb_q16_to_fp32.py
+│   │       ├── tb_top_inloop_1row.py
+│   │       ├── tb_top_inloop_dma.py
+│   │       ├── tb_top_inloop.py
+│   │       └── tb_top.py
 │   ├── remaining_tasks.md
 │   ├── scope_assessment.md
 │   └── transformer_lm
@@ -371,4 +559,4 @@
     ├── tree.log
     └── verilator_eg.sh
 
-77 directories, 295 files
+105 directories, 455 files
