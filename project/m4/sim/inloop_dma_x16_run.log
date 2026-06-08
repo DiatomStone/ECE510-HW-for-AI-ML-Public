@@ -1,0 +1,454 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/systemuser/Documents/ECE/510/Project/m4'
+mkdir -p sim_build
+/usr/bin/iverilog -o sim_build/sim.vvp -s gelu_dma_top -g2012 -DGELU_NUM_LANES=16 -g2012 -f sim_build/cmds.f -s cocotb_iverilog_dump  /home/systemuser/Documents/ECE/510/Project/m4/rtl/DMA_memory/gelu_dma_top.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/top.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/interface.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/gelu_fp32.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/fp32_to_q16.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/q16_to_fp32.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/DMA_memory/mm2s_buffer.sv /home/systemuser/Documents/ECE/510/Project/m4/rtl/DMA_memory/s2mm_buffer.sv sim_build/cocotb_iverilog_dump.v
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:94: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:95: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:96: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:97: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:98: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:99: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:100: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:101: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:102: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:103: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:104: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:105: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:106: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:107: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:108: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:109: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:110: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:111: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:112: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:113: sorry: constant selects in always_* processes are not fully supported (the process will be sensitive to all bits in 's1_hits[23:0]').
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+/home/systemuser/Documents/ECE/510/Project/m4/rtl/compute_core.sv:93: vvp.tgt sorry: Case unique/unique0 qualities are ignored.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_top_inloop_dma COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gelu_dma_top TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/systemuser/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp  -fst 
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/systemuser/.venv/bin/python3.13
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1780867757
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.0 from /home/systemuser/.venv/lib64/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_top_inloop_dma.test_gelu_dma_inloop (1/1)
+                                                            Full-model in-loop co-sim: every GELU runs through the wide DMA + 32-lane kernel.
+   154.00ns INFO     cocotb.gelu_dma_top                DUT width confirmed: 16 lanes (512-bit DMA bus)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master (write)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         cocotbext-axi version 0.1.28
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Copyright (c) 2020-2025 Alex Forencich
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         https://github.com/alexforencich/cocotbext-axi
+   154.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:120: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.valid.setimmediatevalue(self._valid_init)
+   154.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:133: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          s.setimmediatevalue(v)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/stream.py:115: DeprecationWarning: Use `handle.set(Immediate(...))` or `handle.value = Immediate(...)` instead.
+                                                          self.ready.setimmediatevalue(self._ready_init)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master configuration:
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           Address width: 32 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           Byte size: 8 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           Data width: 32 bits (4 bytes)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master signals:
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           awaddr width: 32 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           awprot: not present
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           awready width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           awvalid width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           wdata width: 32 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           wready width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           wstrb width: 4 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           wvalid width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           bready width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           bresp width: 2 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           bvalid width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master (read)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         cocotbext-axi version 0.1.28
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Copyright (c) 2020-2025 Alex Forencich
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         https://github.com/alexforencich/cocotbext-axi
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master configuration:
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           Address width: 32 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           Byte size: 8 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           Data width: 32 bits (4 bytes)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         AXI lite master signals:
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           araddr width: 32 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           arprot: not present
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           arready width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           arvalid width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           rdata width: 32 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           rready width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           rresp width: 2 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil           rvalid width: 1 bits
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Reset de-asserted
+   154.00ns INFO     cocotb.gelu_dma_top                AXI-Lite: writing pipeline_enable=1
+   154.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/reset.py:59: DeprecationWarning: Use `signal.value_change` instead.
+                                                          await Edge(reset_signal)
+   154.00ns INFO     cocotb.gelu_dma_top.s_axil         Write start addr: 0x00000000 prot: 2 data: 01 00 00 00
+   242.00ns INFO     cocotb.gelu_dma_top.s_axil         Write complete addr: 0x00000000 prot: 2 resp: 0 length: 4
+   242.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:336: DeprecationWarning: The data field will be removed in a future release.
+                                                          cmd.event.set(write_resp)
+   242.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:205: DeprecationWarning: The data field will be removed in a future release.
+                                                          return event.data
+   242.00ns INFO     cocotb.gelu_dma_top.s_axil         Read start addr: 0x00000000 prot: 2 length: 4
+   330.00ns INFO     cocotb.gelu_dma_top.s_axil         Read complete addr: 0x00000000 prot: 2 resp: 0 data: 01 00 00 00
+   330.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:572: DeprecationWarning: The data field will be removed in a future release.
+                                                          cmd.event.set(read_resp)
+   330.00ns WARNING  py.warnings                        /home/systemuser/.venv/lib64/python3.13/site-packages/cocotbext/axi/axil_master.py:457: DeprecationWarning: The data field will be removed in a future release.
+                                                          return event.data
+   330.00ns INFO     cocotb.gelu_dma_top                Layer 0: offloading GELU via wide DMA — 131072 elements in 32 burst(s) of <= 256 beats (16 lanes)
+372042.00ns INFO     cocotb.gelu_dma_top                Layer 1: offloading GELU via wide DMA — 131072 elements in 32 burst(s) of <= 256 beats (16 lanes)
+743754.00ns INFO     cocotb.gelu_dma_top                
+                                                        === Full-Model In-Loop GELU Co-Sim (v2 wide DMA path) — Timing & Metrics ===
+743754.00ns INFO     cocotb.gelu_dma_top                  Model              : M1 transformer, 2 layers, B=8 T=64 d_ff=256 (seed=42)
+743754.00ns INFO     cocotb.gelu_dma_top                  Parallelization    : 16 lanes (512-bit DMA + AXI-Stream)
+743754.00ns INFO     cocotb.gelu_dma_top                  Path               : AXI-MM DMA → mm2s → kernel → s2mm → AXI-MM DMA
+743754.00ns INFO     cocotb.gelu_dma_top                  Elements streamed  : 262144  in 64 DMA bursts (16384 beats)
+743754.00ns INFO     cocotb.gelu_dma_top                  Clock (synth)      : 22 ns  (45.45 MHz)
+743754.00ns INFO     cocotb.gelu_dma_top                  --- MEASURED (cycle-accurate Icarus, full DMA round-trip) ---
+743754.00ns INFO     cocotb.gelu_dma_top                  DMA round-trip time: 743424 ns (~33792 cycles incl. write+compute+read)
+743754.00ns INFO     cocotb.gelu_dma_top                  Throughput         : 352.62 M elem/s  (0.1289 cycles/elem, 2.062 cycles/beat)
+743754.00ns INFO     cocotb.gelu_dma_top                  AXI bandwidth/dir  : 1410.5 MB/s (in, and out)
+743754.00ns INFO     cocotb.gelu_dma_top                  AXI bandwidth total: 2820.9 MB/s (in+out)
+743754.00ns INFO     cocotb.gelu_dma_top                  --- HOST-SIDE CONVERSION (informational, not kernel time) ---
+743754.00ns INFO     cocotb.gelu_dma_top                  fp64<->fp32 casts  : 556.5 us total (host, both directions)
+743754.00ns INFO     cocotb.gelu_dma_top                  --- KERNEL ACCURACY (per-element, all layers) ---
+743754.00ns INFO     cocotb.gelu_dma_top                  GELU max error     : 0.026311
+743754.00ns INFO     cocotb.gelu_dma_top                  GELU failures      : 0 / 262144  (threshold 0.05)
+743754.00ns INFO     cocotb.gelu_dma_top                  --- LOOP CLOSURE: final logits vs all-software forward() ---
+743754.00ns INFO     cocotb.gelu_dma_top                  Logits avg / max   : 0.015396 / 0.104763
+743754.00ns INFO     cocotb.gelu_dma_top                  Next-token argmax  : 503/512 positions match software
+743754.00ns INFO     cocotb.gelu_dma_top                =========================================================
+PASS
+743754.00ns INFO     cocotb.gelu_dma_top                PASS
+743754.00ns INFO     cocotb.regression                  tb_top_inloop_dma.test_gelu_dma_inloop passed
+743754.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** tb_top_inloop_dma.test_gelu_dma_inloop   PASS      743754.00          19.33      38486.60  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                       743754.00          19.33      38483.09  **
+                                                        ************************************************************************************************
+FST info: dumpfile sim_build/gelu_dma_top.fst opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m4'

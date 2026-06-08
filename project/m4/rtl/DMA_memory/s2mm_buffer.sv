@@ -3,117 +3,107 @@
 // Project: GELU Activation Kernel - ECE 410/510, M3
 //
 // Description:
-//   Output DMA buffer. Accepts AXI4-Stream results from the kernel and
-//   makes them available for the DMA engine to read back over AXI4-MM.
+//   Wide, macro-free output DMA buffer for the 32-lane kernel. Accepts
+//   DATA_W-wide AXI4-Stream results from the kernel (default 1024 bits = 32
+//   FP32 lanes) and makes them available for the DMA engine to read back over
+//   a DATA_W-wide AXI4-MM read channel.
 //
-//   Internally backed by openram_1k_wrap (1024 x 32-bit).
-//     Port 0 (RW) : kernel write path  — advances wr_ptr each accepted beat
-//     Port 1 (R)  : DMA read path      — advances rd_ptr each completed read
+//   Like mm2s_buffer, storage is an inferred register-array FIFO — pure
+//   standard cells, no SRAM macro / blackbox / OpenLane MACROS config. Sized
+//   SHALLOW (DEPTH beats); trading depth for width keeps the flop count flat
+//   versus the original 32-bit × 1024-deep SRAM buffer while delivering a full
+//   1024-bit beat per cycle.
 //
-//   AXI4-MM read channel only (no AW/W). ARLEN encodes burst length
-//   (AXI4 convention: beats = ARLEN + 1). ARSIZE assumed 4 bytes (32-bit).
+//   The FIFO read is combinational (first-word fall-through), so the 1-cycle
+//   SRAM read-latency tracking (rd_inflight) of the v1 buffer is gone: RDATA is
+//   driven straight from the FIFO head and RVALID is just (in-burst & !empty).
 //
-//   Backpressure:
-//     - s_axis_tready deasserted when FIFO full
-//     - RVALID deasserted when FIFO empty
+//   RLAST is framed from ARLEN (AXI4: beats = ARLEN + 1), as in v1. araddr is
+//   ignored (FIFO-ordered). Read response is always OKAY.
 //
 // Ports:
-//   clk            - input,  1   : System clock
-//   rst            - input,  1   : Synchronous active-high reset
-//   s_axis_tdata   - input,  32  : Stream input data (from kernel)
-//   s_axis_tvalid  - input,  1   : Stream input valid
-//   s_axis_tready  - output, 1   : Stream input ready (backpressure to kernel)
-//   s_axis_tlast   - input,  1   : Last beat of kernel packet
-//   m_axi_araddr   - input,  32  : Read base address (word-aligned; [1:0] ignored)
-//   m_axi_arlen    - input,  8   : Burst length minus 1 (AXI4)
-//   m_axi_arvalid  - input,  1   : Read address valid
-//   m_axi_arready  - output, 1   : Read address ready
-//   m_axi_rdata    - output, 32  : Read data
-//   m_axi_rresp    - output, 2   : Read response (00 = OKAY)
-//   m_axi_rvalid   - output, 1   : Read data valid
-//   m_axi_rready   - input,  1   : Read data ready
-//   m_axi_rlast    - output, 1   : Last beat of read burst
+//   clk            - input,  1        : System clock
+//   rst            - input,  1        : Synchronous active-high reset
+//   s_axis_tdata   - input,  DATA_W   : Stream data from kernel (packed beat)
+//   s_axis_tvalid  - input,  1        : Stream valid
+//   s_axis_tready  - output, 1        : Stream ready (backpressure; deasserts full)
+//   s_axis_tlast   - input,  1        : Last beat of kernel packet (unused; ARLEN frames)
+//   m_axi_araddr   - input,  32       : Read address (ignored; FIFO-ordered)
+//   m_axi_arlen    - input,  8        : Burst length minus 1 (AXI4)
+//   m_axi_arvalid  - input,  1        : Read address valid
+//   m_axi_arready  - output, 1        : Read address ready
+//   m_axi_rdata    - output, DATA_W   : Read data (packed beat)
+//   m_axi_rresp    - output, 2        : Read response (00 = OKAY)
+//   m_axi_rvalid   - output, 1        : Read data valid
+//   m_axi_rready   - input,  1        : Read data ready
+//   m_axi_rlast    - output, 1        : Last beat of read burst
 // =========================================================================
 
-module s2mm_buffer (
-    input  logic        clk,
-    input  logic        rst,
+module s2mm_buffer #(
+    parameter int DATA_W = 1024,                 // packed beat width (32 FP32 lanes)
+    parameter int DEPTH  = 32                    // FIFO depth in beats
+)(
+    input  logic                clk,
+    input  logic                rst,
 
-    // AXI4-Stream slave (kernel → buffer)
-    input  logic [31:0] s_axis_tdata,
-    input  logic        s_axis_tvalid,
-    output logic        s_axis_tready,
-    input  logic        s_axis_tlast,
+    // AXI4-Stream slave (kernel -> buffer)
+    input  logic [DATA_W-1:0]   s_axis_tdata,
+    input  logic                s_axis_tvalid,
+    output logic                s_axis_tready,
+    input  logic                s_axis_tlast,
 
-    // AXI4-MM read slave (buffer → DMA)
-    input  logic [31:0] m_axi_araddr,
-    input  logic [7:0]  m_axi_arlen,
-    input  logic        m_axi_arvalid,
-    output logic        m_axi_arready,
-    output logic [31:0] m_axi_rdata,
-    output logic [1:0]  m_axi_rresp,
-    output logic        m_axi_rvalid,
-    input  logic        m_axi_rready,
-    output logic        m_axi_rlast
+    // AXI4-MM read slave (buffer -> DMA)
+    input  logic [31:0]         m_axi_araddr,
+    input  logic [7:0]          m_axi_arlen,
+    input  logic                m_axi_arvalid,
+    output logic                m_axi_arready,
+    output logic [DATA_W-1:0]   m_axi_rdata,
+    output logic [1:0]          m_axi_rresp,
+    output logic                m_axi_rvalid,
+    input  logic                m_axi_rready,
+    output logic                m_axi_rlast
 );
 
-    localparam int DEPTH = 256;   // inferred RAM depth (was 1024; shrunk so
-    localparam int PTR_W = 8;      // gelu_dma_top routes — DMA bursts are <=256)
-    localparam int CNT_W = 9;
+    localparam int PTR_W = (DEPTH > 1) ? $clog2(DEPTH) : 1;
+    localparam int CNT_W = $clog2(DEPTH + 1);
 
     // ----------------------------------------------------------------
-    // FIFO pointers and count
+    // Inferred register-array FIFO (combinational read)
     // ----------------------------------------------------------------
-    logic [PTR_W-1:0] wr_ptr, rd_ptr;
-    logic [CNT_W-1:0] fifo_count;
+    logic [DATA_W-1:0] fifo_data [DEPTH];
+    logic [PTR_W-1:0]  wr_ptr, rd_ptr;
+    logic [CNT_W-1:0]  fifo_count;
 
     wire fifo_full  = (fifo_count == CNT_W'(DEPTH));
     wire fifo_empty = (fifo_count == '0);
 
-    // ----------------------------------------------------------------
-    // AXI4-Stream write path (kernel → SRAM port 0)
-    // ----------------------------------------------------------------
     wire wr_fire = s_axis_tvalid && s_axis_tready;
+    wire rd_fire = m_axi_rvalid && m_axi_rready;
 
     assign s_axis_tready = !fifo_full;
 
     // ----------------------------------------------------------------
     // AXI4-MM read state machine
-    //   IDLE   : waiting for ARVALID
-    //   BURST  : issuing RDATA beats
+    //   AR_IDLE  : waiting for ARVALID
+    //   AR_BURST : presenting RDATA beats until ARLEN exhausted
     // ----------------------------------------------------------------
     typedef enum logic { AR_IDLE, AR_BURST } ar_state_t;
-    ar_state_t ar_state;
-
+    ar_state_t  ar_state;
     logic [7:0] ar_beats_left;
-    logic       rd_issue;       // pulse: issue read to SRAM port 1
-    logic       rd_inflight;    // SRAM read issued, result arrives next cycle
 
     assign m_axi_arready = (ar_state == AR_IDLE);
     assign m_axi_rresp   = 2'b00;
 
-    // Issue a read when in burst, FIFO has data, no beat in flight,
-    // and downstream will accept (or no pending valid beat).
-    assign rd_issue = (ar_state == AR_BURST) && !fifo_empty && !rd_inflight &&
-                      (!m_axi_rvalid || m_axi_rready);
+    // First-word fall-through read: present FIFO head while in burst.
+    assign m_axi_rvalid = (ar_state == AR_BURST) && !fifo_empty;
+    assign m_axi_rdata  = fifo_data[rd_ptr];
+    assign m_axi_rlast  = (ar_state == AR_BURST) && (ar_beats_left == '0) && !fifo_empty;
 
     always_ff @(posedge clk) begin
         if (rst) begin
             ar_state      <= AR_IDLE;
             ar_beats_left <= '0;
-            rd_inflight   <= 1'b0;
-            m_axi_rvalid  <= 1'b0;
-            m_axi_rlast   <= 1'b0;
         end else begin
-            // 1-cycle SRAM latency tracking
-            rd_inflight <= rd_issue;
-
-            // rvalid: set one cycle after rd_issue (data arrives from SRAM)
-            if (rd_issue)
-                m_axi_rvalid <= 1'b1;
-            else if (m_axi_rvalid && m_axi_rready)
-                m_axi_rvalid <= 1'b0;
-
             case (ar_state)
                 AR_IDLE: begin
                     if (m_axi_arvalid) begin
@@ -121,28 +111,21 @@ module s2mm_buffer (
                         ar_state      <= AR_BURST;
                     end
                 end
-
                 AR_BURST: begin
-                    if (rd_issue) begin
-                        if (ar_beats_left == '0) begin
-                            m_axi_rlast <= 1'b1;
-                            ar_state    <= AR_IDLE;
-                        end else begin
-                            m_axi_rlast   <= 1'b0;
+                    if (rd_fire) begin
+                        if (ar_beats_left == '0)
+                            ar_state <= AR_IDLE;     // RLAST beat consumed
+                        else
                             ar_beats_left <= ar_beats_left - 1'b1;
-                        end
-                    end else if (m_axi_rvalid && m_axi_rready) begin
-                        m_axi_rlast <= 1'b0;
                     end
                 end
-
                 default: ar_state <= AR_IDLE;
             endcase
         end
     end
 
     // ----------------------------------------------------------------
-    // FIFO pointer and count update
+    // FIFO write / read / occupancy
     // ----------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -150,36 +133,19 @@ module s2mm_buffer (
             rd_ptr     <= '0;
             fifo_count <= '0;
         end else begin
-            if (wr_fire)
-                wr_ptr <= wr_ptr + 1'b1;
+            if (wr_fire) begin
+                fifo_data[wr_ptr] <= s_axis_tdata;
+                wr_ptr <= (wr_ptr == PTR_W'(DEPTH-1)) ? '0 : wr_ptr + 1'b1;
+            end
+            if (rd_fire)
+                rd_ptr <= (rd_ptr == PTR_W'(DEPTH-1)) ? '0 : rd_ptr + 1'b1;
 
-            if (rd_issue)
-                rd_ptr <= rd_ptr + 1'b1;
-
-            case ({wr_fire, rd_issue})
+            case ({wr_fire, rd_fire})
                 2'b10:   fifo_count <= fifo_count + 1'b1;
                 2'b01:   fifo_count <= fifo_count - 1'b1;
                 default: fifo_count <= fifo_count;
             endcase
         end
     end
-
-    // ----------------------------------------------------------------
-    // SRAM instance
-    // ----------------------------------------------------------------
-    openram_1k_wrap #(.DEPTH(DEPTH)) u_ram (
-        .clk      (clk),
-        // Port 0: kernel writes
-        .p0_en    (wr_fire),
-        .p0_we    (1'b1),
-        .p0_wmask (4'hF),
-        .p0_addr  (wr_ptr),
-        .p0_din   (s_axis_tdata),
-        .p0_dout  (),
-        // Port 1: DMA reads
-        .p1_en    (rd_issue),
-        .p1_addr  (rd_ptr),
-        .p1_dout  (m_axi_rdata)
-    );
 
 endmodule

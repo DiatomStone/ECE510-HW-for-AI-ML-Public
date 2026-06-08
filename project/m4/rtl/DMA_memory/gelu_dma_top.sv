@@ -3,140 +3,111 @@
 // Project: GELU Activation Kernel - ECE 410/510, M3
 //
 // Description:
-//   Top-level integration with DMA buffers. Connects:
-//     mm2s_buffer  — DMA AXI4-MM write → 1K SRAM → AXI-Stream → kernel
-//     gelu_top     — AXI-Stream kernel (fp32 → Q16.16 GELU → fp32)
-//     s2mm_buffer  — AXI-Stream ← kernel → 1K SRAM → DMA AXI4-MM read
+//   32-lane / wide revision of gelu_dma_top. Connects the macro-free wide DMA
+//   buffers to the parallel kernel:
+//     mm2s_buffer — DMA AXI4-MM write -> wide FIFO -> AXI-Stream -> kernel
+//     gelu_top    — 32 parallel gelu_fp32 pipelines (1024-bit AXI-Stream)
+//     s2mm_buffer — AXI-Stream <- kernel -> wide FIFO -> DMA AXI4-MM read
+//
+//   The whole datapath is DATA_W = NUM_LANES*32 = 1024 bits wide: every AXI
+//   beat (both the AXI4-MM DMA side and the internal AXI-Stream) carries
+//   NUM_LANES = 32 packed IEEE-754 FP32 operands, lane i at bits [i*32 +: 32].
+//
+//   Buffers are sized DEPTH = 256 beats — one max-length AXI4 burst (AxLEN is
+//   8-bit) — sufficient for the serial DMA-write -> stream -> DMA-read test
+//   pattern. They are inferred register-array FIFOs (no SRAM macro / blackbox).
 //
 //   Control:
-//     AXI4-Lite on gelu_top gates the kernel pipeline (pipeline_enable).
-//     stream_enable on mm2s_buffer gates stream output to the kernel.
-//     Both should be asserted after DMA fills the input buffer.
+//     AXI4-Lite on gelu_top gates the kernel (pipeline_enable, 0x00).
+//     stream_enable on mm2s_buffer gates streaming into the kernel.
 //
 // Hierarchy:
 //   gelu_dma_top
-//     ├── mm2s_buffer      (AXI4-MM slave write + SRAM + AXI-Stream master)
-//     │     └── openram_1k_wrap
-//     ├── gelu_top         (existing kernel wrapper, untouched)
-//     │     └── gelu_axi_stream_interface
-//     │           └── gelu_fp32
-//     └── s2mm_buffer      (AXI-Stream slave + SRAM + AXI4-MM slave read)
-//           └── openram_1k_wrap
-//
-// Ports:
-//   clk               - input,  1   : System clock
-//   rst               - input,  1   : Synchronous active-high reset
-//   stream_enable     - input,  1   : Enable mm2s → kernel stream
-//   -- AXI4-Lite (kernel control, pipeline_enable) --
-//   s_axil_awaddr     - input,  32
-//   s_axil_awvalid    - input,  1
-//   s_axil_awready    - output, 1
-//   s_axil_wdata      - input,  32
-//   s_axil_wstrb      - input,  4
-//   s_axil_wvalid     - input,  1
-//   s_axil_wready     - output, 1
-//   s_axil_bresp      - output, 2
-//   s_axil_bvalid     - output, 1
-//   s_axil_bready     - input,  1
-//   s_axil_araddr     - input,  32
-//   s_axil_arvalid    - input,  1
-//   s_axil_arready    - output, 1
-//   s_axil_rdata      - output, 32
-//   s_axil_rresp      - output, 2
-//   s_axil_rvalid     - output, 1
-//   s_axil_rready     - input,  1
-//   -- AXI4-MM write slave (DMA → input buffer) --
-//   dma_in_awaddr     - input,  32
-//   dma_in_awlen      - input,  8
-//   dma_in_awvalid    - input,  1
-//   dma_in_awready    - output, 1
-//   dma_in_wdata      - input,  32
-//   dma_in_wstrb      - input,  4
-//   dma_in_wlast      - input,  1
-//   dma_in_wvalid     - input,  1
-//   dma_in_wready     - output, 1
-//   dma_in_bresp      - output, 2
-//   dma_in_bvalid     - output, 1
-//   dma_in_bready     - input,  1
-//   -- AXI4-MM read slave (DMA ← output buffer) --
-//   dma_out_araddr    - input,  32
-//   dma_out_arlen     - input,  8
-//   dma_out_arvalid   - input,  1
-//   dma_out_arready   - output, 1
-//   dma_out_rdata     - output, 32
-//   dma_out_rresp     - output, 2
-//   dma_out_rvalid    - output, 1
-//   dma_out_rready    - input,  1
-//   dma_out_rlast     - output, 1
+//     ├── mm2s_buffer   (AXI4-MM write + wide FIFO + AXI-Stream master)
+//     ├── gelu_top      (32 parallel gelu_fp32 pipelines)
+//     └── s2mm_buffer   (AXI-Stream slave + wide FIFO + AXI4-MM read)
 // =========================================================================
 
-module gelu_dma_top (
-    input  logic        clk,
-    input  logic        rst,
-    input  logic        stream_enable,
+// Lane count: default 32 (x32). Override with -DGELU_NUM_LANES=8 (Icarus) or
+// VERILOG_DEFINES (OpenLane) to build the x8 variant — one parameterized source.
+`ifndef GELU_NUM_LANES
+  `define GELU_NUM_LANES 32
+`endif
+
+module gelu_dma_top #(
+    parameter int NUM_LANES = `GELU_NUM_LANES,    // parallel pipelines
+    parameter int DATA_W    = NUM_LANES * 32,     // packed bus width
+    parameter int DEPTH     = 256                 // buffer depth in beats (1 AXI burst)
+)(
+    input  logic                clk,
+    input  logic                rst,
+    input  logic                stream_enable,
 
     // AXI4-Lite — kernel pipeline_enable control
-    input  logic [31:0] s_axil_awaddr,
-    input  logic        s_axil_awvalid,
-    output logic        s_axil_awready,
-    input  logic [31:0] s_axil_wdata,
-    input  logic [3:0]  s_axil_wstrb,
-    input  logic        s_axil_wvalid,
-    output logic        s_axil_wready,
-    output logic [1:0]  s_axil_bresp,
-    output logic        s_axil_bvalid,
-    input  logic        s_axil_bready,
-    input  logic [31:0] s_axil_araddr,
-    input  logic        s_axil_arvalid,
-    output logic        s_axil_arready,
-    output logic [31:0] s_axil_rdata,
-    output logic [1:0]  s_axil_rresp,
-    output logic        s_axil_rvalid,
-    input  logic        s_axil_rready,
+    input  logic [31:0]         s_axil_awaddr,
+    input  logic                s_axil_awvalid,
+    output logic                s_axil_awready,
+    input  logic [31:0]         s_axil_wdata,
+    input  logic [3:0]          s_axil_wstrb,
+    input  logic                s_axil_wvalid,
+    output logic                s_axil_wready,
+    output logic [1:0]          s_axil_bresp,
+    output logic                s_axil_bvalid,
+    input  logic                s_axil_bready,
+    input  logic [31:0]         s_axil_araddr,
+    input  logic                s_axil_arvalid,
+    output logic                s_axil_arready,
+    output logic [31:0]         s_axil_rdata,
+    output logic [1:0]          s_axil_rresp,
+    output logic                s_axil_rvalid,
+    input  logic                s_axil_rready,
 
-    // AXI4-MM write slave — DMA fills input buffer
-    input  logic [31:0] dma_in_awaddr,
-    input  logic [7:0]  dma_in_awlen,
-    input  logic        dma_in_awvalid,
-    output logic        dma_in_awready,
-    input  logic [31:0] dma_in_wdata,
-    input  logic [3:0]  dma_in_wstrb,
-    input  logic        dma_in_wlast,
-    input  logic        dma_in_wvalid,
-    output logic        dma_in_wready,
-    output logic [1:0]  dma_in_bresp,
-    output logic        dma_in_bvalid,
-    input  logic        dma_in_bready,
+    // AXI4-MM write slave — DMA fills input buffer (wide)
+    input  logic [31:0]         dma_in_awaddr,
+    input  logic [7:0]          dma_in_awlen,
+    input  logic                dma_in_awvalid,
+    output logic                dma_in_awready,
+    input  logic [DATA_W-1:0]   dma_in_wdata,
+    input  logic [DATA_W/8-1:0] dma_in_wstrb,
+    input  logic                dma_in_wlast,
+    input  logic                dma_in_wvalid,
+    output logic                dma_in_wready,
+    output logic [1:0]          dma_in_bresp,
+    output logic                dma_in_bvalid,
+    input  logic                dma_in_bready,
 
-    // AXI4-MM read slave — DMA drains output buffer
-    input  logic [31:0] dma_out_araddr,
-    input  logic [7:0]  dma_out_arlen,
-    input  logic        dma_out_arvalid,
-    output logic        dma_out_arready,
-    output logic [31:0] dma_out_rdata,
-    output logic [1:0]  dma_out_rresp,
-    output logic        dma_out_rvalid,
-    input  logic        dma_out_rready,
-    output logic        dma_out_rlast
+    // AXI4-MM read slave — DMA drains output buffer (wide)
+    input  logic [31:0]         dma_out_araddr,
+    input  logic [7:0]          dma_out_arlen,
+    input  logic                dma_out_arvalid,
+    output logic                dma_out_arready,
+    output logic [DATA_W-1:0]   dma_out_rdata,
+    output logic [1:0]          dma_out_rresp,
+    output logic                dma_out_rvalid,
+    input  logic                dma_out_rready,
+    output logic                dma_out_rlast
 );
 
-    // Internal AXI-Stream: mm2s_buffer → gelu_top
-    logic [31:0] axis_in_tdata;
-    logic        axis_in_tvalid;
-    logic        axis_in_tready;
-    logic        axis_in_tlast;
+    // Internal AXI-Stream: mm2s_buffer -> gelu_top
+    logic [DATA_W-1:0] axis_in_tdata;
+    logic              axis_in_tvalid;
+    logic              axis_in_tready;
+    logic              axis_in_tlast;
 
-    // Internal AXI-Stream: gelu_top → s2mm_buffer
-    logic [31:0] axis_out_tdata;
-    logic        axis_out_tvalid;
-    logic        axis_out_tready;
-    logic        axis_out_tlast;
-    logic        axis_out_tuser;
+    // Internal AXI-Stream: gelu_top -> s2mm_buffer
+    logic [DATA_W-1:0] axis_out_tdata;
+    logic              axis_out_tvalid;
+    logic              axis_out_tready;
+    logic              axis_out_tlast;
+    logic              axis_out_tuser;
 
     // ----------------------------------------------------------------
-    // Input buffer: DMA write bursts → SRAM → stream to kernel
+    // Input buffer: DMA write bursts -> wide FIFO -> stream to kernel
     // ----------------------------------------------------------------
-    mm2s_buffer u_mm2s (
+    mm2s_buffer #(
+        .DATA_W (DATA_W),
+        .DEPTH  (DEPTH)
+    ) u_mm2s (
         .clk            (clk),
         .rst            (rst),
         .s_axi_awaddr   (dma_in_awaddr),
@@ -159,9 +130,11 @@ module gelu_dma_top (
     );
 
     // ----------------------------------------------------------------
-    // GELU kernel (existing, untouched)
+    // 32-lane GELU kernel
     // ----------------------------------------------------------------
-    gelu_top u_gelu (
+    gelu_top #(
+        .NUM_LANES (NUM_LANES)
+    ) u_gelu (
         .clk            (clk),
         .rst            (rst),
         .s_axil_awaddr  (s_axil_awaddr),
@@ -194,9 +167,12 @@ module gelu_dma_top (
     );
 
     // ----------------------------------------------------------------
-    // Output buffer: stream from kernel → SRAM → DMA read bursts
+    // Output buffer: stream from kernel -> wide FIFO -> DMA read bursts
     // ----------------------------------------------------------------
-    s2mm_buffer u_s2mm (
+    s2mm_buffer #(
+        .DATA_W (DATA_W),
+        .DEPTH  (DEPTH)
+    ) u_s2mm (
         .clk            (clk),
         .rst            (rst),
         .s_axis_tdata   (axis_out_tdata),

@@ -4,7 +4,6 @@
     "dir::../rtl/DMA_memory/gelu_dma_top.sv",
     "dir::../rtl/DMA_memory/mm2s_buffer.sv",
     "dir::../rtl/DMA_memory/s2mm_buffer.sv",
-    "dir::../rtl/DMA_memory/openram_1k_wrap.sv",
     "dir::../rtl/top.sv",
     "dir::../rtl/interface.sv",
     "dir::../rtl/gelu_fp32.sv",
@@ -12,6 +11,7 @@
     "dir::../rtl/fp32_to_q16.sv",
     "dir::../rtl/q16_to_fp32.sv"
   ],
+  "VERILOG_DEFINES": ["SYNTHESIS", "GELU_NUM_LANES=1"],
   "CLOCK_PORT": "clk",
   "CLOCK_PERIOD": 22,
   "FP_CORE_UTIL": 35,

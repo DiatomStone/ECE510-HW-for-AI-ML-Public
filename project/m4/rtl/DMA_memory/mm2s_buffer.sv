@@ -3,81 +3,112 @@
 // Project: GELU Activation Kernel - ECE 410/510, M3
 //
 // Description:
-//   Input DMA buffer. Accepts AXI4-MM write bursts from the DMA engine and
-//   streams stored data out to the kernel over AXI4-Stream.
+//   Macro-free input DMA buffer for the (parameterized) kernel. Accepts AXI4-MM
+//   write bursts from the DMA engine and streams stored beats out to the kernel
+//   over a DATA_W = NUM_LANES*32-wide AXI4-Stream (NUM_LANES FP32 per beat).
 //
-//   Backed by openram_1k_wrap (1024 x 32-bit): port 0 = DMA write,
-//   port 1 = stream read (1-cycle registered read latency).
+//   Storage is an inferred register-array FIFO — pure standard cells, no SRAM
+//   macro, no blackbox, no OpenLane MACROS config. It is sized SHALLOW (DEPTH
+//   beats) rather than deep: a streaming feed-through kernel only needs enough
+//   elastic buffering to cover DMA burst jitter and the 12-cycle pipeline
+//   latency, not deep on-chip residency.
 //
-//   Read path: a per-burst length FIFO frames TLAST independently of the
-//   write side, and a credit-gated prefetch FIFO absorbs the 1-cycle SRAM
-//   read latency to sustain 1 word/cycle without dead cycles.
+//   Trading depth for width keeps the flop count flat: the original 32-bit ×
+//   1024-deep buffer was 32 Kbit; DATA_W=1024 × DEPTH=32 is also 32 Kbit, but
+//   delivers a full 1024-bit beat every cycle.
+//
+//   Because the FIFO read is combinational (first-word fall-through, zero read
+//   latency), the prefetch FIFO + credit logic and the separate length FIFO
+//   used by the SRAM version are unnecessary: per-beat TLAST is stored next to
+//   the data and pops out directly. AXI4-Stream framing = AXI4-MM WLAST.
+//
+//   addr is FIFO-ordered (awaddr is ignored, as in the v1 buffer). Partial
+//   write strobes are not supported — the DMA is expected to write whole
+//   DATA_W beats (wstrb all-ones); wstrb is accepted but not byte-masked.
+//
+// Ports:
+//   clk            - input,  1        : System clock
+//   rst            - input,  1        : Synchronous active-high reset
+//   s_axi_awaddr   - input,  32       : Write address (ignored; FIFO-ordered)
+//   s_axi_awlen    - input,  8        : Burst length minus 1 (AXI4)
+//   s_axi_awvalid  - input,  1        : Write address valid
+//   s_axi_awready  - output, 1        : Write address ready
+//   s_axi_wdata    - input,  DATA_W   : Write data (one packed beat)
+//   s_axi_wstrb    - input,  DATA_W/8 : Byte strobes (accepted, assumed all-1s)
+//   s_axi_wlast    - input,  1        : Last beat of write burst -> TLAST
+//   s_axi_wvalid   - input,  1        : Write data valid
+//   s_axi_wready   - output, 1        : Write data ready (deasserts when full)
+//   s_axi_bresp    - output, 2        : Write response (00 = OKAY)
+//   s_axi_bvalid   - output, 1        : Write response valid
+//   s_axi_bready   - input,  1        : Write response ready
+//   m_axis_tdata   - output, DATA_W   : Stream data to kernel (packed beat)
+//   m_axis_tvalid  - output, 1        : Stream valid (FIFO non-empty & enabled)
+//   m_axis_tready  - input,  1        : Stream ready (backpressure from kernel)
+//   m_axis_tlast   - output, 1        : Stream end-of-packet (stored WLAST)
+//   stream_enable  - input,  1        : Gate output streaming
 // =========================================================================
 
-module mm2s_buffer (
-    input  logic        clk,
-    input  logic        rst,
+module mm2s_buffer #(
+    parameter int DATA_W = 1024,                 // packed beat width (32 FP32 lanes)
+    parameter int DEPTH  = 32                    // FIFO depth in beats
+)(
+    input  logic                clk,
+    input  logic                rst,
 
     // AXI4-MM write slave (DMA -> buffer)
-    input  logic [31:0] s_axi_awaddr,
-    input  logic [7:0]  s_axi_awlen,
-    input  logic        s_axi_awvalid,
-    output logic        s_axi_awready,
-    input  logic [31:0] s_axi_wdata,
-    input  logic [3:0]  s_axi_wstrb,
-    input  logic        s_axi_wlast,
-    input  logic        s_axi_wvalid,
-    output logic        s_axi_wready,
-    output logic [1:0]  s_axi_bresp,
-    output logic        s_axi_bvalid,
-    input  logic        s_axi_bready,
+    input  logic [31:0]         s_axi_awaddr,
+    input  logic [7:0]          s_axi_awlen,
+    input  logic                s_axi_awvalid,
+    output logic                s_axi_awready,
+    input  logic [DATA_W-1:0]   s_axi_wdata,
+    input  logic [DATA_W/8-1:0] s_axi_wstrb,
+    input  logic                s_axi_wlast,
+    input  logic                s_axi_wvalid,
+    output logic                s_axi_wready,
+    output logic [1:0]          s_axi_bresp,
+    output logic                s_axi_bvalid,
+    input  logic                s_axi_bready,
 
     // AXI4-Stream master (buffer -> kernel)
-    output logic [31:0] m_axis_tdata,
-    output logic        m_axis_tvalid,
-    input  logic        m_axis_tready,
-    output logic        m_axis_tlast,
+    output logic [DATA_W-1:0]   m_axis_tdata,
+    output logic                m_axis_tvalid,
+    input  logic                m_axis_tready,
+    output logic                m_axis_tlast,
 
     // Control
-    input  logic        stream_enable
+    input  logic                stream_enable
 );
 
-    localparam int DEPTH    = 256;   // inferred RAM depth (was 1024; shrunk so
-    localparam int PTR_W    = 8;      // gelu_dma_top routes — DMA bursts are <=256)
-    localparam int CNT_W    = 9;
-    localparam int LF_DEPTH = 16;
-    localparam int LF_PTR_W = 4;
-    localparam int LF_CNT_W = 5;
-    localparam int PF_DEPTH = 4;
-    localparam int PF_PTR_W = 2;
-    localparam int PF_CNT_W = 3;
-    localparam int CR_W     = 3;   // holds 0..PF_DEPTH
+    localparam int PTR_W = (DEPTH > 1) ? $clog2(DEPTH) : 1;
+    localparam int CNT_W = $clog2(DEPTH + 1);
 
     // ----------------------------------------------------------------
-    // Data FIFO occupancy (SRAM is the storage array)
+    // Inferred register-array FIFO: stores {tlast, data} per beat.
+    // Combinational (first-word fall-through) read — zero read latency.
     // ----------------------------------------------------------------
-    logic [PTR_W-1:0] wr_ptr, rd_ptr;
-    logic [CNT_W-1:0] fifo_count;
+    logic [DATA_W-1:0] fifo_data [DEPTH];
+    logic              fifo_last [DEPTH];
+    logic [PTR_W-1:0]  wr_ptr, rd_ptr;
+    logic [CNT_W-1:0]  fifo_count;
 
     wire fifo_full  = (fifo_count == CNT_W'(DEPTH));
     wire fifo_empty = (fifo_count == '0);
 
-    logic wr_fire;
-    assign wr_fire = s_axi_wvalid && s_axi_wready;
+    wire wr_fire = s_axi_wvalid && s_axi_wready;
+    wire rd_fire = m_axis_tvalid && m_axis_tready;
 
     // ----------------------------------------------------------------
-    // AXI4-MM write state machine
+    // AXI4-MM write state machine (AW -> data burst -> B response)
     // ----------------------------------------------------------------
     typedef enum logic [1:0] { IDLE, BURST, RESP } aw_state_t;
-    aw_state_t aw_state;
-
+    aw_state_t  aw_state;
     logic [7:0] beats_left;
 
     assign s_axi_awready = (aw_state == IDLE);
     assign s_axi_wready  = (aw_state == BURST) && !fifo_full;
     assign s_axi_bresp   = 2'b00;
 
-    wire aw_fire = s_axi_awvalid && s_axi_awready;   // AW handshake
+    wire aw_fire = s_axi_awvalid && s_axi_awready;
 
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -114,143 +145,7 @@ module mm2s_buffer (
     end
 
     // ----------------------------------------------------------------
-    // Length FIFO: push AWLEN on each AW handshake (BEFORE the burst's
-    // data arrives), pop when the read side begins draining a new burst.
-    // This decouples per-burst TLAST framing from the single write FSM.
-    // ----------------------------------------------------------------
-    logic [7:0]          lf_mem [0:LF_DEPTH-1];
-    logic [LF_PTR_W-1:0] lf_wr, lf_rd;
-    logic [LF_CNT_W-1:0] lf_count;
-
-    wire       lf_empty = (lf_count == '0);
-    wire [7:0] lf_head  = lf_mem[lf_rd];
-
-    logic lf_push, lf_pop;
-    assign lf_push = aw_fire;
-
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            lf_wr    <= '0;
-            lf_rd    <= '0;
-            lf_count <= '0;
-        end else begin
-            if (lf_push) begin
-                lf_mem[lf_wr] <= s_axi_awlen;
-                lf_wr <= lf_wr + 1'b1;
-            end
-            if (lf_pop)
-                lf_rd <= lf_rd + 1'b1;
-            case ({lf_push, lf_pop})
-                2'b10:   lf_count <= lf_count + 1'b1;
-                2'b01:   lf_count <= lf_count - 1'b1;
-                default: lf_count <= lf_count;
-            endcase
-        end
-    end
-
-    // ----------------------------------------------------------------
-    // Credit-gated read issue + prefetch FIFO
-    //   A read issued this cycle lands on sram_rdata next cycle. Each
-    //   issue consumes a credit (reserves a prefetch slot); each stream
-    //   pop returns a credit. This removes the 50% dead-cycle and never
-    //   overflows the prefetch FIFO.
-    // ----------------------------------------------------------------
-    logic [CR_W-1:0] credits;
-
-    logic rd_issue;
-    assign rd_issue = stream_enable && !fifo_empty && (credits != '0);
-
-    logic [31:0] sram_rdata;   // SRAM port-1 read data (1-cycle latency)
-    logic        rd_issue_d;   // read result valid this cycle
-    logic        last_d;       // TLAST flag aligned to landing data
-
-    // TLAST tracking on the read (issue) side
-    logic [7:0] rd_beats_left;
-    logic       rd_active;
-
-    wire start_burst = rd_issue && !rd_active;
-    assign lf_pop = start_burst;
-
-    wire last_comb = start_burst ? (lf_head == 8'd0)
-                                 : (rd_beats_left == 8'd1);
-
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            rd_beats_left <= '0;
-            rd_active     <= 1'b0;
-        end else if (rd_issue) begin
-            if (!rd_active) begin
-                rd_beats_left <= lf_head;
-                rd_active     <= (lf_head != 8'd0);
-            end else begin
-                rd_beats_left <= rd_beats_left - 1'b1;
-                if (rd_beats_left == 8'd1)
-                    rd_active <= 1'b0;
-            end
-        end
-    end
-
-    // Pipeline issue + last flag one cycle to align with SRAM data landing
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            rd_issue_d <= 1'b0;
-            last_d     <= 1'b0;
-        end else begin
-            rd_issue_d <= rd_issue;
-            if (rd_issue)
-                last_d <= last_comb;
-        end
-    end
-
-    // Prefetch FIFO: stores {last, data}
-    logic [32:0]         pf_mem [0:PF_DEPTH-1];
-    logic [PF_PTR_W-1:0] pf_wr, pf_rd;
-    logic [PF_CNT_W-1:0] pf_count;
-
-    wire pf_empty = (pf_count == '0);
-
-    wire pf_push = rd_issue_d;
-    wire pf_pop  = m_axis_tvalid && m_axis_tready;
-
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            pf_wr    <= '0;
-            pf_rd    <= '0;
-            pf_count <= '0;
-        end else begin
-            if (pf_push) begin
-                pf_mem[pf_wr] <= {last_d, sram_rdata};
-                pf_wr <= pf_wr + 1'b1;
-            end
-            if (pf_pop)
-                pf_rd <= pf_rd + 1'b1;
-            case ({pf_push, pf_pop})
-                2'b10:   pf_count <= pf_count + 1'b1;
-                2'b01:   pf_count <= pf_count - 1'b1;
-                default: pf_count <= pf_count;
-            endcase
-        end
-    end
-
-    always_ff @(posedge clk) begin
-        if (rst)
-            credits <= CR_W'(PF_DEPTH);
-        else begin
-            case ({rd_issue, pf_pop})
-                2'b10:   credits <= credits - 1'b1;
-                2'b01:   credits <= credits + 1'b1;
-                default: credits <= credits;
-            endcase
-        end
-    end
-
-    // AXI-Stream outputs driven from prefetch FIFO head (first-word fall-through)
-    assign m_axis_tvalid = !pf_empty;
-    assign m_axis_tdata  = pf_mem[pf_rd][31:0];
-    assign m_axis_tlast  = pf_mem[pf_rd][32];
-
-    // ----------------------------------------------------------------
-    // Data FIFO pointer / count update
+    // FIFO write / read / occupancy
     // ----------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -258,11 +153,15 @@ module mm2s_buffer (
             rd_ptr     <= '0;
             fifo_count <= '0;
         end else begin
-            if (wr_fire)
-                wr_ptr <= wr_ptr + 1'b1;
-            if (rd_issue)
-                rd_ptr <= rd_ptr + 1'b1;
-            case ({wr_fire, rd_issue})
+            if (wr_fire) begin
+                fifo_data[wr_ptr] <= s_axi_wdata;
+                fifo_last[wr_ptr] <= s_axi_wlast;
+                wr_ptr <= (wr_ptr == PTR_W'(DEPTH-1)) ? '0 : wr_ptr + 1'b1;
+            end
+            if (rd_fire)
+                rd_ptr <= (rd_ptr == PTR_W'(DEPTH-1)) ? '0 : rd_ptr + 1'b1;
+
+            case ({wr_fire, rd_fire})
                 2'b10:   fifo_count <= fifo_count + 1'b1;
                 2'b01:   fifo_count <= fifo_count - 1'b1;
                 default: fifo_count <= fifo_count;
@@ -271,19 +170,10 @@ module mm2s_buffer (
     end
 
     // ----------------------------------------------------------------
-    // SRAM instance
+    // AXI-Stream master outputs (first-word fall-through)
     // ----------------------------------------------------------------
-    openram_1k_wrap #(.DEPTH(DEPTH)) u_ram (
-        .clk      (clk),
-        .p0_en    (wr_fire),
-        .p0_we    (1'b1),
-        .p0_wmask (s_axi_wstrb),
-        .p0_addr  (wr_ptr),
-        .p0_din   (s_axi_wdata),
-        .p0_dout  (),
-        .p1_en    (rd_issue),
-        .p1_addr  (rd_ptr),
-        .p1_dout  (sram_rdata)
-    );
+    assign m_axis_tvalid = stream_enable && !fifo_empty;
+    assign m_axis_tdata  = fifo_data[rd_ptr];
+    assign m_axis_tlast  = fifo_last[rd_ptr];
 
 endmodule

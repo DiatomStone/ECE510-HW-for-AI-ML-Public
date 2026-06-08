@@ -18,7 +18,7 @@ Bytes = shape * bytes/element * 2 (in and out)
 AI (OPs/B) = 2^17*62 /1 MB =  8.12 OPs/B
 AI (elem/B) = 2^17 / 1MB = 0.1310 elem/B
 
-PCIe 4 Hardware 38.4 GB/s / 4 (bytes/element)= 4.8 G elem/s
+PCIe 4 Hardware 38.4 GB/s 
 old hardware peak 102.4 GFLOPs/s / 9 (flop/element) = 11.38 G elements /s 
 
 

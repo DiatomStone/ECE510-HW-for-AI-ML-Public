@@ -8,7 +8,10 @@
     "dir::../rtl/fp32_to_q16.sv",
     "dir::../rtl/q16_to_fp32.sv"
   ],
-  "VERILOG_DEFINES": ["SYNTHESIS"],
+  "VERILOG_DEFINES": [
+    "SYNTHESIS",
+    "GELU_NUM_LANES=1"
+  ],
   "CLOCK_PORT": "clk",
   "CLOCK_PERIOD": 22,
   "PDK": "sky130A",

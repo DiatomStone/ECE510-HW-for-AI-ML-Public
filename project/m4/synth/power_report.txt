@@ -1,0 +1,58 @@
+OpenLane 2 Power Estimation Report
+Design  : gelu_top   (GELU_NUM_LANES = 8, 256-bit AXI-Stream)
+PDK     : sky130A  /  sky130_fd_sc_hd
+Run     : RUN_2026-06-07_14-45-32   (x8 parallel, direct stream — no DMA)
+Tool    : OpenROAD (report_power, post-route with extracted parasitics)
+Corner  : nom_tt_025C_1v80  (nominal process, 25°C, 1.8 V)
+
+============================================================
+POWER SUMMARY  (nom_tt_025C_1v80)
+============================================================
+
+Group            Internal (W)   Switching (W)   Leakage (W)     Total (W)    %
+─────────────────────────────────────────────────────────────────────────────────
+Sequential      1.868795e-02   2.311442e-03    6.905418e-08   2.099946e-02   9.2%
+Combinational   8.325311e-02   1.092977e-01    2.706631e-07   1.925511e-01  84.3%
+Clock           7.817812e-03   6.995175e-03    1.574122e-07   1.481314e-02   6.5%
+Macro           0.000000e+00   0.000000e+00    0.000000e+00   0.000000e+00   0.0%
+Pad             0.000000e+00   0.000000e+00    0.000000e+00   0.000000e+00   0.0%
+─────────────────────────────────────────────────────────────────────────────────
+Total           1.097681e-01   1.186044e-01    4.971113e-07   2.283730e-01 100.0%
+                     48.1%          51.9%           ~0.0%
+
+  Total power :  228.37 mW
+  Internal    :  109.77 mW  (48.1%)
+  Switching   :  118.60 mW  (51.9%)
+  Leakage     :   0.497 µW  (~0%)
+
+  Scaling vs v1 gelu_top (1 lane, 30.22 mW @ nom_tt): 228.37 / 30.22 = 7.56×
+  (≈ the 8× lane count; combinational/datapath power dominates as in v1.)
+
+============================================================
+OTHER CORNER (high-voltage worst case)
+============================================================
+
+  final/metrics.json power__total = 267.8 mW  (Internal 122.7 / Switching 145.1 /
+  Leakage 0.89 µW). This is the 1.95 V ff corner (nom_ff_n40C_1v95); dynamic
+  power scales ~(1.95/1.80)² = 1.17× over the 1.8 V nom_tt figure above.
+  Use 228 mW as the nominal-operating-point number, 268 mW as the high-V bound.
+
+============================================================
+NOTES
+============================================================
+
+- Power estimation used OpenROAD report_power with post-route extracted
+  parasitics (SPEF). Activity factors are the OpenROAD defaults
+  (toggle rate = 0.1, static probability = 0.5).
+- Combinational logic dominates at 84.3% of total power, consistent with the
+  eight parallel 32×32-bit multiplies in compute_core stage 3.
+- Switching power (51.9%) slightly exceeds internal power (48.1%): the design is
+  net-switching dominated — typical for datapath-heavy arithmetic pipelines, and
+  the 256-bit lane-packed buses add switching nets vs the 1-lane v1.
+- For a tighter estimate, drive report_power with a VCD toggle-rate file from the
+  cocotb x8 co-sim (tb_top, inloop_x8 target @ GELU_NUM_LANES=8) instead of the default
+  activity factors. The current estimate overstates power for inputs near zero
+  (PWL clamps early → low switching activity).
+
+Source: 54-openroad-stapostpnr/nom_tt_025C_1v80/power.rpt  (see ./power.rpt)
+        final/metrics.json  (ff-corner total)

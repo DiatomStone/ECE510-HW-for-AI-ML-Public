@@ -1,0 +1,76 @@
+OpenLane 2 Post-Route Static Timing Analysis
+Design  : gelu_top   (GELU_NUM_LANES = 8, 256-bit AXI-Stream)
+PDK     : sky130A  /  sky130_fd_sc_hd
+Run     : RUN_2026-06-07_14-45-32   (x8 parallel, direct stream — no DMA)
+Clock   : clk  period = 22.000 ns
+
+============================================================
+SUMMARY — nom_tt_025C_1v80 (nominal, typical-typical corner)
+============================================================
+
+  Worst Negative Slack (setup) :   0.000 ns   ← MET
+  Worst Negative Slack (hold)  :   0.000 ns   ← MET
+  Total Negative Slack (setup) :   0.000 ns
+  Total Negative Slack (hold)  :   0.000 ns
+
+  Worst setup slack (nom_tt)   :  11.382 ns
+  Worst hold  slack (nom_tt)   :   0.284 ns
+  Critical-path data arrival   :  12.345 ns
+  Clock period (constraint)    :  22.000 ns
+
+  Max-cap violations           :  18 (nom_tt); 22 worst-corner
+  Max-slew violations          :  17 (nom_tt); 632 worst-corner (max_ss_100C_1v60)
+
+  Sign-off checks: route DRC = 0, magic DRC = 0, klayout DRC = 0,
+                   LVS errors = 0, XOR diff = 0, PDN violations = 0.
+
+============================================================
+CRITICAL PATH DETAIL  (Setup, nom_tt_025C_1v80)
+============================================================
+
+  Startpoint : _102449_  (FF, posedge clk)
+               net: u_interface.g_lane[5].u_gelu_fp32.u_synth_top.s2_m[17]
+               — Stage-2 slope register (s2_m) in compute_core, LANE 5
+  Endpoint   : _103435_  (FF, posedge clk)
+               — Downstream pipeline register (Stage 3/4 boundary in compute_core)
+
+  Path delay breakdown (selected stages):
+    Clock launch + clock tree                      2.043 ns
+    _102449_/Q  (dfxtp_1, slope bit output)        0.424 ns
+    Fanout buffers  (fanout4371 → 4370 → … 4367)   1.375 ns
+    NAND/OR/AND multiply logic (o21a, a21o, nand3) ~6.8 ns
+    OR/AND adder tree + saturation                 ~1.6 ns
+    Final gate → endpoint/D                        ~0.1 ns
+    ─────────────────────────────────────────────
+    Data arrival time                             12.345 ns
+    Data required time (22 ns − uncertainty − tsu) 23.727 ns
+    Slack                                         11.382 ns  (MET)
+
+  Same structural critical path as v1 (the 32×32 signed multiply in compute_core
+  stage 3), now resolved inside lane 5 of the generate array. Per-lane logic is
+  identical, so the critical path is one lane's multiply — lane count does NOT
+  lengthen it (lanes run in parallel, not in series).
+
+============================================================
+MULTI-CORNER SLACK SUMMARY  (from summary.rpt)
+============================================================
+
+  Corner                  Setup WS     Hold WS    Result
+  ─────────────────────────────────────────────────────
+  nom_tt_025C_1v80         11.382        0.284     MET
+  nom_ff_n40C_1v95         13.628        0.091     MET
+  nom_ss_100C_1v60          0.768        0.395     MET
+  min_tt_025C_1v80         11.576        0.286     MET
+  min_ss_100C_1v60          1.069        0.555     MET
+  min_ff_n40C_1v95         13.794        0.093     MET
+  max_tt_025C_1v80         11.176        0.286     MET
+  max_ss_100C_1v60          0.468        0.256     MET   ← worst setup corner
+  max_ff_n40C_1v95         13.480        0.087     MET   ← worst hold corner
+
+  All corners: setup AND hold MET, zero violating paths (TNS = 0).
+  Worst setup slack across all corners = +0.468 ns (max_ss_100C_1v60) — still
+  positive. Max-slew violations appear only at ss (low-V, hot) corners; not the
+  design target operating point.
+
+Source: 54-openroad-stapostpnr/summary.rpt, nom_tt_025C_1v80/{wns,ws,max}.rpt
+        (raw copies: ./summary.rpt, ./wns.max.rpt, ./ws.max.rpt, ./wns.min.rpt, ./ws.min.rpt)

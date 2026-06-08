@@ -1,0 +1,36 @@
+                                                          return event.data
+   330.00ns INFO     cocotb.gelu_dma_top                Layer 0: offloading GELU via wide DMA — 131072 elements in 16 burst(s) of <= 256 beats (32 lanes)
+186186.00ns INFO     cocotb.gelu_dma_top                Layer 1: offloading GELU via wide DMA — 131072 elements in 16 burst(s) of <= 256 beats (32 lanes)
+372042.00ns INFO     cocotb.gelu_dma_top                
+                                                        === Full-Model In-Loop GELU Co-Sim (v2 wide DMA path) — Timing & Metrics ===
+372042.00ns INFO     cocotb.gelu_dma_top                  Model              : M1 transformer, 2 layers, B=8 T=64 d_ff=256 (seed=42)
+372042.00ns INFO     cocotb.gelu_dma_top                  Parallelization    : 32 lanes (1024-bit DMA + AXI-Stream)
+372042.00ns INFO     cocotb.gelu_dma_top                  Path               : AXI-MM DMA → mm2s → kernel → s2mm → AXI-MM DMA
+372042.00ns INFO     cocotb.gelu_dma_top                  Elements streamed  : 262144  in 32 DMA bursts (8192 beats)
+372042.00ns INFO     cocotb.gelu_dma_top                  Clock (synth)      : 22 ns  (45.45 MHz)
+372042.00ns INFO     cocotb.gelu_dma_top                  --- MEASURED (cycle-accurate Icarus, full DMA round-trip) ---
+372042.00ns INFO     cocotb.gelu_dma_top                  DMA round-trip time: 371712 ns (~16896 cycles incl. write+compute+read)
+372042.00ns INFO     cocotb.gelu_dma_top                  Throughput         : 705.23 M elem/s  (0.0645 cycles/elem, 2.062 cycles/beat)
+372042.00ns INFO     cocotb.gelu_dma_top                  AXI bandwidth/dir  : 2820.9 MB/s (in, and out)
+372042.00ns INFO     cocotb.gelu_dma_top                  AXI bandwidth total: 5641.9 MB/s (in+out)
+372042.00ns INFO     cocotb.gelu_dma_top                  --- HOST-SIDE CONVERSION (informational, not kernel time) ---
+372042.00ns INFO     cocotb.gelu_dma_top                  fp64<->fp32 casts  : 453.5 us total (host, both directions)
+372042.00ns INFO     cocotb.gelu_dma_top                  --- KERNEL ACCURACY (per-element, all layers) ---
+372042.00ns INFO     cocotb.gelu_dma_top                  GELU max error     : 0.026311
+372042.00ns INFO     cocotb.gelu_dma_top                  GELU failures      : 0 / 262144  (threshold 0.05)
+372042.00ns INFO     cocotb.gelu_dma_top                  --- LOOP CLOSURE: final logits vs all-software forward() ---
+372042.00ns INFO     cocotb.gelu_dma_top                  Logits avg / max   : 0.015396 / 0.104763
+372042.00ns INFO     cocotb.gelu_dma_top                  Next-token argmax  : 503/512 positions match software
+372042.00ns INFO     cocotb.gelu_dma_top                =========================================================
+PASS
+372042.00ns INFO     cocotb.gelu_dma_top                PASS
+372042.00ns INFO     cocotb.regression                  tb_top_inloop_dma.test_gelu_dma_inloop passed
+372042.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** tb_top_inloop_dma.test_gelu_dma_inloop   PASS      372042.00          16.86      22062.59  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                       372042.00          16.86      22060.70  **
+                                                        ************************************************************************************************
+FST info: dumpfile sim_build/gelu_dma_top.fst opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m4'

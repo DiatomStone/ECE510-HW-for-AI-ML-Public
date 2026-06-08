@@ -3,62 +3,40 @@
 // Project: GELU Activation Kernel - ECE 410/510, M3
 //
 // Description:
-//   Top-level integration module. Instantiates gelu_axi_stream_interface,
-//   which wraps gelu_fp32 (fp32_to_q16 -> compute_core -> q16_to_fp32).
-//   All host communication flows through the AXI4-Stream data ports and
-//   the AXI4-Lite control port. No direct access to internal sub-modules.
+//   Parallel revision of gelu_top. Wraps gelu_axi_stream_interface, which
+//   instantiates NUM_LANES (=32) gelu_fp32 pipelines and processes NUM_LANES
+//   packed FP32 operands per AXI-Stream beat (SIMD lockstep).
 //
 //   Hierarchy:
 //     gelu_top
-//       └── gelu_axi_stream_interface   (AXI protocol + FIFO + backpressure)
-//             └── gelu_fp32             (FP32 end-to-end datapath, 12 cycles)
-//                   ├── fp32_to_q16     (IEEE-754 -> Q16.16, 4 stages)
-//                   ├── compute_core    (GELU PWL approximation, 4 stages)
-//                   └── q16_to_fp32    (Q16.16 -> IEEE-754, 4 stages)
+//       └── gelu_axi_stream_interface   (AXI protocol + FIFO + 32 lanes)
+//             └── gelu_fp32  × NUM_LANES    (FP32 end-to-end datapath, 12 cyc)
+//                   ├── fp32_to_q16
+//                   ├── compute_core
+//                   └── q16_to_fp32
 //
-//   Glue logic: none. The interface module absorbs all handshake adaptation,
-//   backpressure buffering, and metadata delay internally. The top level is
-//   a direct port-to-port connection with no additional logic.
+//   Only difference vs gelu_top: the AXI4-Stream data buses are widened to
+//   NUM_LANES*DATA_WIDTH bits.  s_axis_tdata[ (i+1)*32-1 : i*32 ] is lane i's
+//   FP32 operand; m_axis_tdata is the matching packed result.  AXI4-Lite
+//   control and all sideband signals are unchanged.
 //
-// Clock Domain:
-//   Single clock domain (clk). All sequential logic on posedge clk.
-//
-// Reset:
-//   Synchronous, active-high (rst).
-//
-// Ports:
-//   clk             - input,  1                : System clock
-//   rst             - input,  1                : Synchronous active-high reset
-//   s_axil_awaddr   - input,  32               : AXI-Lite write address
-//   s_axil_awvalid  - input,  1                : AXI-Lite write address valid
-//   s_axil_awready  - output, 1                : AXI-Lite write address ready
-//   s_axil_wdata    - input,  32               : AXI-Lite write data
-//   s_axil_wstrb    - input,  4                : AXI-Lite write byte strobes
-//   s_axil_wvalid   - input,  1                : AXI-Lite write data valid
-//   s_axil_wready   - output, 1                : AXI-Lite write data ready
-//   s_axil_bresp    - output, 2                : AXI-Lite write response
-//   s_axil_bvalid   - output, 1                : AXI-Lite write response valid
-//   s_axil_bready   - input,  1                : AXI-Lite write response ready
-//   s_axil_araddr   - input,  32               : AXI-Lite read address
-//   s_axil_arvalid  - input,  1                : AXI-Lite read address valid
-//   s_axil_arready  - output, 1                : AXI-Lite read address ready
-//   s_axil_rdata    - output, 32               : AXI-Lite read data
-//   s_axil_rresp    - output, 2                : AXI-Lite read response
-//   s_axil_rvalid   - output, 1                : AXI-Lite read data valid
-//   s_axil_rready   - input,  1                : AXI-Lite read data ready
-//   s_axis_tdata    - input,  32               : Input stream FP32 operand
-//   s_axis_tvalid   - input,  1                : Input stream data valid
-//   s_axis_tready   - output, 1                : Input stream ready (backpressure)
-//   s_axis_tlast    - input,  1                : Input stream end-of-packet marker
-//   s_axis_tuser    - input,  1                : Input stream sideband metadata
-//   m_axis_tdata    - output, 32               : Output stream FP32 GELU result
-//   m_axis_tvalid   - output, 1                : Output stream data valid
-//   m_axis_tready   - input,  1                : Output stream ready (backpressure)
-//   m_axis_tlast    - output, 1                : Output stream end-of-packet marker
-//   m_axis_tuser    - output, 1                : Output stream sideband metadata
+// Clock Domain: single clock (clk), all logic on posedge clk.
+// Reset:        synchronous, active-high (rst).
 // =========================================================================
 
-module gelu_top (
+// Lane count: default 32 (x32). Override with -DGELU_NUM_LANES=8 (Icarus) or
+// VERILOG_DEFINES (OpenLane) to build the x8 variant — one parameterized source.
+`ifndef GELU_NUM_LANES
+  `define GELU_NUM_LANES 32
+`endif
+
+module gelu_top #(
+    parameter int DATA_WIDTH = 32,   // per-lane FP32 width
+    parameter int NUM_LANES  = `GELU_NUM_LANES,   // parallel gelu_fp32 pipelines
+    parameter int USER_WIDTH = 1,
+    parameter int PIPE_DEPTH = 12,
+    parameter int FIFO_DEPTH = 16
+)(
     input  logic clk,
     input  logic rst,
 
@@ -81,26 +59,27 @@ module gelu_top (
     output logic        s_axil_rvalid,
     input  logic        s_axil_rready,
 
-    // AXI4-Stream Slave (FP32 input)
-    input  logic [31:0] s_axis_tdata,
-    input  logic        s_axis_tvalid,
-    output logic        s_axis_tready,
-    input  logic        s_axis_tlast,
-    input  logic        s_axis_tuser,
+    // AXI4-Stream Slave (packed FP32 input — NUM_LANES operands per beat)
+    input  logic [NUM_LANES*DATA_WIDTH-1:0] s_axis_tdata,
+    input  logic                            s_axis_tvalid,
+    output logic                            s_axis_tready,
+    input  logic                            s_axis_tlast,
+    input  logic [USER_WIDTH-1:0]           s_axis_tuser,
 
-    // AXI4-Stream Master (FP32 output)
-    output logic [31:0] m_axis_tdata,
-    output logic        m_axis_tvalid,
-    input  logic        m_axis_tready,
-    output logic        m_axis_tlast,
-    output logic        m_axis_tuser
+    // AXI4-Stream Master (packed FP32 output — NUM_LANES results per beat)
+    output logic [NUM_LANES*DATA_WIDTH-1:0] m_axis_tdata,
+    output logic                            m_axis_tvalid,
+    input  logic                            m_axis_tready,
+    output logic                            m_axis_tlast,
+    output logic [USER_WIDTH-1:0]           m_axis_tuser
 );
 
     gelu_axi_stream_interface #(
-        .DATA_WIDTH (32),
-        .USER_WIDTH (1),
-        .PIPE_DEPTH (12),
-        .FIFO_DEPTH (16)
+        .DATA_WIDTH (DATA_WIDTH),
+        .NUM_LANES  (NUM_LANES),
+        .USER_WIDTH (USER_WIDTH),
+        .PIPE_DEPTH (PIPE_DEPTH),
+        .FIFO_DEPTH (FIFO_DEPTH)
     ) u_interface (
         .clk            (clk),
         .rst            (rst),

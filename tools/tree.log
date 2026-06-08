@@ -176,9 +176,12 @@
 │       ├── README.md
 │       └── TTS
 │           ├── Edge-tts.sh
+│           ├── input
+│           ├── output
 │           ├── Piper_rttts.sh
 │           ├── Piper-tts.sh
-│           └── piper.txt
+│           ├── piper.txt
+│           └── voices
 ├── project
 │   ├── algorithm_diagram.png
 │   ├── cocotb_toolchain
@@ -336,132 +339,140 @@
 │   │       ├── tb_q16_to_fp32.py
 │   │       └── tb_top.py
 │   ├── m4
+│   │   ├── bench
+│   │   │   ├── benchmark_data.csv
+│   │   │   ├── benchmark.md
+│   │   │   ├── roofline_all_elem.png
+│   │   │   ├── roofline_all.png
+│   │   │   ├── roofline_final_elem.png
+│   │   │   ├── roofline_final.png
+│   │   │   ├── roofline_flop.png
+│   │   │   ├── sim_output
+│   │   │   │   ├── s1_x1_direct.txt
+│   │   │   │   ├── s2_x8_direct.txt
+│   │   │   │   ├── s3_x32_direct.txt
+│   │   │   │   ├── s4_x1_dma.txt
+│   │   │   │   ├── s5_x8_dma.txt
+│   │   │   │   └── s6_x32_dma.txt
+│   │   │   └── speedup.png
 │   │   ├── documents
-│   │   │   ├── benchmark_results.md
 │   │   │   ├── explanation.md
+│   │   │   ├── gelu_pipeline_stages.md
 │   │   │   ├── info_tb_top.md
-│   │   │   └── PWL_values_check.png
+│   │   │   ├── M4_requirement.md
+│   │   │   ├── PWL_values_check.png
+│   │   │   └── TB_summary.md
 │   │   ├── helper_script
+│   │   │   ├── make_roofline.py
 │   │   │   ├── run_openlane2.sh
 │   │   │   └── sim_master.sh
 │   │   ├── Makefile
 │   │   ├── orginal_software
-│   │   │   ├── checkpoint.pkl
-│   │   │   ├── data
-│   │   │   │   └── sample.txt
-│   │   │   ├── loss_curve.png
 │   │   │   ├── project_profile.txt
 │   │   │   ├── __pycache__
-│   │   │   │   ├── transformer.cpython-312.pyc
 │   │   │   │   ├── transformer.cpython-313.pyc
 │   │   │   │   └── transformer.cpython-314.pyc
 │   │   │   ├── train.py
-│   │   │   ├── transformer (Copy).py
 │   │   │   └── transformer.py
 │   │   ├── README.md
+│   │   ├── report
+│   │   │   ├── design_justification.md
+│   │   │   ├── design_justification.pdf
+│   │   │   ├── PWL_values_check.png
+│   │   │   ├── roofline_all_elem-1.png
+│   │   │   ├── roofline_all_elem.png
+│   │   │   ├── roofline_before.png
+│   │   │   ├── roofline_final_elem.png
+│   │   │   ├── roofline_final.png
+│   │   │   ├── roofline_plot.png
+│   │   │   └── speedup.png
 │   │   ├── rtl
 │   │   │   ├── compute_core.sv
 │   │   │   ├── DMA_memory
 │   │   │   │   ├── gelu_dma_top.sv
-│   │   │   │   ├── gelu_dma_top_x32.sv
 │   │   │   │   ├── mm2s_buffer.sv
-│   │   │   │   ├── mm2s_buffer_x32.sv
-│   │   │   │   ├── openram_1k_wrap.sv
-│   │   │   │   ├── s2mm_buffer.sv
-│   │   │   │   └── s2mm_buffer_x32.sv
+│   │   │   │   └── s2mm_buffer.sv
 │   │   │   ├── fp32_to_q16.sv
 │   │   │   ├── gelu_fp32.sv
 │   │   │   ├── interface.sv
-│   │   │   ├── interface_x32.sv
 │   │   │   ├── q16_to_fp32.sv
-│   │   │   ├── top.sv
-│   │   │   └── top_x32.sv
+│   │   │   └── top.sv
 │   │   ├── sim
 │   │   │   ├── compute_core_run.log
 │   │   │   ├── cosim_run.log
-│   │   │   ├── cosim_waveform.png
-│   │   │   ├── cosim_waveform.vcd
+│   │   │   ├── final_run_dma_x8.log
+│   │   │   ├── final_run.log
+│   │   │   ├── final_waveform.png
 │   │   │   ├── fp32_to_p16.log
 │   │   │   ├── gelu_dma_top_run.log
 │   │   │   ├── gelu.log
-│   │   │   ├── inloop_dma_run.log
+│   │   │   ├── inloop_dma_x16_run.log
+│   │   │   ├── inloop_dma_x1_run.log
 │   │   │   ├── inloop_dma_x32_run.log
 │   │   │   ├── inloop_dma_x8_run.log
+│   │   │   ├── inloop_run.fst
 │   │   │   ├── inloop_run.log
-│   │   │   ├── inloop_v2_run.log
+│   │   │   ├── inloop_x16_run.log
+│   │   │   ├── inloop_x1_run.log
+│   │   │   ├── inloop_x32_run.log
+│   │   │   ├── inloop_x8_run.log
 │   │   │   ├── interface_run.log
 │   │   │   ├── interface_x32_run.log
-│   │   │   ├── mac_run.fst
-│   │   │   ├── mac_run.log
 │   │   │   ├── mm2s_buffer_run.log
 │   │   │   ├── openram_wrap_run.log
 │   │   │   ├── p16_to_fp32.log
-│   │   │   ├── s2mm_buffer_run.log
-│   │   │   ├── sarray_run.fst
-│   │   │   └── sarray_run.log
+│   │   │   └── s2mm_buffer_run.log
 │   │   ├── synth
+│   │   │   ├── area_report.txt
 │   │   │   ├── config_dma.json
+│   │   │   ├── config.json
 │   │   │   ├── config_v1.json
+│   │   │   ├── config_x16.json
 │   │   │   ├── config_x32.json
 │   │   │   ├── config_x8.json
-│   │   │   └── Gelu1_streaming
-│   │   │       ├── area_report.txt
-│   │   │       ├── critical_path.md
-│   │   │       ├── openlane_run.log
-│   │   │       ├── power_report.txt
-│   │   │       ├── power.rpt
-│   │   │       ├── stat.rpt
-│   │   │       ├── timing_report.txt
-│   │   │       ├── wns.max.rpt
-│   │   │       ├── wns.min.rpt
-│   │   │       ├── ws.max.rpt
-│   │   │       └── ws.min.rpt
-│   │   ├── synthesis_notes.md
+│   │   │   ├── critical_path.md
+│   │   │   ├── CURATED_REPORTS_HOWTO.md
+│   │   │   ├── gelu_x1s
+│   │   │   │   ├── area_report.txt
+│   │   │   │   ├── critical_path.md
+│   │   │   │   ├── openlane_run.log
+│   │   │   │   ├── power_report.txt
+│   │   │   │   ├── power.rpt
+│   │   │   │   ├── stat.rpt
+│   │   │   │   ├── timing_report.txt
+│   │   │   │   ├── wns.max.rpt
+│   │   │   │   ├── wns.min.rpt
+│   │   │   │   ├── ws.max.rpt
+│   │   │   │   └── ws.min.rpt
+│   │   │   ├── openlane_run.log
+│   │   │   ├── power_report.txt
+│   │   │   ├── power.rpt
+│   │   │   ├── stat.rpt
+│   │   │   ├── summary.rpt
+│   │   │   ├── timing_report.txt
+│   │   │   ├── wns.max.rpt
+│   │   │   ├── wns.min.rpt
+│   │   │   ├── ws.max.rpt
+│   │   │   └── ws.min.rpt
 │   │   └── tb
-│   │       ├── DMA_memory
-│   │       │   ├── gelu_exp.hex
-│   │       │   ├── gelu_in.hex
-│   │       │   ├── __pycache__
-│   │       │   │   ├── tb_axis_interface.cpython-313.pyc
-│   │       │   │   ├── tb_compute_core.cpython-312.pyc
-│   │       │   │   ├── tb_compute_core.cpython-313.pyc
-│   │       │   │   ├── tb_conversion.cpython-313.pyc
-│   │       │   │   ├── tb_fp32_to_q16.cpython-313.pyc
-│   │       │   │   ├── tb_gelu_dma_top.cpython-313.pyc
-│   │       │   │   ├── tb_gelu_fp32.cpython-313.pyc
-│   │       │   │   ├── tb_interface.cpython-312.pyc
-│   │       │   │   ├── tb_interface.cpython-313.pyc
-│   │       │   │   ├── tb_mm2s_buffer.cpython-313.pyc
-│   │       │   │   ├── tb_openram_1k_wrap.cpython-313.pyc
-│   │       │   │   ├── tb_q16_to_fp32.cpython-313.pyc
-│   │       │   │   ├── tb_s2mm_buffer.cpython-313.pyc
-│   │       │   │   └── tb_top.cpython-313.pyc
-│   │       │   ├── tb_gelu_dma_top.py
-│   │       │   ├── tb_mm2s_buffer.py
-│   │       │   ├── tb_openram_1k_wrap.py
-│   │       │   └── tb_s2mm_buffer.py
-│   │       ├── gen_vectors.py
 │   │       ├── __pycache__
 │   │       │   ├── tb_axis_interface_v2.cpython-313.pyc
+│   │       │   ├── tb_top.cpython-313.pyc
 │   │       │   ├── tb_top_inloop.cpython-313.pyc
 │   │       │   ├── tb_top_inloop_dma.cpython-313.pyc
 │   │       │   ├── tb_top_inloop_dma_v2.cpython-313.pyc
 │   │       │   ├── tb_top_inloop_dma_x32.cpython-313.pyc
 │   │       │   ├── tb_top_inloop_v2.cpython-313.pyc
 │   │       │   └── tb_top_inloop_x32.cpython-313.pyc
-│   │       ├── tb_axis_interface.py
-│   │       ├── tb_axis_interface_x32.py
 │   │       ├── tb_compute_core.py
-│   │       ├── tb_conversion.py
 │   │       ├── tb_fp32_to_q16.py
 │   │       ├── tb_gelu_fp32.py
+│   │       ├── tb_interface.py
 │   │       ├── tb_q16_to_fp32.py
 │   │       ├── tb_top_inloop_dma.py
-│   │       ├── tb_top_inloop_dma_x32.py
-│   │       ├── tb_top_inloop.py
-│   │       ├── tb_top_inloop_x32.py
 │   │       └── tb_top.py
 │   ├── m5
+│   │   ├── documents
 │   │   ├── helper_script
 │   │   │   ├── run_openlane2.sh
 │   │   │   └── sim_master.sh
@@ -553,14 +564,14 @@
 │       ├── train.py
 │       └── transformer.py
 ├── README.md
+├── text
 └── tools
     ├── deliverable_check.sh
     ├── info.txt
-    ├── output
     ├── profile.sh
     ├── pushscript.sh
     ├── pytorch.sh
     ├── tree.log
     └── verilator_eg.sh
 
-103 directories, 461 files
+106 directories, 469 files

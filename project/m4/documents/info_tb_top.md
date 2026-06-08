@@ -1,306 +1,184 @@
-# info_tb_top — Annotated walkthrough of tb_top.py
+# info_tb_top — Annotated walkthrough of `tb_top.py`
 
-This file maps each region of `tb_top.py` to the equivalent hardware block it
-represents, and identifies exactly where a PCIe/DMA backend and an AXI memory
-model would live in a real or extended simulation.
+Maps each region of `tb/tb_top.py` to the hardware it represents. `tb_top.py` is
+the **full-model in-loop benchmark**: it runs the real M1 transformer forward
+pass and offloads **every GELU activation** to `gelu_top` over a direct
+AXI-Stream, then checks per-element accuracy and end-to-end loop closure against
+an all-software reference.
+
+> This is the **direct-stream** path (no DMA, no on-chip memory). The DMA /
+> PCIe-style backend is a separate testbench, `tb_top_inloop_dma.py`, which
+> hand-drives AXI4-MM bursts through `mm2s`/`s2mm` FIFO buffers — see the
+> "Where DMA/PCIe lives" section at the end.
 
 ---
 
-## System Architecture — what the testbench models
+## System architecture — what the testbench models
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│  HOST (CPU / PCIe Root Complex)                                         │
-│                                                                         │
-│   train.py / inference code                                             │
-│       │  calls gelu(h)  →  wants hardware result back                  │
-│       ▼                                                                 │
-│   PCIe DMA engine  ◄──── [REGION 2 & 4 in tb_top.py]                  │
-│       │  issues DMA write (input data → device memory)                 │
-│       │  issues DMA read  (output data ← device memory)                │
-└───────┼─────────────────────────────────────────────────────────────────┘
-        │  PCIe TLP (Memory Write / Read)
+┌──────────────────────────────────────────────────────────────────────┐
+│  HOST (Python coroutines in tb_top.py)                                │
+│                                                                       │
+│   transformer.forward()  —  real M1 model, run layer by layer         │
+│       │  at each layer FFN: h = xn2 @ W1 + b1   (fp64)                │
+│       │  needs GELU(h) back from hardware                            │
+│       ▼                                                               │
+│   hw_gelu():  fp64 → fp32  →  AXI-Stream  →  fp32 → fp64              │
+└───────┼───────────────────────────────────────────────────────────────┘
+        │  AXI4-Stream beats (NUM_LANES × FP32 per beat)
         ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│  DEVICE (FPGA / ASIC)                                                   │
-│                                                                         │
-│  ┌──────────────┐    AXI4-MM     ┌──────────────────────────────────┐  │
-│  │  PCIe EP /   │◄──────────────►│  AXI Memory (BRAM / DRAM ctrl)  │  │
-│  │  DMA engine  │                │  INPUT_BASE  = 0x0000_0000       │  │
-│  └──────┬───────┘                │  OUTPUT_BASE = 0x0001_0000       │  │
-│         │ AXI4-Lite (config)     └──────────────┬───────────────────┘  │
-│         │                                        │ AXI4-MM read/write   │
-│         ▼                                        ▼                      │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │  DMA Controller                                                  │   │
-│  │   - reads  INPUT_BASE  → drives AXI-Stream to gelu_top          │   │
-│  │   - captures AXI-Stream from gelu_top → writes OUTPUT_BASE      │   │
-│  └──────────────────────┬────────────────────┬──────────────────────┘   │
-│             s_axis (in) │                    │ m_axis (out)             │
-│                         ▼                    ▼                          │
-│                  ┌──────────────────────────────────┐                   │
-│                  │         gelu_top  (RTL DUT)       │                   │
-│                  │   s_axil ── AXI-Lite ctrl CSRs   │                   │
-│                  │   s_axis ── FP32 input stream     │                   │
-│                  │   m_axis ── FP32 GELU output      │                   │
-│                  └──────────────────────────────────┘                   │
-└─────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│  DEVICE                                                               │
+│   ┌────────────────────────────────────────────────────────────────┐ │
+│   │  gelu_top  (RTL DUT, the only block running in Icarus)         │ │
+│   │   s_axil  ── AXI-Lite ctrl CSRs (enable, NUM_LANES id)         │ │
+│   │   s_axis  ── FP32 input stream  (NUM_LANES lanes packed/beat)  │ │
+│   │   m_axis  ── FP32 GELU output                                  │ │
+│   └────────────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
-In `tb_top.py` the blocks above the DUT are all Python coroutines.
-The DUT (`gelu_top`) is the only block that runs as actual RTL in Icarus.
+Everything except `gelu_top` is a Python coroutine driven by `cocotbext-axi`
+VIPs. The host↔device boundary is the `axis_source.write()` / `axis_sink.recv()`
+call inside `hw_gelu`.
 
 ---
 
-## Region 1 — AXI-Lite control register write
+## Configuration (module top)
 
-**What it models**
+| Constant | Value | Meaning |
+|----------|-------|---------|
+| `CLK_NS` / `F_CLK_HZ` | 22 ns / 45.45 MHz | the synthesized clock; all timing metrics are reported at this period |
+| `NUM_LANES` | `int(os.environ["GELU_NUM_LANES"])`, default 32 | parallel `gelu_fp32` pipelines; **env-driven so one tb covers x1/x8/x16/x32** |
+| M1 config | `B=8, T=64, D_MODEL=64, N_HEADS=4, D_FF=256, N_LAYERS=2, SEED=42` | the small transformer whose GELUs are offloaded |
+| `CHUNK` | 16384 | max elements per AXI-Stream TLAST frame (must be a whole number of `NUM_LANES`-wide beats) |
+| `GELU_THRESHOLD` | 0.05 | per-element accuracy contract — a result above this counts as a failure |
+| `ARITH_OPS_PER_ELEM` | 17 | datapath integer-op count for the projected-peak metric |
 
-The host writing a configuration register over PCIe. In a real system the
-DMA engine would issue an AXI4-Lite (or APB) write to the accelerator's
-control register bank. Here the cocotb `AxiLiteMaster` drives the `s_axil`
-port of `gelu_top` directly.
-
-- Register written: offset `0x00` ← `pipeline_enable`
-- Value: `0x0000_0001` ← enable = 1
-
-**In tb_top.py:**
-
-```python
-await axil_master.write(0x00, b'\x01\x00\x00\x00')
-readback = await axil_master.read(0x00, 4)
-assert readback.data == b'\x01\x00\x00\x00'
-```
-
-**Real system equivalent**
-
-PCIe root complex issues a Memory Write TLP to the BAR-mapped CSR address.
-The PCIe endpoint decodes it and issues an AXI4-Lite write to the accelerator.
-The readback is a Memory Read TLP → AXI4-Lite read.
-
-**To extend:** replace `AxiLiteMaster` with a PCIe TLP generator (e.g.
-`cocotbext-pcie`) targeting a BAR, backed by an AXI4-Lite bridge.
+`transformer.py` (the M1 model) is imported from `../orginal_software` so the
+in-loop forward uses the *exact* software functions.
 
 ---
 
-## Region 2 — Host DMA write (input vectors → device memory)
+## `hw_gelu()` — offload one GELU tensor to the DUT
 
-**What it models**
+The core host↔hardware bridge. Called once per layer FFN with the fp64 tensor
+`h`; returns `GELU(h)` as fp64.
 
-The host CPU issuing a DMA transfer that copies the input tensor from host
-RAM into the device-side AXI memory buffer (BRAM / off-chip DRAM).
+1. **Host fp64 → fp32 cast** (`flat.astype(np.float32)`), timed into
+   `acc["conv_us"]` — this is the conversion cost that becomes the Amdahl
+   bottleneck at high lane counts.
+2. **Stream in `CHUNK`-sized frames.** For each chunk:
+   ```python
+   t0      = get_sim_time('ns')
+   recv_co = cocotb.start_soon(axis_sink.recv())  # arm the sink FIRST
+   await axis_source.write(payload)               # host → AXI-Stream → DUT
+   frame   = await recv_co                        # DUT → AXI-Stream → host
+   t1      = get_sim_time('ns')
+   ```
+   The sink is armed **before** driving input because `gelu_top` has a 12-cycle
+   pipeline; arming first keeps `m_axis_tready` high so the first results don't
+   stall. Only this window consumes simulated time (`acc["lat_ns"]`).
+3. **Slice padded lanes.** A chunk that isn't a whole multiple of `NUM_LANES`
+   gets zero-padded to a full beat by `cocotbext-axi`; the read-back is sliced
+   to `seg.size` so trailing pad lanes are dropped.
+4. **Host fp32 → fp64 cast**, also timed into `conv_us`.
+5. Accumulates `elems`, `bytes` (in+out), `chunks`, `beats` (ceil-div by lanes).
 
-**Memory model in tb_top.py:**
-
-```python
-mem = bytearray(MEM_SIZE)   # 128 KB flat address space
-                             # INPUT_BASE  = 0x0000_0000
-                             # OUTPUT_BASE = 0x0001_0000
-```
-
-**The "DMA write" in tb_top.py:**
-
-```python
-for i, h in enumerate(in_hex):
-    chunk = hex_to_bytes_le(h)
-    mem[INPUT_BASE + i*4 : INPUT_BASE + i*4 + 4] = chunk
-```
-
-This is a direct Python byte-slice write — it represents the moment the
-PCIe DMA engine finishes copying the input data into device memory.
-No clock cycles are consumed; the memory is pre-loaded before simulation
-time advances.
-
-### Where the AXI memory lives
-
-The `mem` bytearray **is** the AXI memory model. In `tb_top.py` it is a plain
-Python buffer. To make it a proper AXI4-MM slave (so a DMA RTL block could
-read/write it over a bus):
-
-```python
-from cocotbext.axi import AxiRam
-axi_ram = AxiRam(AxiBus.from_prefix(dut, "m_axi"), dut.clk, dut.rst,
-                 size=MEM_SIZE)
-axi_ram.write(INPUT_BASE, input_bytes)   # pre-load, same as now
-```
-
-The `AxiRam` model then responds to AXI4 read/write transactions from a DMA
-controller RTL module wired to `gelu_top`.
-
-### Where the PCIe / DMA backend lives
-
-The Python for-loop above is a stand-in for:
-
-```
-PCIe root complex (host)
-    └─► PCIe endpoint (device, RTL or model)
-            └─► AXI4 Master (DMA engine RTL)
-                    └─► AxiRam slave  ←  this is the AXI memory
-```
-
-Using `cocotbext-pcie`, the host side would instead do:
-
-```python
-await dev.dma_mem.write(host_buf_addr, input_bytes)
-# DMA engine issues AXI4 bursts → AxiRam.write at INPUT_BASE
-```
-
-Nothing in `gelu_top.sv` needs to change for this extension.
+**Why the payload is width-transparent:** `cocotbext-axi` is a *byte-stream*
+model. Widening `s_axis_tdata` from 32 to `NUM_LANES×32` bits just means more
+bytes move per beat — the same little-endian FP32 buffer goes in and comes back.
+The kernel result is identical across lane counts; only the beat count (and thus
+timing) changes.
 
 ---
 
-## Region 3 — DMA transfer (memory ↔ AXI-Stream ↔ DUT)
+## `test_gelu_top_inloop()` — the test body
 
-**What it models**
+### 1. Clock, reset, VIPs
+Starts a 22 ns clock, pulses `rst`, then instantiates three VIPs on the DUT
+ports: `AxiLiteMaster` (`s_axil`), `AxiStreamSource` (`s_axis`),
+`AxiStreamSink` (`m_axis`).
 
-The DMA controller on the device reading from AXI memory and streaming data
-through the GELU accelerator, then writing results back to memory. This is the
-**only region where simulation time (clock cycles) advances**.
-
-**Two coroutines run concurrently in tb_top.py:**
-
+### 2. Lane-width self-check
 ```python
-recv_task = cocotb.start_soon(dma_from_stream(...))   # arm first
-send_task = cocotb.start_soon(dma_to_stream(...))     # then send
-await send_task
-await recv_task
+bus_lanes = len(dut.s_axis_tdata) // 32
+assert bus_lanes == NUM_LANES
 ```
+Guarantees the RTL was built at the lane count the tb expects — a mismatched
+`GELU_NUM_LANES` build fails loudly here instead of silently mis-packing.
 
-### `dma_to_stream`
+### 3. AXI-Lite control
+- Writes `0x00 ← 1` (`pipeline_enable`) and reads it back.
+- Reads the **read-only `0x04` CSR** (the `NUM_LANES` identity register) and
+  asserts it equals `NUM_LANES` — a second, independent confirmation of the
+  build's lane count from inside the RTL.
 
-Reads `n_beats × 4` bytes from `mem[INPUT_BASE]` and calls
-`axis_source.write()` which drives `s_axis_tdata/tvalid/tlast` on `gelu_top`.
+### 4. Build model + software reference
+`init_params(...)` builds the M1 weights; `forward(token_ids, params, config)`
+produces `logits_ref`, the **all-software** result the hardware loop is checked
+against.
 
-Real system equivalent: DMA controller RTL reads `INPUT_BASE` from `AxiRam`
-over an AXI4-MM burst, then issues AXI-Stream beats to `s_axis` of `gelu_top`.
+### 5. In-loop forward (the heart)
+Re-implements `transformer.forward()` step by step using the real `transformer.py`
+functions (`layer_norm_forward`, `mha_forward`, `gelu`), but at each layer's
+feed-forward it computes `h = xn2 @ W1 + b1` in software and then **offloads the
+GELU to hardware** via `hw_gelu`. Per layer it also checks kernel accuracy:
+```python
+ref_act = gelu(h.astype(np.float32).astype(np.float64))  # fp32-quantised ref
+err     = np.abs(h_act - ref_act)
+acc["gelu_max_err"]  = max(acc["gelu_max_err"], err.max())
+acc["gelu_fail"]    += (err > GELU_THRESHOLD).sum()
+```
+The reference is the fp64 GELU of the **fp32-quantised** input, so the check
+isolates the PWL approximation error from the fp32 cast.
 
-### `dma_from_stream`
+### 6. Loop closure
+After both layers, computes `logits_hw` and compares to `logits_ref`:
+- `logit` avg / max absolute error (informational), and
+- **next-token argmax agreement** — does the HW-in-the-loop model pick the same
+  token as the all-software model at each of `B×T` positions.
 
-Calls `axis_sink.recv()` which blocks until `gelu_top` asserts `m_axis_tlast`,
-then writes the received bytes into `mem[OUTPUT_BASE]`.
-
-Real system equivalent: DMA controller RTL accepts AXI-Stream beats from
-`m_axis` of `gelu_top` and writes them to `OUTPUT_BASE` in `AxiRam` over an
-AXI4-MM burst.
-
-The `gelu_top` DUT sees only AXI-Stream handshakes — identical in both the
-Python and RTL DMA cases. This is why no RTL changes are needed for the memory
-layer extension.
-
-### Concurrent execution note
-
-`recv_task` is started **before** `send_task`. This matters because `gelu_top`
-has a 12-cycle pipeline. If `recv_task` were started after `send_task`, the
-first output beats could arrive at `m_axis` before the sink is armed, and the
-handshake would stall until the FIFO inside `gelu_top` fills up. Starting
-`recv_task` first ensures `m_axis_tready` is asserted from cycle 0.
+### 7. Metrics + PASS/FAIL
+Aggregates throughput (`elem/s`, cycles/elem, cycles/beat), AXI bandwidth
+(per-dir and total), and the projected synthesis peak (`NUM_LANES` results/cycle),
+and prints the timing/accuracy block seen in `sim/inloop_*_run.log`. The test
+**PASSES iff `gelu_fail == 0`** (every element within 0.05); loop-closure
+numbers are reported but not gating.
 
 ---
 
-## Region 4 — Host DMA read (device memory → verification)
+## Where DMA / PCIe lives (not in this tb)
 
-**What it models**
+`tb_top.py` streams straight into the DUT — there is **no on-chip memory or DMA**
+in this path. The PCIe-DMA story is modeled separately:
 
-The host CPU issuing a DMA read that transfers the output tensor from device
-memory back to host RAM for comparison against the software reference.
+| Concern | `tb_top.py` (this file) | `tb_top_inloop_dma.py` |
+|---------|-------------------------|------------------------|
+| DUT | `gelu_top` | `gelu_dma_top` (kernel + `mm2s`/`s2mm` buffers) |
+| Data into kernel | direct AXI-Stream | AXI4-MM **burst** write → `mm2s` FIFO → AXI-Stream |
+| Data out of kernel | direct AXI-Stream | AXI-Stream → `s2mm` FIFO → AXI4-MM **burst** read |
+| Buffers | none | 256-deep FIFO, width = bus width |
+| What it shows | kernel-limited throughput | DMA round-trip cost (the serial write→compute→read penalty) |
 
-**In tb_top.py:**
-
-```python
-b_chunk = bytes(mem[OUTPUT_BASE + i*4 : OUTPUT_BASE + i*4 + 4])
-got_r   = bytes_le_to_float(b_chunk)
-exp_r   = bytes_le_to_float(hex_to_bytes_le(exp_hex[i]))
-```
-
-The slice read from `mem` is the Python equivalent of:
-
-```
-PCIe DMA read TLP  →  AXI4-MM read from AxiRam[OUTPUT_BASE]
-→  data returned to host buffer  →  compared against gelu_exp.hex
-```
-
-`gelu_exp.hex` is the independent software reference produced by
-`gen_vectors.py` (float64 GELU on the same FP32 inputs). It plays the role of
-the software model output that the host would compare against in a real
-in-loop co-simulation.
-
-PASS/FAIL threshold: `abs(got - exp) <= 0.05` for all 256 outputs.
+PCIe link bandwidth itself is never simulated (both paths are clock-domain
+ideal). The external-interface ceiling is treated analytically in
+`bench/benchmark.md §5` (PCIe Gen4 x1/x4/x8/x16 scaling projection).
 
 ---
 
 ## Summary — Python vs RTL
 
-| Block | Current `tb_top.py` | Path B extension |
-|-------|---------------------|------------------|
+| Block | `tb_top.py` | A full-system extension |
+|-------|-------------|-------------------------|
 | `gelu_top` DUT | Icarus RTL ✓ | Icarus RTL ✓ |
 | AXI-Lite master (config) | `cocotbext-axi` VIP | `cocotbext-axi` VIP |
-| AXI memory (BRAM model) | Python `bytearray` | `cocotbext-axi` `AxiRam` |
-| DMA to-stream controller | Python coroutine | RTL `dma_controller.sv` |
-| DMA from-stream controller | Python coroutine | RTL `dma_controller.sv` |
-| PCIe endpoint / TLP engine | implicit (direct writes) | `cocotbext-pcie` |
-| Host DMA engine | implicit (direct reads) | `cocotbext-pcie` |
+| AXI-Stream source/sink | `cocotbext-axi` VIP | `cocotbext-axi` VIP |
+| Host model + reference | real `transformer.py` in Python | same |
+| DMA controller / on-chip mem | none (direct stream) | `gelu_dma_top` (see `tb_top_inloop_dma.py`) |
+| PCIe endpoint / TLP engine | not modeled | `cocotbext-pcie` (future) |
+| PCIe link timing | analytical (`benchmark.md §5`) | analytical |
 
-The boundary between host and device in the current setup is the
-`INPUT_BASE` / `OUTPUT_BASE` addresses in `mem`. Everything above that
-boundary (Regions 2 and 4) is host-side. Everything below (Region 3 and
-the DUT) is device-side.
-
-
-What the current testbench already times
-
-Only Region 3 (dma_to_stream / dma_from_stream + the DUT) consumes simulation clock cycles. Regions 2 and 4 are instantaneous Python byte-slice operations — zero simulated time.
-
----
-Option A — Analytical PCIe overhead (easiest, no RTL change)
-
-Measure Region 3 with cocotb.utils.get_sim_time(), then add the PCIe/DMA transfer time as a formula:
-
-from cocotb.utils import get_sim_time
-
-# Region 3 — actual kernel timing
-t0 = get_sim_time(units="ns")
-recv_task = cocotb.start_soon(dma_from_stream(...))
-send_task = cocotb.start_soon(dma_to_stream(...))
-await send_task
-await recv_task
-kernel_ns = get_sim_time(units="ns") - t0
-
-# PCIe analytical model
-N_bytes       = N * 4                      # e.g. 256 * 4 = 1024 B
-PCIE_BW_GBs   = 16.0                       # PCIe Gen3 x4 effective ~16 GB/s
-PCIE_LATENCY  = 1000                       # ~1 µs base latency in ns
-pcie_xfer_ns  = (N_bytes / (PCIE_BW_GBs * 1e9)) * 1e9 + PCIE_LATENCY
-
-total_ns = pcie_xfer_ns  # DMA write (in)
-         + kernel_ns      # kernel execution
-         + pcie_xfer_ns   # DMA read (out)
-
-This is realistic for small payloads (your 1 KB case is dominated by PCIe latency, not bandwidth).
-
----
-Option B — Inject Timer delays into Regions 2 & 4
-
-Make the testbench actually consume simulation time fhe Python byte loops into await Timer(...) calls:
-
-# Region 2: model DMA write latency
-N_bytes = N * 4
-pcie_ns = int((N_bytes / (16e9)) * 1e9) + 1000   # la
-for i, h in enumerate(in_hex):
-    mem[INPUT_BASE + i*4 : INPUT_BASE + i*4 + 4] = hex_to_bytes_le(h)
-await Timer(pcie_ns, unit="ns")   # <-- consumes sim
-Do the same at the end of Region 4. Then get_sim_timend end of Region 4 gives you the total end-to-end walltime inclusive of PCIe.
-
----
-Which to use
-
-┌─────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────┐
-│                      Goal                       │  pproach                               │
-├─────────────────────────────────────────────────┼────────────────────────────────────────┤
-│ Report kernel-only cycles (hardware efficiency) │ Ort separately                         │
-├─────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
-│ Report full host-to-host latency in waveform    │ O in VCD                               │
-├─────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────┤
-│ True PCIe cycle-accurate timing                 │ Fnt effort, overkill for this project) │
-└─────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────┘
-
-For an ECE 510 project, Option A is the right call: mion 3 directly, then add the analytical PCIe overheadin your report. The numbers will be accurate and honeactually exercises.
+The DUT only ever sees AXI-Stream handshakes, so the kernel result is identical
+whether it is fed directly (here) or through a DMA controller — only the timing
+differs.

@@ -1,288 +1,236 @@
-# M3 GELU Accelerator — AXI Interface + Synthesis
+# M4 GELU Accelerator — Final Deliverable Package
 
-Milestone 3 adds a full AXI4-Stream / AXI4-Lite wrapper around the GELU FP32
-pipeline and takes the design through OpenLane 2 RTL-to-GDSII synthesis on
-sky130A.
+A hardware **GELU activation kernel** that offloads the FFN GELU of a small M1
+transformer. FP32 in → internal Q16.16 PWL approximation → FP32 out; pipelined,
+**12-cycle latency, 1 result/cycle/lane** at the synthesized **22 ns clock
+(45.45 MHz)**. The design is parameterized for SIMD width (`NUM_LANES`): the M4
+final hardened design is the **8-lane streaming** build (`gelu_top` @
+`GELU_NUM_LANES=8`, 256-bit AXI-Stream); a 1-lane build is kept as the baseline.
+
+- **Design justification report:** [`report/design_justification.md`](report/design_justification.md)
+- **Benchmark + speedup vs software:** [`bench/benchmark.md`](bench/benchmark.md)
+  (raw data: [`bench/benchmark_data.csv`](bench/benchmark_data.csv))
+
+---
+
+## M4 deliverable map (checklist item → path)
+
+| # | Deliverable | Path(s) in this folder |
+|---|-------------|------------------------|
+| 1 | M4 folder README (this file) | `README.md` |
+| 2 | Final RTL — top, compute core, interface | `rtl/top.sv`, `rtl/compute_core.sv`, `rtl/interface.sv` (+ `gelu_fp32`, `fp32_to_q16`, `q16_to_fp32`) |
+| 2 | Final testbench | `tb/tb_top.py` (cocotb full-model in-loop co-sim) |
+| 2 | Final simulation log (PASS) | `sim/final_run.log` (8-lane in-loop, PASS) |
+| 2 | Final waveform image | `sim/final_waveform.png` |
+| 3 | Synthesis results (config, run log, timing, area, power) | `synth/config.json`, `synth/openlane_run.log`, `synth/timing_report.txt`, `synth/area_report.txt`, `synth/power_report.txt` |
+| 4 | Benchmark + speedup (+ energy) | `bench/benchmark.md` |
+| 4 | Raw measurement data | `bench/benchmark_data.csv`, `bench/sim_output/` |
+| 4 | Final roofline plot | `bench/roofline_final.png` |
+| 5 | Design justification report | `report/design_justification.md` (PDF export pending) |
+
+> **Synthesis files (item 3) are at the exact checklist paths** — `synth/config.json`,
+> `synth/openlane_run.log`, `synth/timing_report.txt`, `synth/area_report.txt`,
+> `synth/power_report.txt` — for the final **8-lane `gelu_top`** design
+> (run `RUN_2026-06-07_14-45-32`, headers read `gelu_top`). The **1-lane baseline**
+> reports are in `synth/gelu_x1s/` (same file set).
+
+> **Final testbench naming.** The checklist names `tb/tb_top.sv`; this is a cocotb
+> project, so the testbench is **`tb/tb_top.py`** (there is no SystemVerilog tb).
+> It is run via `make opt=inloop_x8` / `helper_script/sim_master.sh inloop_x8`.
+
+> **RTL diff vs M3.** The top/interface modules were unified and renamed
+> `gelu_top_x32`→`gelu_top`, `gelu_axi_stream_interface_x32`→`gelu_axi_stream_interface`
+> into a single parameterized source (`top.sv` / `interface.sv`, lane count set by
+> `GELU_NUM_LANES`). Numerically identical to the M3 8-lane design.
 
 ---
 
 ## File Index
 
-Every file and subfolder under `project/m3/` is listed below.
-
 ### Top level
 
-| Path | Description |
-|------|-------------|
-| `README.md` | This file — M3 index, reproduction steps |
-| `Makefile` | cocotb/Icarus build rules; `opt=` selects the DUT and testbench |
-| `explanation.md` | Detailed walkthrough of each logical block in `interface.sv` |
-| `synthesis_notes.md` | Narrative: what synthesized, what changed, scope status (≥500 words) |
-| `PWL_values_check.png` | Plot verifying the 20-segment PWL GELU coefficients |
+| Path | Description | Supports |
+|------|-------------|----------|
+| `README.md` | This file — M4 catalog + reproduction steps | Item 1 |
+| `Makefile` | cocotb/Icarus build rules; `opt=<target>` selects DUT + testbench | Item 2 |
 
-### `rtl/`
+### `rtl/` — RTL sources (item 2)
 
 | Path | Description |
 |------|-------------|
-| `rtl/top.sv` | `gelu_top` — synthesis top; pure passthrough wrapper around `gelu_axi_stream_interface` |
-| `rtl/interface.sv` | `gelu_axi_stream_interface` — AXI4-Lite control + AXI4-Stream datapath + output FIFO + backpressure |
-| `rtl/gelu_fp32.sv` | `gelu_fp32` — 12-cycle FP32 end-to-end GELU pipeline; chains the three stages below |
+| `rtl/top.sv` | `gelu_top` — synthesis top; thin wrapper around the interface. Parameterized SIMD (**final M4 design**, hardened @ `NUM_LANES=8`) |
+| `rtl/interface.sv` | `gelu_axi_stream_interface` — AXI4-Lite control + AXI4-Stream datapath + output FIFO + backpressure; `NUM_LANES*32`-bit bus, scalar handshake |
+| `rtl/gelu_fp32.sv` | `gelu_fp32` — 12-cycle FP32 GELU pipeline; chains the three stages below |
 | `rtl/compute_core.sv` | `compute_core` — 4-stage Q16.16 PWL GELU (20 non-uniform segments) |
-| `rtl/fp32_to_q16.sv` | `fp32_to_q16` — 4-stage IEEE-754 FP32 → Q16.16 converter with RNE rounding |
-| `rtl/q16_to_fp32.sv` | `q16_to_fp32` — 4-stage Q16.16 → IEEE-754 FP32 converter with CLZ normalisation |
+| `rtl/fp32_to_q16.sv` | `fp32_to_q16` — 4-stage IEEE-754 FP32 → Q16.16 (RNE, FTZ, saturate) |
+| `rtl/q16_to_fp32.sv` | `q16_to_fp32` — 4-stage Q16.16 → IEEE-754 FP32 (CLZ normalise, RNE) |
+| `rtl/DMA_memory/gelu_dma_top.sv` | `gelu_dma_top` — parameterized DMA wrapper (mm2s + `gelu_top` + s2mm); `NUM_LANES*32`-bit AXI4-MM + AXI-Stream |
+| `rtl/DMA_memory/mm2s_buffer.sv`, `s2mm_buffer.sv` | Input/output DMA buffers — macro-free inferred FIFO (`DATA_W=NUM_LANES*32`, `DEPTH=256`) |
 
-### `tb/`
+### `tb/` — cocotb testbenches (item 2)
 
-| Path | Description |
-|------|-------------|
-| `tb/tb_top.py` | cocotb end-to-end testbench for `gelu_top` — drives AXI-Lite control and AXI-Stream I/O, compares 256 outputs against `gelu_exp.hex`, prints PASS/FAIL |
-| `tb/gen_vectors.py` | Generates `gelu_in.hex` and `gelu_exp.hex` by running a forward pass through the M1 small-config transformer (seed=42, batch=0, token=0, d_ff=256) |
-| `tb/gelu_in.hex` | 256 FP32 input test vectors (FFN layer-0 pre-activation h), one 8-digit hex value per line |
-| `tb/gelu_exp.hex` | 256 FP32 expected GELU outputs computed in float64 from `gelu_in.hex` (independent software reference) |
-| `tb/tb_axis_interface.py` | cocotb testbench for `gelu_axi_stream_interface` — 6 tests covering AXI-Lite control, pipeline gate, single value, TLAST, backpressure, and 50-point accuracy sweep |
-| `tb/tb_gelu_fp32.py` | cocotb testbench for the full `gelu_fp32` pipeline |
-| `tb/tb_compute_core.py` | cocotb testbench for `compute_core` only |
-| `tb/tb_fp32_to_q16.py` | cocotb testbench for the FP32→Q16 converter |
-| `tb/tb_q16_to_fp32.py` | cocotb testbench for the Q16→FP32 converter |
-| `tb/tb_conversion.py` | Conversion round-trip testbench (fp32→q16→fp32) |
-| `tb/info_tb_top.md` | Annotated walkthrough of `tb_top.py` — maps each region to its real-system hardware equivalent and identifies where PCIe/DMA and AXI memory plug in |
-| `tb/archived/tb_top.sv` | Original SystemVerilog testbench for `gelu_top` (archived; superseded by `tb_top.py`) |
-
-### `sim/`
+Per-test coverage is catalogued in [`documents/TB_summary.md`](documents/TB_summary.md).
 
 | Path | Description |
 |------|-------------|
-| `sim/cosim_run.log` | Passing cocotb transcript for `tb_top` end-to-end co-simulation — TESTS=1 PASS=1, 256 beats, max error 0.0263, 0 failures |
-| `sim/cosim_waveform.png` | Annotated waveform screenshot showing AXI-Lite write, AXI-Stream input burst, and AXI-Stream output burst |
-| `sim/cosim_waveform.vcd` | VCD waveform dump from co-simulation |
-| `sim/cosim_run.vcd` | VCD dump from the co-simulation run |
-| `sim/interface_run.log` | Passing cocotb transcript for `tb_axis_interface` — TESTS=6 PASS=6 |
-| `sim/gelu.log` | Passing cocotb transcript for `tb_gelu_fp32` |
-| `sim/compute_core_run.log` | Passing cocotb transcript for `tb_compute_core` |
-| `sim/fp32_to_p16.log` | Passing cocotb transcript for `tb_fp32_to_q16` |
-| `sim/p16_to_fp32.log` | Passing cocotb transcript for `tb_q16_to_fp32` |
+| `tb/tb_top.py` | **Final benchmark tb** — full-model in-loop co-sim of `gelu_top` (x1/x8/x16/x32 via `GELU_NUM_LANES`) |
+| `tb/tb_top_inloop_dma.py` | Full-model in-loop through the DMA path, parameterized `gelu_dma_top` (x1/x8/x16/x32) |
+| `tb/tb_interface.py` | AXI-Stream/Lite interface protocol tb (parameterized SIMD) |
+| `tb/tb_gelu_fp32.py` | `gelu_fp32` end-to-end datapath unit tb |
+| `tb/tb_compute_core.py` | `compute_core` PWL GELU unit tb |
+| `tb/tb_fp32_to_q16.py`, `tb/tb_q16_to_fp32.py` | Format-converter unit tbs |
 
-### `synth/`
+### `sim/` — simulation logs (item 2) and waveform
 
 | Path | Description |
 |------|-------------|
-| `synth/config.json` | OpenLane 2 flow configuration (design name, RTL sources, clock period, PDK) |
-| `synth/openlane_run.log` | Full OpenLane 2 flow log — RUN_2026-05-24_21-40-35, 78 steps, no errors |
-| `synth/timing_report.txt` | Post-route STA summary — WNS=0.0 ns all 9 corners (timing met) |
-| `synth/area_report.txt` | Post-route area report — 90,650 µm², 7,704 cells, 1,142 FFs |
-| `synth/power_report.txt` | Post-route power estimate — 34.22 mW at nom_tt_025C_1v80 |
-| `synth/critical_path.md` | Narrative analysis of the critical path (32×32 multiply in compute_core) |
-| `synth/power.rpt` | Raw OpenROAD power report (source for `power_report.txt`) |
-| `synth/stat.rpt` | Raw OpenROAD statistics report (cell counts by type) |
-| `synth/wns.max.rpt` | OpenROAD worst negative slack — max (setup) corners |
-| `synth/wns.min.rpt` | OpenROAD worst negative slack — min (hold) corners |
-| `synth/ws.max.rpt` | OpenROAD worst slack — max corners |
-| `synth/ws.min.rpt` | OpenROAD worst slack — min corners |
+| `sim/final_run.log` | **Final 8-lane in-loop run (PASS) — item-2 deliverable** |
+| `sim/final_waveform.png` | **Final end-to-end transaction waveform — item-2 deliverable** |
+| `sim/final_run_dma_x8.log` | 8-lane DMA round-trip in-loop run (PASS) |
+| `sim/inloop_x1_run.log`, `inloop_x8_run.log`, `inloop_x16_run.log`, `inloop_x32_run.log` | Direct-stream in-loop runs per lane count (PASS) |
+| `sim/inloop_dma_x1_run.log`, `inloop_dma_x8_run.log`, `inloop_dma_x16_run.log`, `inloop_dma_x32_run.log` | DMA-path in-loop runs per lane count (PASS) |
+| `sim/interface_run.log`, `sim/interface_x32_run.log` | Interface protocol tb logs |
+| `sim/compute_core_run.log`, `sim/gelu.log`, `sim/fp32_to_p16.log`, `sim/p16_to_fp32.log` | Sub-module tb logs |
+| `sim/cosim_run.log`, `sim/mm2s_buffer_run.log`, `sim/s2mm_buffer_run.log`, `sim/openram_wrap_run.log`, `sim/gelu_dma_top_run.log` | Earlier integration / DMA-buffer tb logs |
 
-### `helper_script/`
+> **Naming note.** The in-loop simulation outputs were renamed from
+> `inloop_x<lane>` to **`final_run_x<lane>`** (and `inloop_dma_x<lane>` →
+> `final_run_dma_x<lane>`) so they match the M4 `sim/final_run.log` deliverable.
+> **They are the same simulation output** — only the filename changed, plus the
+> saved log is now the summary block (`tail`) instead of the multi-MB full
+> capture; the measured results (HW time, throughput, accuracy, PASS) are
+> identical (verified by diffing the tails). `sim_master.sh` applies this for all
+> `inloop_*` targets. The per-lane `inloop_*` logs still present above are the
+> earlier full captures.
+
+### `synth/` — synthesis (item 3)
+
+The flat files below are the **item-3 deliverables for the final 8-lane design**.
+
+| Path | Description | Item 3 |
+|------|-------------|:------:|
+| `synth/config.json` | Exact OpenLane2 config (`DESIGN_NAME=gelu_top`, `GELU_NUM_LANES=8`, 22 ns) | ✅ |
+| `synth/openlane_run.log` | Full flow log (`RUN_2026-06-07_14-45-32`, ends `Flow complete.`) | ✅ |
+| `synth/timing_report.txt` | Post-route STA — WNS/slack, clock period, per-corner | ✅ |
+| `synth/area_report.txt` | Total area (µm²) + cell counts by type/module | ✅ |
+| `synth/power_report.txt` | Power estimate (nom_tt 1.8 V; ff-corner bound noted) | ✅ |
+| `synth/critical_path.md` | Narrative of the critical path (the stage-3 multiply) | support |
+| `synth/{summary,stat,power}.rpt`, `synth/{wns,ws}.{max,min}.rpt` | Raw OpenROAD/Yosys reports behind the curated ones | support |
+| `synth/gelu_x1s/` | Same report set for the **1-lane baseline** | support |
+| `synth/config_v1.json`, `config_x8.json`, `config_x16.json`, `config_x32.json`, `config_dma.json` | OpenLane2 configs for each build variant | support |
+| `synth/CURATED_REPORTS_HOWTO.md` | How a raw run is distilled into the curated reports | support |
+| `synth/runs/` | Raw OpenLane2 run artifacts (generated; not catalogued) | — |
+
+### `bench/` — benchmark comparison (item 4)
 
 | Path | Description |
 |------|-------------|
-| `helper_script/run_openlane2.sh` | Runs the full OpenLane 2 RTL-to-GDSII flow for `gelu_top` |
-| `helper_script/sim_interface.sh` | Runs the AXI interface cocotb simulation; logs to `sim/interface_run.log` |
-| `helper_script/sim_gelu.sh` | Runs the `gelu_fp32` cocotb simulation |
-| `helper_script/sim_compute_core.sh` | Runs the `compute_core` cocotb simulation |
-| `helper_script/sim_fp32_to_q16.sh` | Runs the FP32→Q16 cocotb simulation |
-| `helper_script/sim_q16_to_fp32.sh` | Runs the Q16→FP32 cocotb simulation |
-| `helper_script/sim_top.sh` | Runs the end-to-end `gelu_top` co-simulation; logs to `sim/cosim_run.log` |
+| `bench/benchmark.md` | Throughput, speedup vs software, energy (incl. SW-baseline estimate), synthesis comparison, roofline, PCIe projection, detailed measurements |
+| `bench/benchmark_data.csv` | Raw per-config measurements behind the summary |
+| `bench/roofline_final.png` | Final roofline plot (OP/s vs OP/B; measured x8 accelerator point) |
+| `bench/roofline_final_elem.png` | Roofline in the elements/s view (G elem/s vs elem/B) |
+| `bench/roofline_all.png` | Roofline with **all** measured configs, OP/B view (x1/x8/x16/x32, stream + DMA) |
+| `bench/roofline_all_elem.png` | Roofline with **all** measured configs, elem/B view |
+| `bench/roofline_flop.png` | Floating-point roofline (FLOP/B): software baseline + measured x8 |
+| `bench/speedup.png` | Speedup-vs-lane-count chart |
+| `bench/sim_output/` | Extracted metrics blocks (`s1…s6`) from the in-loop runs (provenance) |
 
-### `orginal_software/`
+### `report/`
 
 | Path | Description |
 |------|-------------|
-| `orginal_software/transformer.py` | Reference PyTorch transformer model; GELU is the activation being accelerated |
-| `orginal_software/train.py` | Reference training script for the transformer model |
+| `report/design_justification.md` | 9-section design justification report (PDF export pending) |
+| `report/PWL_values_check.png` | PWL GELU fit vs reference (max err ≈0.026) |
+| `report/roofline_plot.png` | §II roofline figure — software baseline only (memory-bound), via `make_roofline.py swonly` |
+| `report/speedup.png` | Speedup figure referenced by the report |
+
+### `documents/` — supporting material
+
+| Path | Description |
+|------|-------------|
+| `documents/M4_requirement.md` | The milestone-4 assignment spec (reference) |
+| `documents/gelu_pipeline_stages.md` | Stage-by-stage description of the 12-cycle `gelu_fp32` pipeline |
+| `documents/TB_summary.md` | What each testbench / individual test covers |
+| `documents/info_tb_top.md` | Annotated walkthrough of `tb_top.py` |
+| `documents/explanation.md` | Walkthrough of each logical block in the interface |
+| `documents/PWL_values_check.png` | Plot verifying the 20-segment PWL GELU coefficients |
+
+### `helper_script/`, `orginal_software/`
+
+| Path | Description |
+|------|-------------|
+| `helper_script/sim_master.sh` | Unified cocotb/Icarus runner (table-driven; `opt=` targets) |
+| `helper_script/run_openlane2.sh` | OpenLane2 launcher (variant-aware: `v1`/`x8`/`x16`/`x32`/`dma`) |
+| `helper_script/make_roofline.py` | Regenerates the roofline figures from `benchmark_data.csv` — `swonly`→`report/roofline_plot.png` (report §II, sw only), `flop`→`bench/roofline_flop.png`, `op`→`bench/roofline_final.png`, `elem`→`bench/roofline_final_elem.png`, `allpts`→`bench/roofline_all.png`, `allelem`→`bench/roofline_all_elem.png` (needs numpy + matplotlib) |
+| `orginal_software/transformer.py`, `train.py` | Reference M1 transformer model + trainer (GELU is the accelerated kernel) |
+| `orginal_software/project_profile.txt` | M1 software profiling data |
 
 ---
 
-## Reproducing the Co-Simulation
+## Reproducing the simulation
 
-### Dependencies
-
-| Tool | Version used |
-|------|-------------|
-| Icarus Verilog | 13.0 (stable) |
-| Python | 3.13 |
-| cocotb | 2.0.0 |
-| cocotbext-axi | 0.1.28 |
-| numpy | (any recent; 2.x tested) |
-
-Install the Python dependencies into a virtual environment:
+Dependencies: Icarus Verilog 13, Python 3.13, cocotb 2.0.0, cocotbext-axi, numpy.
 
 ```bash
 python3 -m venv ~/.venv
 ~/.venv/bin/pip install cocotb==2.0.0 cocotbext-axi numpy
 ```
 
-Icarus Verilog 13 must be on `PATH` as `iverilog` and `vvp`. On Fedora:
+Run the **final (8-lane) full-model in-loop co-simulation** — the run behind the
+M4 benchmark numbers:
 
 ```bash
-sudo dnf install iverilog
+cd project/m4
+./helper_script/sim_master.sh inloop_x8        # → sim/final_run_x8.log (summary)
 ```
 
-### Generating test vectors (required before first run)
+Expected tail:
+
+```
+GELU failures      : 0 / 262144  (threshold 0.05)
+tb_top.test_gelu_top_inloop  PASS
+```
+
+Other targets (`./helper_script/sim_master.sh list` for the full set):
+`inloop_x1`, `inloop_x16`, `inloop_x32`, `inloop_dma_x8`, `interface_x8`,
+`compute_core`, `gelu`, `convin`, `convout`, etc.
+
+## Reproducing the synthesis
+
+OpenLane 2 via Nix; `OPENLANE2_ROOT` and `PDK_ROOT` set. Run the final 8-lane
+hardening:
 
 ```bash
-cd project/m3
-source ~/.venv/bin/activate
-python tb/gen_vectors.py
+cd project/m4
+./helper_script/run_openlane2.sh full x8       # uses synth/config_x8.json → gelu_top @ NUM_LANES=8
 ```
 
-This writes `tb/gelu_in.hex` and `tb/gelu_exp.hex`. The committed copies are
-already present; re-run only if you change the model configuration.
+Output lands in `synth/runs/RUN_<timestamp>/`; the curated item-3 reports for the
+committed run are the flat files in `synth/`.
 
-### Running the end-to-end co-simulation (M3 primary simulation)
-
-```bash
-cd project/m3
-source ~/.venv/bin/activate
-make opt=top SIM=icarus
-```
-
-Or via the helper script:
-
-```bash
-bash "helper_script/sim_top.sh"
-```
-
-Expected result:
-
-```
-PASS
-TESTS=1 PASS=1 FAIL=0 SKIP=0
-```
-
-The committed log is `sim/cosim_run.log`.
-
-### Running the AXI interface testbench
-
-```bash
-cd project/m3
-bash "helper_script/sim_interface.sh"
-```
-
-Expected result:
-
-```
-TESTS=6 PASS=6 FAIL=0 SKIP=0
-```
-
-### Running other module testbenches
-
-```bash
-# Full gelu_fp32 pipeline
-bash "helper_script/sim_gelu.sh"
-
-# compute_core only
-bash "helper_script/sim_compute_core.sh"
-
-# Converters
-bash "helper_script/sim_fp32_to_q16.sh"
-bash "helper_script/sim_q16_to_fp32.sh"
-```
-
----
-
-## Reproducing the Synthesis Run
-
-### OpenLane 2 version
-
-| Item | Value |
-|------|-------|
-| Release tag | `2.3.10` |
-| Full version string | `2.3.10-1-ga7b0e6d` |
-| Installation method | Nix (official OpenLane 2 Nix flake) |
-| Install location | `~/DEV_TOOLS/openlane2/` |
-
-### Dependencies
-
-OpenLane 2 is installed via Nix. The Nix package manager must be installed and
-the daemon profile sourced before running the flow:
-
-```bash
-# One-time: install Nix (multi-user)
-sh <(curl -L https://nixos.org/nix/install) --daemon
-
-# Each shell session (or add to .bashrc):
-source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-```
-
-The run script sources the Nix profile automatically, so no manual setup is
-needed if Nix is installed.
-
-### Configuration file
-
-```
-project/m3/synth/config.json
-```
-
-Key settings:
-
-```json
-{
-  "DESIGN_NAME":     "gelu_top",
-  "CLOCK_PORT":      "clk",
-  "CLOCK_PERIOD":    22,
-  "PDK":             "sky130A",
-  "STD_CELL_LIBRARY":"sky130_fd_sc_hd"
-}
-```
-
-All six RTL source files are listed explicitly in `VERILOG_FILES`.
-
-### Running the flow
-
-```bash
-cd project/m3
-bash "helper_script/run_openlane2.sh"
-```
-
-The script sources the Nix profile, changes to the project root, and invokes:
-
-```bash
-openlane synth/config.json
-```
-
-Output is written to `synth/runs/RUN_<timestamp>/`. The committed run is
-`synth/runs/RUN_2026-05-24_17-01-03/`.
-
-To run synthesis only (no place-and-route):
-
-```bash
-bash "helper_script/run_openlane2.sh" --last-step yosys-synthesis
-```
-
-### Result summary
+### Final synthesis result (8-lane `gelu_top`, sky130A)
 
 | Metric | Value |
 |--------|-------|
-| WNS (all 9 corners) | 0.0 ns (timing met) |
-| Critical path delay | 10.174 ns |
-| Clock period | 22 ns (slack +11.83 ns) |
-| Total cell area | 90,470 µm² |
-| Cell count | 7,704 |
-| Flip-flops | 1,142 |
-| Total power (nom TT) | 30.22 mW |
+| Clock period closed | 22 ns (45.45 MHz) |
+| WNS setup / hold (all 9 corners) | 0.0 ns / 0.0 ns — **timing met**, TNS = 0 |
+| Worst setup slack | +11.382 ns (nom_tt); +0.468 ns (worst corner) |
+| Synth cell area | 676,371 µm² (placed 738,475; die 1,733,820) |
+| Cell count / flip-flops | 58,045 / 8,451 |
+| Total power (nom_tt 1.8 V) | 228.37 mW (267.8 mW at the 1.95 V ff corner) |
 
-See `synth/timing_report.txt`, `synth/area_report.txt`, `synth/power_report.txt`,
-and `synth/critical_path.md` for details.
+See `synth/{timing,area,power}_report.txt` and `synth/critical_path.md` for
+detail; the 1-lane baseline is in `synth/gelu_x1s/`.
 
 ---
 
-## Design Hierarchy
+## Design hierarchy (final 8-lane build)
 
 ```
 gelu_top                          (rtl/top.sv)
 └── gelu_axi_stream_interface     (rtl/interface.sv)
-    └── gelu_fp32                 (rtl/gelu_fp32.sv)
-        ├── fp32_to_q16           (rtl/fp32_to_q16.sv)
-        ├── compute_core          (rtl/compute_core.sv)
-        └── q16_to_fp32           (rtl/q16_to_fp32.sv)
+    └── 8 × gelu_fp32                 (rtl/gelu_fp32.sv)   ← generate loop, NUM_LANES=8
+        ├── fp32_to_q16               (rtl/fp32_to_q16.sv)
+        ├── compute_core              (rtl/compute_core.sv)
+        └── q16_to_fp32               (rtl/q16_to_fp32.sv)
 ```
-
-See `explanation.md` for a detailed walkthrough of `interface.sv`.

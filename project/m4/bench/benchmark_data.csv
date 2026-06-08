@@ -1,0 +1,10 @@
+section,config,dut,lanes,bus_bits,path,elements,hw_time_us,throughput_Melem_s,cycles_per_elem,cycles_per_beat,peak_throughput_Melem_s,axi_bw_total_MBps,axi_bw_per_dir_MBps,host_cast_ms,total_time_ms_incl_cast,speedup_vs_sw,gelu_max_err,gelu_failures,argmax_match,logits_avg,logits_max,synth_power_mW_nom_tt,chip_energy_uJ,sim_log,status
+1,software_baseline_per_forward,numpy_fp64,,,,262144,19208.0,13.65,,,,,,,19.208,1.00,,,512/512,,,,,,reference
+2,x1_direct_stream,gelu_top,1,32,direct_axi_stream,262144,5772.096,45.42,1.0009,1.001,45.45,363.3,181.7,0.456,6.228,3.08,0.026311,0,503/512,0.015396,0.104763,30.22,174.0,inloop_x1_run.log,PASS
+3,x8_direct_stream,gelu_top,8,256,direct_axi_stream,262144,725.824,361.17,0.1259,1.007,363.64,2889.3,1444.7,0.456,1.182,16.3,0.026311,0,503/512,0.015396,0.104763,228.37,166.0,inloop_x8_run.log,PASS
+3.5,x16_direct_stream,gelu_top,16,512,direct_axi_stream,262144,365.376,717.46,0.0634,1.014,727.27,5739.7,2869.9,0.456,0.821,23.39,0.026311,0,503/512,0.015396,0.104763,,,inloop_x16_run.log,PASS
+4,x32_direct_stream,gelu_top,32,1024,direct_axi_stream,262144,185.152,1415.83,0.0321,1.027,1454.55,11326.7,5663.3,0.456,0.641,29.96,0.026311,0,503/512,0.015396,0.104763,,,inloop_x32_run.log,PASS
+5,x1_dma_serial,gelu_dma_top,1,32,dma_roundtrip,262144,11894.784,22.04,2.0625,2.062,,176.3,88.2,0.456,12.351,1.56,0.026311,0,503/512,0.015396,0.104763,,,inloop_dma_x1_run.log,PASS
+6.1,x8_wide_dma_serial,gelu_dma_top,8,256,dma_roundtrip,262144,1486.848,176.31,0.2578,2.062,,1410.5,705.2,0.456,1.943,9.89,0.026311,0,503/512,0.015396,0.104763,,,inloop_dma_x8_run.log,PASS
+6.15,x16_wide_dma_serial,gelu_dma_top,16,512,dma_roundtrip,262144,743.424,352.62,0.1289,2.062,,2820.9,1410.5,0.456,1.199,16.01,0.026311,0,503/512,0.015396,0.104763,,,inloop_dma_x16_run.log,PASS
+6.2,x32_wide_dma_serial,gelu_dma_top,32,1024,dma_roundtrip,262144,371.712,705.23,0.0645,2.062,,5641.9,2820.9,0.456,0.828,23.21,0.026311,0,503/512,0.015396,0.104763,,,inloop_dma_x32_run.log,PASS

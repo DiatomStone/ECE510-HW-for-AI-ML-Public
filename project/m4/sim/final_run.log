@@ -1,0 +1,36 @@
+726308.00ns INFO     cocotb.gelu_top                    
+                                                        === Full-Model In-Loop GELU Co-Sim (v2, parallel) — Timing & Metrics ===
+726308.00ns INFO     cocotb.gelu_top                      Model              : M1 transformer, 2 layers, B=8 T=64 d_ff=256 (seed=42)
+726308.00ns INFO     cocotb.gelu_top                      Parallelization    : 8 lanes (256-bit AXI-Stream, 8 FP32/beat)
+726308.00ns INFO     cocotb.gelu_top                      GELU offloads      : 2 (one per layer FFN)
+726308.00ns INFO     cocotb.gelu_top                      Elements streamed  : 262144  in 16 AXI frames (32768 beats)
+726308.00ns INFO     cocotb.gelu_top                      Clock (synth)      : 22 ns  (45.45 MHz)
+726308.00ns INFO     cocotb.gelu_top                      --- MEASURED (cycle-accurate Icarus) ---
+726308.00ns INFO     cocotb.gelu_top                      HW streaming time  : 725824 ns (~32992 cycles)
+726308.00ns INFO     cocotb.gelu_top                      Throughput         : 361.17 M elem/s  (0.1259 cycles/elem, 1.007 cycles/beat)
+726308.00ns INFO     cocotb.gelu_top                      AXI bandwidth/dir  : 1444.7 MB/s (in, and out)
+726308.00ns INFO     cocotb.gelu_top                      AXI bandwidth total: 2889.3 MB/s (in+out)
+726308.00ns INFO     cocotb.gelu_top                      --- PROJECTED PEAK (synthesis × lanes × ops/cycle) ---
+726308.00ns INFO     cocotb.gelu_top                      Peak throughput    : 363.64 M elem/s  (8 results/cycle @ 22 ns)
+726308.00ns INFO     cocotb.gelu_top                      Peak int-arith     : 6181.8 M op/s  (17 ops/elem × 8 lanes)
+726308.00ns INFO     cocotb.gelu_top                      --- HOST-SIDE CONVERSION (informational, not kernel time) ---
+726308.00ns INFO     cocotb.gelu_top                      fp64<->fp32 casts  : 323.9 us total (host, both directions)
+726308.00ns INFO     cocotb.gelu_top                      --- KERNEL ACCURACY (per-element, all layers) ---
+726308.00ns INFO     cocotb.gelu_top                      GELU max error     : 0.026311
+726308.00ns INFO     cocotb.gelu_top                      GELU failures      : 0 / 262144  (threshold 0.05)
+726308.00ns INFO     cocotb.gelu_top                      --- LOOP CLOSURE: final logits vs all-software forward() ---
+726308.00ns INFO     cocotb.gelu_top                      Logits avg / max   : 0.015396 / 0.104763
+726308.00ns INFO     cocotb.gelu_top                      Next-token argmax  : 503/512 positions match software
+726308.00ns INFO     cocotb.gelu_top                    =========================================================
+PASS
+726308.00ns INFO     cocotb.gelu_top                    PASS
+726308.00ns INFO     cocotb.regression                  tb_top.test_gelu_top_inloop passed
+726308.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** tb_top.test_gelu_top_inloop    PASS      726308.00          21.38      33970.51  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0             726308.00          21.38      33966.37  **
+                                                        **************************************************************************************
+FST info: dumpfile sim_build/gelu_top.fst opened for output.
+make[1]: Leaving directory '/home/systemuser/Documents/ECE/510/Project/m4'

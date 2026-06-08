@@ -1,0 +1,85 @@
+OpenLane 2 Area Report — Post-Route (Yosys + OpenROAD)
+Design  : gelu_top   (GELU_NUM_LANES = 8, 256-bit AXI-Stream)
+PDK     : sky130A  /  sky130_fd_sc_hd
+Run     : RUN_2026-06-07_14-45-32   (x8 parallel, direct stream — no DMA)
+
+============================================================
+TOP-LEVEL SUMMARY
+============================================================
+
+  Synthesized cell area (Yosys)  :  676,371.19 µm²
+    Sequential area              :  179,756.15 µm²  (26.58%)
+    Combinational area           :  496,615.04 µm²  (73.42%)
+
+  Post-route placed area (OpenROAD)
+    Std-cell instance area       :  738,475 µm²
+    Core area                    :  1,690,160 µm²
+    Die area                     :  1,733,820 µm²
+    Core utilization             :  43.69%
+
+  Total cell count (Yosys)       :   58,045
+  Flip-flops (dfxtp_2)          :    8,451
+  Ports                          :       29  (668 bits)
+
+  Scaling vs v1 gelu_top (1 lane, 90,470.52 µm² / 1,142 FF):
+    Synth area   676,371 / 90,470  = 7.48×
+    Placed area  738,475 / 90,470  = 8.16×
+    Flip-flops     8,451 / 1,142   = 7.40×
+  (≈ the 8× lane count, plus shared AXI-Stream/Lite wrapper overhead.)
+
+============================================================
+MODULE-LEVEL BREAKDOWN
+============================================================
+
+  Module                      Role                         Notes
+  ──────────────────────────────────────────────────────────────
+  gelu_top                Top-level passthrough         No logic, port connections only
+  gelu_axi_stream_interface  AXI-Stream/Lite wrapper    FIFOs, counters, AXI-Lite CSRs (scalar; counts beats)
+  8 × gelu_fp32               FP32 end-to-end datapath      generate g_lane[0..7], each a 12-stage chain
+    fp32_to_q16               IEEE-754 → Q16.16             4 stages, barrel shifter + RNE
+    compute_core              GELU PWL approximation        4 stages, 32×32 multiply  (per lane)
+    q16_to_fp32               Q16.16 → IEEE-754             4 stages, CLZ + normalise + RNE
+
+  Note: OpenLane flattens the hierarchy at synthesis; per-module area is not
+  reported separately in the post-route stat. The 8,451 DFFs map to the 8 lanes
+  × (12 pipeline stages × ~95 bits/stage in gelu_fp32) plus the scalar FIFO and
+  counter state in gelu_axi_stream_interface (one handshake drives all lanes
+  in lockstep, so control state does NOT scale with lane count).
+
+============================================================
+CELL COUNT BY TYPE (Yosys synthesis, sky130_fd_sc_hd)
+============================================================
+
+  Sequential
+    dfxtp_2   (D flip-flop)                    8451
+
+  Combinational — complex gates (AOI/OAI families)
+    a21o_2  / a21oi_2                          4981
+    a211o_2 / a211oi_2                         1263
+    a22o_2  / a22oi_2                          2317
+    a31o_2  / a31oi_2                          1188
+    a21bo_2 / a21boi_2                          715
+    o21a_2  / o21ai_2                          2238
+    o211a_2 / o211ai_2                         1442
+    o21ba_2 / o21bai_2                          770
+    o2bb2a_2                                     211
+    (other AOI/OAI variants)                   ~700
+
+  Combinational — simple gates
+    and2_2 / and2b_2 / and3_2 / and3b_2 / and4*  6154
+    or2_2  / or3_2  / or3b_2  / or4*             3705
+    nand2_2 / nand2b_2 / nand3* / nand4*         6665
+    nor2_2  / nor3_2  / nor3b_2 / nor4*          3493
+    xor2_2 / xnor2_2                             4958
+    mux2_1 / mux4_2                              7602
+    inv_2                                         700
+    buf_2                                           1
+    conb_1  (tie-high/low cells)                   34
+
+  Post-route additions (OpenROAD, from final/metrics.json):
+    timing-repair buffers  12,717  (of which 6,729 hold buffers)
+    clock buffers           1,392   clock inverters    685
+    tap cells              24,000   antenna cells        975   fill cells 118,624
+
+Source: 06-yosys-synthesis/reports/stat.rpt  (cell counts, synth area)
+        54-openroad-stapostpnr / final/metrics.json  (placed/core/die area, post-route cells)
